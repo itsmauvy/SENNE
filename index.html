@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SENNE | Personal Care</title>
+    <meta
+      name="description"
+      content="SENNE is a quiet personal care brand for scent, skin, and everyday ritual."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="top-banner" href="#shop" aria-label="View new products">
+      신제품 출시
+    </a>
+
+    <header class="site-header">
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="Open menu"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+      >
+        <span></span>
+        <span></span>
+      </button>
+      <a class="brand" href="#top" aria-label="SENNE home">
+        <img src="assets/senne-logo.svg" alt="SENNE" />
+      </a>
+      <nav class="nav nav-primary" aria-label="Product navigation">
+        <a href="#shop">New</a>
+        <a href="#shop">Hair</a>
+        <a href="#shop">Body</a>
+        <a href="#shop">Hand Cream</a>
+        <a href="#top">Home</a>
+      </nav>
+      <nav class="nav nav-utility" aria-label="Account navigation">
+        <a href="#">Login</a>
+        <a href="#">Mypage</a>
+        <a href="#">Search</a>
+        <button class="cart-button" type="button" aria-label="Open cart">Bag(0)</button>
+      </nav>
+    </header>
+
+    <div class="mobile-menu" id="mobile-menu" hidden>
+      <nav aria-label="Mobile navigation">
+        <a href="#shop">New</a>
+        <a href="#shop">Hair</a>
+        <a href="#shop">Body</a>
+        <a href="#shop">Hand Cream</a>
+        <a href="#top">Home</a>
+        <a href="#">Login</a>
+        <a href="#">Mypage</a>
+        <a href="#">Search</a>
+      </nav>
+    </div>
+
+    <main id="top">
+      <section class="hero" aria-label="Featured SENNE products">
+        <div class="hero-slides" aria-hidden="true">
+          <div class="hero-slide is-active" style="--hero-image: url('assets/hero.jpg')"></div>
+          <div class="hero-slide" style="--hero-image: url('assets/ritual.jpg')"></div>
+        </div>
+        <div class="hero-copy">
+          <p class="eyebrow" data-hero-eyebrow></p>
+          <h1 data-hero-title>리페어 헤어 마스크</h1>
+          <p class="hero-text" data-hero-text>
+            물기를 머금은 모발에 깊은 영양과<br />부드러운 윤기를 남깁니다
+          </p>
+          <div class="hero-actions">
+            <a class="text-link" href="#shop">제품보기</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="collection" id="shop">
+        <div class="product-grid">
+          <article class="product-card">
+            <div class="product-media">
+              <div
+                class="product-image image-field"
+                role="img"
+                aria-label="SENNE body wash bottle"
+                style="--image: url('assets/senne body wash png.png'); --hover-image: url('assets/body wash card hover.jpg')"
+              ></div>
+              <button class="wishlist-button" type="button" aria-label="찜하기" aria-pressed="false">♡</button>
+            </div>
+            <div class="product-info">
+              <h3>센느 바디 워시</h3>
+              <p>부드러운 거품과 잔잔한 향으로 하루의 긴장을 씻어내는 데일리 바디 클렌저</p>
+              <span>34,000원</span>
+              <div class="product-actions">
+                <button type="button">장바구니</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-media">
+              <div
+                class="product-image image-field"
+                role="img"
+                aria-label="SENNE hand cream tube"
+                style="--image: url('assets/hand cream white tea png.png'); --hover-image: url('assets/hand cream card hover.jpg')"
+              ></div>
+              <button class="wishlist-button" type="button" aria-label="찜하기" aria-pressed="false">♡</button>
+            </div>
+            <div class="product-info">
+              <h3>리페어 핸드 크림</h3>
+              <p>건조한 손끝에 산뜻하게 스며드는 보습감과 은은한 머스크 노트</p>
+              <span>26,000원</span>
+              <div class="product-actions">
+                <button type="button">장바구니</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-media">
+              <div
+                class="product-image image-field"
+                role="img"
+                aria-label="SENNE hair mask jar"
+                style="--image: url('assets/senne hair mask png.png'); --hover-image: url('assets/senne hair mask card hover.jpg')"
+              ></div>
+              <button class="wishlist-button" type="button" aria-label="찜하기" aria-pressed="false">♡</button>
+            </div>
+            <div class="product-info">
+              <h3>리페어 헤어 마스크</h3>
+              <p>물기를 머금은 모발에 깊은 영양과 차분한 윤기를 남기는 집중 케어 마스크</p>
+              <span>38,000원</span>
+              <div class="product-actions">
+                <button type="button">장바구니</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="feature-grid" id="ritual" aria-label="SENNE featured experiences">
+        <article class="feature-card">
+          <div
+            class="feature-image image-field"
+            role="img"
+            aria-label="SENNE travel kit"
+            style="--image: url('assets/travel kit essentials.jpg')"
+          ></div>
+          <div class="feature-copy">
+            <h2>Travel Kit</h2>
+            <a class="feature-button" href="#shop">제품보기</a>
+          </div>
+        </article>
+
+        <article class="feature-card">
+          <div
+            class="feature-image image-field"
+            role="img"
+            aria-label="SENNE scent quiz"
+            style="--image: url('assets/signature scent.jpg')"
+          ></div>
+          <div class="feature-copy">
+            <h2>나에게 맞는<br />향의 온도 찾기</h2>
+            <a class="feature-button" href="#">나만의 향 찾기</a>
+          </div>
+        </article>
+      </section>
+
+      <section class="story-slider" id="journal" aria-label="SENNE stories" data-story-carousel>
+        <div class="story-track">
+          <div class="story-set is-active">
+            <article class="story-card">
+              <div class="story-slide is-active" style="--story-image: url('assets/scented candle left.jpg')"></div>
+              <div class="story-copy">
+                <p>Home Fragrance</p>
+                <h2>Scented Candle</h2>
+                <a href="#shop">제품보기</a>
+              </div>
+            </article>
+
+            <article class="story-card story-card-light story-card-product">
+              <div
+                class="story-product-only"
+                role="img"
+                aria-label="SENNE scented candle"
+                style="--story-product: url('assets/scented candle png.png'); --product-size: min(112%, 820px) auto"
+              ></div>
+              <div class="story-copy">
+                <p>SENNE Object</p>
+                <h2>Sandalwood & White Tea</h2>
+                <a href="#shop">제품보기</a>
+              </div>
+            </article>
+          </div>
+
+          <div class="story-set">
+            <article class="story-card">
+              <div class="story-slide is-active" style="--story-image: url('assets/hair oil left.jpg')"></div>
+              <div class="story-copy">
+                <p>Hair Fragrance</p>
+                <h2>Hair Oil</h2>
+                <a href="#shop">제품보기</a>
+              </div>
+            </article>
+
+            <article class="story-card story-card-light story-card-product">
+              <div
+                class="story-product-only"
+                role="img"
+                aria-label="SENNE hair oil"
+                style="--story-product: url('assets/hair oil png.png'); --product-size: min(112%, 820px) auto"
+              ></div>
+              <div class="story-copy">
+                <p>SENNE Hair</p>
+                <h2>Neroli Hair Oil</h2>
+                <a href="#shop">제품보기</a>
+              </div>
+            </article>
+          </div>
+
+          <div class="story-set">
+            <article class="story-card">
+              <div class="story-slide is-active" style="--story-image: url('assets/hair mist left.jpg')"></div>
+              <div class="story-copy">
+                <p>Hair Fragrance</p>
+                <h2>Hair Mist</h2>
+                <a href="#shop">제품보기</a>
+              </div>
+            </article>
+
+            <article class="story-card story-card-light story-card-product">
+              <div
+                class="story-product-only"
+                role="img"
+                aria-label="SENNE hair mist"
+                style="--story-product: url('assets/hair mist png.png'); --product-size: min(54%, 420px) auto"
+              ></div>
+              <div class="story-copy">
+                <p>SENNE Hair</p>
+                <h2>Neroli Hair Mist</h2>
+                <a href="#shop">제품보기</a>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="story-controls" aria-label="Story slider controls">
+          <button type="button" data-carousel-prev aria-label="Previous set">−</button>
+          <div class="story-dots" aria-hidden="true">
+            <span class="is-active"></span>
+            <span></span>
+            <span></span>
+          </div>
+          <button type="button" data-carousel-next aria-label="Next set">＋</button>
+        </div>
+      </section>
+
+      <section class="stores" id="stores">
+        <p class="eyebrow">Visit</p>
+        <h2>Seoul showroom opening soon.</h2>
+        <p>12 Hannam-daero, Yongsan-gu. Weekdays 12:00-19:00.</p>
+        <a class="text-link" href="mailto:hello@senne.care">hello@senne.care</a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span class="footer-logo">
+        <img src="assets/senne-logo.svg" alt="SENNE" />
+      </span>
+      <span>Personal care, Seoul</span>
+      <span>Instagram / Contact / Terms</span>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>

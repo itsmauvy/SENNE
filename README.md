@@ -1,1 +1,20 @@
 # SENNE
+
+Personal care brand website inspired by quiet, editorial Korean fragrance and
+body-care design.
+
+## Image slots
+
+Place your final images in `assets/` with these filenames:
+
+- `hero.jpg` - wide hero product image, landscape
+- `ritual.jpg` - lifestyle or still-life ritual image, portrait or square
+- `travel kit essentials.jpg` - large left feature card image
+- `signature scent.jpg` - large right feature card image
+- `product-body-wash.jpg` - product card image
+- `product-hand-cream.jpg` - product card image
+- `product-perfume.jpg` - product card image
+- `product-room-spray.jpg` - product card image
+
+The layout already has subtle fallback backgrounds, so the page will still open
+before the final images are added.
