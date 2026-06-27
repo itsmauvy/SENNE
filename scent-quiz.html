@@ -1,0 +1,600 @@
+﻿<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SENNE | 나만의 향 찾기</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .quiz-wrap {
+        min-height: calc(100vh - 76px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 60px 24px 80px;
+      }
+
+      .quiz-progress {
+        display: flex;
+        gap: 6px;
+        margin-bottom: 52px;
+      }
+
+      .quiz-progress-dot {
+        width: 28px;
+        height: 2px;
+        background: var(--line);
+        transition: background 300ms ease;
+      }
+
+      .quiz-progress-dot.is-active {
+        background: var(--ink);
+      }
+
+      .quiz-step {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 720px;
+        animation: quiz-fade-in 320ms ease;
+      }
+
+      .quiz-step.is-active {
+        display: flex;
+      }
+
+      @keyframes quiz-fade-in {
+        from { opacity: 0; transform: translateY(12px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+
+      .quiz-q-label {
+        margin: 0 0 8px;
+        font-size: 11px;
+        color: var(--muted);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .quiz-question {
+        margin: 0 0 44px;
+        font-size: clamp(22px, 3vw, 32px);
+        font-weight: 400;
+        letter-spacing: -0.02em;
+        text-align: center;
+        line-height: 1.3;
+      }
+
+      .quiz-options {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        width: 100%;
+      }
+
+      .quiz-option {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        padding: 28px 24px;
+        border: 1px solid var(--line);
+        background: transparent;
+        color: var(--ink);
+        font: inherit;
+        text-align: left;
+        cursor: pointer;
+        transition: border-color 180ms ease, background 180ms ease;
+      }
+
+      .quiz-option:hover {
+        border-color: var(--ink);
+        background: #f7f6f2;
+      }
+
+      .quiz-option-title {
+        font-size: 15px;
+        font-weight: 500;
+      }
+
+      .quiz-option-desc {
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      /* Result */
+      .quiz-result {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 640px;
+        text-align: center;
+        animation: quiz-fade-in 380ms ease;
+      }
+
+      .quiz-result.is-active {
+        display: flex;
+      }
+
+      .quiz-result-eyebrow {
+        margin: 0 0 10px;
+        font-size: 11px;
+        color: var(--muted);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .quiz-result-title {
+        margin: 0 0 32px;
+        font-size: clamp(24px, 3vw, 36px);
+        font-weight: 400;
+        letter-spacing: -0.02em;
+      }
+
+      .quiz-result-product {
+        width: 100%;
+        max-width: 360px;
+        aspect-ratio: 1 / 1;
+        background: #f7f6f2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 32px;
+        overflow: hidden;
+      }
+
+      .quiz-result-product img {
+        width: 80%;
+        height: 80%;
+        object-fit: contain;
+      }
+
+      .quiz-result-name {
+        margin: 0 0 8px;
+        font-size: 20px;
+        font-weight: 500;
+      }
+
+      .quiz-result-desc {
+        margin: 0 0 8px;
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.7;
+        max-width: 420px;
+      }
+
+      .quiz-result-price {
+        margin: 0 0 28px;
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      .quiz-result-actions {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .quiz-btn-primary {
+        display: inline-block;
+        padding: 0 36px;
+        height: 48px;
+        line-height: 48px;
+        background: var(--ink);
+        color: var(--white);
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        transition: background 180ms ease;
+      }
+
+      .quiz-btn-primary:hover {
+        background: #3a3732;
+      }
+
+      .quiz-btn-ghost {
+        display: inline-block;
+        padding: 0 28px;
+        height: 48px;
+        line-height: 46px;
+        border: 1px solid var(--line);
+        color: var(--ink);
+        font-size: 13px;
+        transition: border-color 180ms ease;
+      }
+
+      .quiz-btn-ghost:hover {
+        border-color: var(--ink);
+      }
+
+      .quiz-reason {
+        margin: 24px 0 0;
+        padding: 20px 24px;
+        border-top: 1px solid var(--line);
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.7;
+        max-width: 420px;
+        text-align: left;
+      }
+
+      @media (max-width: 540px) {
+        .quiz-options {
+          grid-template-columns: 1fr;
+        }
+
+        .quiz-wrap {
+          padding: 40px 16px 60px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="top-banner" href="products.html" aria-label="SENNE promotion">
+      <span class="top-banner-message is-active">트래블 키트 신규 출시</span>
+      <span class="top-banner-message">5만원 이상 구매 시 무료 배송</span>
+      <span class="top-banner-message">신규 회원 가입 시 3,000원 쿠폰 증정</span>
+    </a>
+
+    <header class="site-header">
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+      <a class="brand" href="index.html" aria-label="SENNE home">
+        <img src="assets/senne-logo.svg" alt="SENNE" />
+      </a>
+      <nav class="nav nav-primary" aria-label="Product navigation">
+        <div class="nav-item">
+          <a href="products.html?category=new">New</a>
+          <div class="mega-panel">
+            <a class="mega-product" href="product-detail.html?id=hand-cream-white-tea">
+              <img src="assets/hand cream card hover.jpg" alt="White tea hand cream" />
+              <span>Hand Cream White Tea</span>
+            </a>
+            <a class="mega-product" href="products.html?category=new">
+              <img src="assets/travel kit essentials.jpg" alt="Travel kit" />
+              <span>Travel Kit</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="products.html?category=hair">Hair</a>
+          <div class="mega-panel">
+            <a class="mega-product" href="product-detail.html?id=hair-mist">
+              <img src="assets/hair mist left.jpg" alt="Hair mist" />
+              <span>Hair Mist</span>
+            </a>
+            <a class="mega-product" href="product-detail.html?id=hair-oil">
+              <img src="assets/hair oil img.jpg" alt="Hair oil" />
+              <span>Hair Oil</span>
+            </a>
+            <a class="mega-product" href="product-detail.html?id=hair-mask">
+              <img src="assets/senne hair mask card hover.jpg" alt="Hair mask" />
+              <span>Repair Hair Mask</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="products.html?category=body">Body</a>
+          <div class="mega-panel">
+            <a class="mega-product" href="product-detail.html?id=body-wash">
+              <img src="assets/body wash card hover.jpg" alt="Body wash" />
+              <span>Body Wash</span>
+            </a>
+            <a class="mega-product" href="product-detail.html?id=body-lotion">
+              <img src="assets/body-lotion.jpg" alt="Body lotion" />
+              <span>Body Lotion</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="products.html?category=hand-cream">Hand Cream</a>
+          <div class="mega-panel">
+            <a class="mega-product" href="product-detail.html?id=hand-cream-white-tea">
+              <img src="assets/hand cream card hover.jpg" alt="Hand cream trio" style="object-position: center bottom" />
+              <span>Hand Cream Trio</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="products.html?category=home">Home</a>
+          <div class="mega-panel">
+            <a class="mega-product" href="product-detail.html?id=scented-candle">
+              <img src="assets/scented candle left.jpg" alt="Scented candle" />
+              <span>Scented Candle</span>
+            </a>
+            <a class="mega-product" href="product-detail.html?id=reed-diffuser">
+              <img src="assets/diffuser.jpg" alt="Diffuser" style="object-position: center bottom" />
+              <span>Diffuser</span>
+            </a>
+            <a class="mega-product" href="product-detail.html?id=room-mist">
+              <img src="assets/room-mist.jpg" alt="Room mist" />
+              <span>Room Mist</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-item nav-item-simple"><a href="stockist.html">Stockist</a></div>
+      </nav>
+      <nav class="nav nav-utility" aria-label="Account navigation">
+        <a href="#" data-search-open>Search</a>
+        <a href="mypage.html" data-mypage-link>Mypage</a>
+        <a href="login.html" data-login-link>Login</a>
+        <button class="cart-button" type="button" aria-label="Open cart">Bag(0)</button>
+      </nav>
+    </header>
+
+    <div class="mobile-menu" id="mobile-menu" hidden>
+      <nav aria-label="Mobile navigation">
+        <a href="products.html?category=new">New</a>
+        <a href="products.html?category=hair">Hair</a>
+        <a href="products.html?category=body">Body</a>
+        <a href="products.html?category=hand-cream">Hand Cream</a>
+        <a href="products.html?category=home">Home</a>
+        <a href="stockist.html">Stockist</a>
+        <a href="#" data-search-open>Search</a>
+        <a href="mypage.html" data-mypage-link>Mypage</a>
+        <a href="mypage.html" data-mypage-link>Mypage</a>
+        <a href="login.html" data-login-link>Login</a>
+      </nav>
+    </div>
+
+    <div class="search-overlay" id="search-overlay" hidden>
+      <div class="search-panel" role="dialog" aria-modal="true" aria-label="제품 검색">
+        <div class="search-bar">
+          <span class="search-icon" aria-hidden="true"></span>
+          <input type="search" class="search-input" placeholder="제품명을 검색해보세요" aria-label="검색어 입력" data-search-input />
+          <button class="search-close" type="button" aria-label="검색 닫기" data-search-close>닫기</button>
+        </div>
+        <div class="search-results" data-search-results aria-live="polite"></div>
+      </div>
+    </div>
+
+    <main>
+      <div class="quiz-wrap">
+
+        <!-- 진행 표시 -->
+        <div class="quiz-progress" id="quiz-progress" aria-hidden="true">
+          <div class="quiz-progress-dot is-active"></div>
+          <div class="quiz-progress-dot"></div>
+          <div class="quiz-progress-dot"></div>
+        </div>
+
+        <!-- Q1 -->
+        <div class="quiz-step is-active" id="step-1">
+          <p class="quiz-q-label">01 / 03</p>
+          <h2 class="quiz-question">지금 어떤 분위기에 끌리나요?</h2>
+          <div class="quiz-options">
+            <button class="quiz-option" data-key="mood" data-val="floral" onclick="nextStep(1, 'mood', 'floral')">
+              <span class="quiz-option-title">가볍고 화사한</span>
+              <span class="quiz-option-desc">꽃향기처럼 산뜻하게 퍼지는 플로럴 무드</span>
+            </button>
+            <button class="quiz-option" data-key="mood" data-val="citrus" onclick="nextStep(1, 'mood', 'citrus')">
+              <span class="quiz-option-title">상쾌하고 맑은</span>
+              <span class="quiz-option-desc">시트러스처럼 깨끗하게 시작하는 아침 같은 향</span>
+            </button>
+            <button class="quiz-option" data-key="mood" data-val="woody" onclick="nextStep(1, 'mood', 'woody')">
+              <span class="quiz-option-title">따뜻하고 깊은</span>
+              <span class="quiz-option-desc">나무와 앰버가 주는 차분하고 묵직한 온기</span>
+            </button>
+            <button class="quiz-option" data-key="mood" data-val="musk" onclick="nextStep(1, 'mood', 'musk')">
+              <span class="quiz-option-title">은은하고 고요한</span>
+              <span class="quiz-option-desc">머스크처럼 피부에 가까이 남는 잔향</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="quiz-step" id="step-2">
+          <p class="quiz-q-label">02 / 03</p>
+          <h2 class="quiz-question">향을 어디에서 경험하고 싶으세요?</h2>
+          <div class="quiz-options">
+            <button class="quiz-option" onclick="nextStep(2, 'category', 'hair')">
+              <span class="quiz-option-title">헤어</span>
+              <span class="quiz-option-desc">움직일 때마다 머리카락에서 번지는 잔향</span>
+            </button>
+            <button class="quiz-option" onclick="nextStep(2, 'category', 'body')">
+              <span class="quiz-option-title">바디</span>
+              <span class="quiz-option-desc">샤워 후 피부에 닿는 부드러운 향과 보습</span>
+            </button>
+            <button class="quiz-option" onclick="nextStep(2, 'category', 'hand')">
+              <span class="quiz-option-title">핸드</span>
+              <span class="quiz-option-desc">손에 닿는 순간마다 느끼는 은은한 향</span>
+            </button>
+            <button class="quiz-option" onclick="nextStep(2, 'category', 'home')">
+              <span class="quiz-option-title">홈</span>
+              <span class="quiz-option-desc">공간 전체를 조용히 채우는 향의 온도</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="quiz-step" id="step-3">
+          <p class="quiz-q-label">03 / 03</p>
+          <h2 class="quiz-question">어떤 방식으로 사용하고 싶으세요?</h2>
+          <div class="quiz-options">
+            <button class="quiz-option" onclick="showResult('light')">
+              <span class="quiz-option-title">가볍게 뿌리는</span>
+              <span class="quiz-option-desc">부담 없이 일상 어디서든 간편하게</span>
+            </button>
+            <button class="quiz-option" onclick="showResult('intense')">
+              <span class="quiz-option-title">집중적으로 케어하는</span>
+              <span class="quiz-option-desc">한 번 쓸 때 깊이 채워주는 집중 트리트먼트</span>
+            </button>
+            <button class="quiz-option" onclick="showResult('lasting')">
+              <span class="quiz-option-title">오래 머무는</span>
+              <span class="quiz-option-desc">하루 종일 은은하게 지속되는 잔향</span>
+            </button>
+            <button class="quiz-option" onclick="showResult('ambient')">
+              <span class="quiz-option-title">공간에 두는</span>
+              <span class="quiz-option-desc">켜두거나 꽂아두면 저절로 채워지는 향</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Result -->
+        <div class="quiz-result" id="quiz-result">
+          <p class="quiz-result-eyebrow">당신을 위한 센느</p>
+          <h2 class="quiz-result-title" id="result-title"></h2>
+          <div class="quiz-result-product">
+            <img id="result-img" src="" alt="" />
+          </div>
+          <p class="quiz-result-name" id="result-name"></p>
+          <p class="quiz-result-price" id="result-price"></p>
+          <p class="quiz-result-desc" id="result-desc"></p>
+          <div class="quiz-result-actions">
+            <a class="quiz-btn-primary" id="result-link" href="#">제품 상세보기</a>
+            <button class="quiz-btn-ghost" onclick="restartQuiz()">다시 찾기</button>
+          </div>
+          <p class="quiz-reason" id="result-reason"></p>
+        </div>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-top">
+        <div class="footer-col footer-brand-col">
+          <span class="footer-logo"><img src="assets/senne-logo.svg" alt="SENNE" /></span>
+        </div>
+        <nav class="footer-col" aria-label="Shop">
+          <h4>Shop</h4>
+          <a href="products.html?category=new">New</a>
+          <a href="products.html?category=hair">Hair</a>
+          <a href="products.html?category=body">Body</a>
+          <a href="products.html?category=hand-cream">Hand Cream</a>
+          <a href="products.html?category=home">Home</a>
+        </nav>
+        <div class="footer-col">
+          <h4>Customer</h4>
+          <p>고객센터 1644-0000</p>
+          <p>평일 10:00–17:00<br />점심 12:30–13:30</p>
+          <a href="mailto:hello@senne.care">hello@senne.care</a>
+        </div>
+        <nav class="footer-col" aria-label="About">
+          <h4>About</h4>
+          <a href="stockist.html">Stockist</a>
+          <a href="#">Story</a>
+          <a href="#">Instagram</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-company">
+          주식회사 센느 · 대표 이서연 · 사업자등록번호 123-45-67890 · 통신판매업신고 제2026-서울용산-0123호 · 서울특별시 용산구 한남대로 12, 3층
+        </p>
+        <div class="footer-legal">
+          <a href="#">이용약관</a>
+          <a href="#">개인정보처리방침</a>
+          <span>© 2026 SENNE</span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="shop.js"></script>
+    <script>
+      const answers = {};
+      let currentStep = 1;
+
+      const PRODUCTS = {
+        "hair-mist":             { name: "헤어 미스트", price: "28,000원", img: "assets/hair mist png.png",          desc: "가볍게 뿌리는 헤어 퍼퓸 미스트. 움직일 때마다 은은하게 번지는 잔향이 하루 종일 함께합니다." },
+        "hair-oil":              { name: "헤어 오일", price: "32,000원", img: "assets/hair oil png.png",            desc: "아르간·동백 오일로 윤기와 결을 정돈하면서, 클린 우디 향이 은은하게 남는 데일리 헤어 오일." },
+        "hair-mask":             { name: "리페어 헤어 마스크", price: "38,000원", img: "assets/senne hair mask png.png",   desc: "물기를 머금은 모발에 깊은 영양을 채우는 집중 트리트먼트. 한 번으로 차분한 윤기가 달라집니다." },
+        "body-wash":             { name: "센느 바디 워시", price: "34,000원", img: "assets/senne body wash png.png",    desc: "부드러운 거품과 잔잔한 향으로 하루의 긴장을 씻어내는 데일리 바디 클렌저." },
+        "body-lotion":           { name: "센느 바디 로션", price: "36,000원", img: "assets/body lotion png.png",        desc: "산뜻하게 스며드는 보습감과 은은한 머스크 노트로 마무리하는 바디 로션." },
+        "hand-cream-white-tea":  { name: "핸드 크림 화이트 티", price: "26,000원", img: "assets/hand cream white tea png.png", desc: "맑고 가벼운 화이트 티 노트가 손 위에서 산뜻하게 피어오르는 보습 핸드 크림." },
+        "hand-cream-bergamot":   { name: "핸드 크림 베르가못", price: "26,000원", img: "assets/hand cream bergamot png.png",  desc: "상쾌한 시트러스로 시작해 앰버 머스크로 가라앉는 산뜻한 베르가못 핸드 크림." },
+        "hand-cream-sandalwood": { name: "핸드 크림 샌달우드", price: "26,000원", img: "assets/hand cream sandalwood.png",    desc: "따뜻한 샌달우드가 오래 머무는 차분한 무드의 핸드 크림. 깊이 있는 우디 향이 마음을 안정시킵니다." },
+        "scented-candle":        { name: "센티드 캔들", price: "42,000원", img: "assets/scented candle png.png",      desc: "샌달우드 & 화이트 티. 공간을 천천히 데우는 따뜻한 향의 소이 캔들." },
+        "reed-diffuser":         { name: "리드 디퓨저", price: "38,000원", img: "assets/diffuser png.png",           desc: "꽂아두는 것만으로 은은하게 퍼지는 잔향. 공간의 결을 조용히 잡아주는 리드 디퓨저." },
+        "room-mist":             { name: "룸 미스트", price: "30,000원", img: "assets/room mist png.png",          desc: "침구와 커튼 위로 가볍게 뿌리는 룸 미스트. 잠들기 전 공간을 정돈하는 린넨 무드." },
+      };
+
+      const REASONS = {
+        "hair-mist":             "가볍고 플로럴한 향을 헤어에서 경험하고 싶은 당신에게 — 뿌리는 순간 퍼지는 미스트가 딱 맞습니다.",
+        "hair-oil":              "우디하고 깊은 향을 모발에 담고 싶은 당신에게 — 오일이 결을 정돈하면서 향을 오래 머물게 합니다.",
+        "hair-mask":             "집중적인 헤어 케어를 원하는 당신에게 — 한 번의 트리트먼트로 달라지는 모발을 경험해보세요.",
+        "body-wash":             "상쾌한 샤워를 원하는 당신에게 — 기분 좋은 거품과 향으로 하루를 시작하거나 마무리하세요.",
+        "body-lotion":           "오래 남는 향과 보습을 원하는 당신에게 — 은은한 머스크가 피부 위에서 하루 종일 함께합니다.",
+        "hand-cream-white-tea":  "가볍고 은은한 향을 손끝에서 느끼고 싶은 당신에게 — 맑고 산뜻한 화이트 티 노트를 추천합니다.",
+        "hand-cream-bergamot":   "상쾌한 향을 좋아하는 당신에게 — 베르가못의 시트러스가 손을 쓸 때마다 기분을 환기시켜 줍니다.",
+        "hand-cream-sandalwood": "따뜻하고 차분한 향을 원하는 당신에게 — 샌달우드의 깊은 온기가 오래 손 위에 머뭅니다.",
+        "scented-candle":        "공간에 향을 두고 싶은 당신에게 — 켜두는 것만으로 방 전체가 따뜻하게 채워지는 캔들을 추천합니다.",
+        "reed-diffuser":         "은은하게 오래 지속되는 공간 향을 원하는 당신에게 — 신경 쓰지 않아도 저절로 퍼지는 디퓨저가 맞습니다.",
+        "room-mist":             "가볍고 즉각적인 공간 향을 원하는 당신에게 — 뿌리는 순간 달라지는 공간의 온도를 느껴보세요.",
+      };
+
+      function nextStep(from, key, val) {
+        answers[key] = val;
+        const current = document.getElementById(`step-${from}`);
+        const next = document.getElementById(`step-${from + 1}`);
+        const dots = document.querySelectorAll(".quiz-progress-dot");
+
+        current.classList.remove("is-active");
+        next.classList.add("is-active");
+        currentStep = from + 1;
+
+        dots.forEach((d, i) => d.classList.toggle("is-active", i < currentStep));
+      }
+
+      function showResult(usage) {
+        answers.usage = usage;
+
+        const { mood, category } = answers;
+        let productId = "hair-mist";
+
+        if (category === "hair") {
+          if (usage === "intense") productId = "hair-mask";
+          else if (usage === "lasting" || mood === "woody") productId = "hair-oil";
+          else productId = "hair-mist";
+        } else if (category === "body") {
+          productId = (usage === "light" || mood === "citrus") ? "body-wash" : "body-lotion";
+        } else if (category === "hand") {
+          if (mood === "citrus") productId = "hand-cream-bergamot";
+          else if (mood === "woody") productId = "hand-cream-sandalwood";
+          else productId = "hand-cream-white-tea";
+        } else {
+          if (usage === "light") productId = "room-mist";
+          else if (usage === "ambient" || usage === "lasting") productId = "reed-diffuser";
+          else productId = "scented-candle";
+        }
+
+        const p = PRODUCTS[productId];
+        document.getElementById("step-3").classList.remove("is-active");
+        document.getElementById("quiz-progress").style.display = "none";
+
+        document.getElementById("result-title").textContent = p.name;
+        document.getElementById("result-img").src = p.img;
+        document.getElementById("result-img").alt = p.name;
+        document.getElementById("result-name").textContent = p.name;
+        document.getElementById("result-price").textContent = p.price;
+        document.getElementById("result-desc").textContent = p.desc;
+        document.getElementById("result-link").href = `product-detail.html?id=${productId}`;
+        document.getElementById("result-reason").textContent = REASONS[productId];
+
+        document.getElementById("quiz-result").classList.add("is-active");
+      }
+
+      function restartQuiz() {
+        Object.keys(answers).forEach(k => delete answers[k]);
+        currentStep = 1;
+
+        document.getElementById("quiz-result").classList.remove("is-active");
+        document.getElementById("quiz-progress").style.display = "";
+        document.querySelectorAll(".quiz-step").forEach((s, i) => {
+          s.classList.toggle("is-active", i === 0);
+        });
+        document.querySelectorAll(".quiz-progress-dot").forEach((d, i) => {
+          d.classList.toggle("is-active", i === 0);
+        });
+      }
+    </script>
+  </body>
+</html>
+
+
+

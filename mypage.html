@@ -1,0 +1,946 @@
+﻿<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SENNE | 마이페이지</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .my-wrap {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 52px 24px 100px;
+      }
+
+      .my-panels-area {
+        min-height: 70vh;
+      }
+
+      .my-greeting {
+        margin: 0 0 8px;
+        font-size: clamp(22px, 3vw, 30px);
+        font-weight: 400;
+        letter-spacing: -0.01em;
+      }
+
+      .my-email {
+        margin: 0 0 40px;
+        font-size: 16px;
+        color: var(--muted);
+      }
+
+      /* 요약 카드 */
+      .my-summary {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        border: 1px solid var(--line);
+        margin-bottom: 52px;
+      }
+
+      .my-summary-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        padding: 28px 16px;
+        border-right: 1px solid var(--line);
+        cursor: pointer;
+        transition: background 160ms ease;
+      }
+
+      .my-summary-item:last-child { border-right: none; }
+
+      .my-summary-item:hover { background: #f7f6f2; }
+
+      .my-summary-num {
+        font-size: 28px;
+        font-weight: 500;
+        letter-spacing: -0.02em;
+      }
+
+      .my-summary-label {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      /* 탭 */
+      .my-tabs {
+        display: flex;
+        border-bottom: 1px solid var(--line);
+        margin-bottom: 40px;
+        gap: 0;
+      }
+
+      .my-tab {
+        padding: 0 4px 14px;
+        margin-right: 28px;
+        border: none;
+        border-bottom: 2px solid transparent;
+        background: none;
+        color: var(--muted);
+        font: inherit;
+        font-size: 16px;
+        cursor: pointer;
+        transition: color 160ms ease, border-color 160ms ease;
+        white-space: nowrap;
+      }
+
+      .my-tab.is-active {
+        color: var(--ink);
+        border-bottom-color: var(--ink);
+        font-weight: 600;
+      }
+
+      /* 패널 */
+      .my-panel { display: none; }
+      .my-panel.is-active { display: block; }
+
+      /* 섹션 제목 */
+      .my-section-title {
+        margin: 0 0 24px;
+        font-size: 18px;
+        font-weight: 500;
+      }
+
+      /* 구매 내역 */
+      .my-order-empty,
+      .my-wish-empty,
+      .my-coupon-empty {
+        padding: 60px 0;
+        text-align: center;
+        color: var(--muted);
+        font-size: 16px;
+        border: 1px solid var(--line);
+      }
+
+      .my-order-empty a,
+      .my-wish-empty a,
+      .my-coupon-empty a {
+        display: inline-block;
+        margin-top: 16px;
+        padding: 0 24px;
+        height: 44px;
+        line-height: 44px;
+        border: 1px solid var(--ink);
+        color: var(--ink);
+        font-size: 14px;
+        transition: background 160ms ease, color 160ms ease;
+      }
+
+      .my-order-empty a:hover,
+      .my-wish-empty a:hover,
+      .my-coupon-empty a:hover {
+        background: var(--ink);
+        color: var(--white);
+      }
+
+      .my-order-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .my-order-card {
+        border: 1px solid var(--line);
+        padding: 20px 24px;
+      }
+
+      .my-order-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 16px;
+        padding-bottom: 14px;
+        border-bottom: 1px solid var(--line);
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      .my-order-status {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--ink);
+        padding: 3px 10px;
+        border: 1px solid var(--ink);
+      }
+
+      .my-order-items {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .my-order-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 16px;
+        padding-top: 14px;
+        border-top: 1px solid var(--line);
+      }
+
+      .my-order-total {
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      .my-order-total span {
+        font-weight: 400;
+        color: var(--muted);
+        font-size: 13px;
+        margin-right: 6px;
+      }
+
+      .my-order-actions {
+        display: flex;
+        gap: 8px;
+      }
+
+      .my-track-btn,
+      .my-cancel-btn,
+      .my-return-btn {
+        height: 36px;
+        padding: 0 16px;
+        border: 1px solid var(--ink);
+        background: transparent;
+        color: var(--ink);
+        font: inherit;
+        font-size: 13px;
+        cursor: pointer;
+        transition: background 160ms ease, color 160ms ease;
+      }
+
+      .my-track-btn:hover,
+      .my-cancel-btn:hover,
+      .my-return-btn:hover {
+        background: var(--ink);
+        color: var(--white);
+      }
+
+      .my-cancel-btn,
+      .my-return-btn {
+        border-color: var(--line);
+        color: var(--muted);
+      }
+
+      .my-cancel-btn:hover,
+      .my-return-btn:hover {
+        border-color: #b94040;
+        background: #b94040;
+        color: var(--white);
+      }
+
+      /* 배송 조회 패널 */
+      .my-track-panel {
+        display: none;
+        margin-top: 20px;
+        padding: 20px;
+        background: #f7f6f2;
+        border: 1px solid var(--line);
+      }
+
+      .my-track-panel.is-open { display: block; }
+
+      .my-track-carrier {
+        font-size: 13px;
+        color: var(--muted);
+        margin-bottom: 16px;
+      }
+
+      .my-track-timeline {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .my-track-step {
+        display: flex;
+        gap: 16px;
+        position: relative;
+      }
+
+      .my-track-step::before {
+        content: "";
+        position: absolute;
+        left: 5px;
+        top: 18px;
+        bottom: -2px;
+        width: 1px;
+        background: var(--line);
+      }
+
+      .my-track-step:last-child::before { display: none; }
+
+      .my-track-dot {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background: var(--line);
+        border: 2px solid var(--white);
+        flex-shrink: 0;
+        margin-top: 4px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .my-track-step.is-done .my-track-dot { background: var(--ink); }
+      .my-track-step.is-current .my-track-dot { background: var(--ink); box-shadow: 0 0 0 3px rgba(32,32,29,0.18); }
+
+      .my-track-body {
+        padding-bottom: 20px;
+      }
+
+      .my-track-label {
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 2px;
+      }
+
+      .my-track-step.is-current .my-track-label { font-weight: 700; }
+      .my-track-step:not(.is-done):not(.is-current) .my-track-label { color: var(--stone); }
+
+      .my-track-time {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .my-order-item {
+        display: flex;
+        gap: 14px;
+        align-items: center;
+      }
+
+      .my-order-thumb {
+        width: 64px;
+        height: 64px;
+        background: #f0ede7;
+        flex-shrink: 0;
+        object-fit: contain;
+      }
+
+      .my-order-info { flex: 1; }
+
+      .my-order-name {
+        font-size: 15px;
+        font-weight: 500;
+        margin-bottom: 4px;
+      }
+
+      .my-order-sub {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .my-order-price {
+        font-size: 15px;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+
+      /* 관심상품 */
+      .my-wish-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+
+      .my-wish-card {
+        position: relative;
+      }
+
+      .my-wish-img {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: contain;
+        background: #f0ede7;
+        display: block;
+      }
+
+      .my-wish-remove {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        width: 28px;
+        height: 28px;
+        border: none;
+        background: rgba(255,253,248,0.9);
+        color: var(--ink);
+        font-size: 14px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .my-wish-name {
+        margin: 10px 0 4px;
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .my-wish-price {
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      /* 쿠폰 */
+      .my-coupon-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .my-coupon-card {
+        display: flex;
+        align-items: center;
+        border: 1px solid var(--line);
+        overflow: hidden;
+      }
+
+      .my-coupon-badge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: 110px;
+        align-self: stretch;
+        background: #8b7355;
+        color: var(--white);
+        gap: 2px;
+      }
+
+      .my-coupon-amount {
+        font-size: 22px;
+        font-weight: 600;
+        line-height: 1;
+      }
+
+      .my-coupon-unit {
+        font-size: 15px;
+        font-weight: 500;
+        opacity: 0.9;
+      }
+
+      .my-coupon-info {
+        flex: 1;
+        padding: 20px 24px;
+      }
+
+      .my-coupon-name {
+        font-size: 16px;
+        font-weight: 500;
+        margin-bottom: 6px;
+      }
+
+      .my-coupon-cond {
+        font-size: 13px;
+        color: var(--muted);
+        margin-bottom: 4px;
+      }
+
+      .my-coupon-expire {
+        font-size: 12px;
+        color: var(--stone);
+      }
+
+      /* 프로필 수정 */
+      .my-profile-form {
+        max-width: 480px;
+      }
+
+      .my-field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-bottom: 20px;
+      }
+
+      .my-field label {
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .my-field input {
+        height: 48px;
+        padding: 0 14px;
+        border: 1px solid var(--line);
+        background: transparent;
+        color: var(--ink);
+        font: inherit;
+        font-size: 16px;
+        outline: none;
+        transition: border-color 160ms ease;
+      }
+
+      .my-field input:focus { border-color: var(--ink); }
+      .my-field input[disabled] { background: #f7f6f2; color: var(--muted); }
+
+      .my-field-hint { font-size: 13px; color: var(--muted); margin-top: -12px; }
+
+      .my-pw-section {
+        margin-top: 36px;
+        padding-top: 28px;
+        border-top: 1px solid var(--line);
+      }
+
+      .my-save-btn {
+        height: 50px;
+        padding: 0 40px;
+        border: none;
+        background: var(--ink);
+        color: var(--white);
+        font: inherit;
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: background 160ms ease;
+      }
+
+      .my-save-btn:hover { background: #3a3732; }
+
+      .my-save-msg {
+        display: none;
+        margin-top: 12px;
+        font-size: 14px;
+        color: var(--moss);
+      }
+
+      .my-save-msg.is-visible { display: block; }
+
+      .my-withdraw {
+        margin-top: 52px;
+        padding-top: 28px;
+        border-top: 1px solid var(--line);
+      }
+
+      .my-withdraw-title {
+        font-size: 16px;
+        font-weight: 500;
+        margin-bottom: 8px;
+      }
+
+      .my-withdraw p {
+        font-size: 14px;
+        color: var(--muted);
+        margin-bottom: 16px;
+      }
+
+      .my-withdraw-btn {
+        height: 42px;
+        padding: 0 24px;
+        border: 1px solid var(--line);
+        background: transparent;
+        color: var(--muted);
+        font: inherit;
+        font-size: 14px;
+        cursor: pointer;
+        transition: border-color 160ms ease, color 160ms ease;
+      }
+
+      .my-withdraw-btn:hover {
+        border-color: #b94040;
+        color: #b94040;
+      }
+
+      @media (max-width: 640px) {
+        .my-summary { grid-template-columns: repeat(3, 1fr); }
+        .my-wish-grid { grid-template-columns: repeat(2, 1fr); }
+        .my-tabs { overflow-x: auto; }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="top-banner" href="products.html" aria-label="SENNE promotion">
+      <span class="top-banner-message is-active">트래블 키트 신규 출시</span>
+      <span class="top-banner-message">5만원 이상 구매 시 무료 배송</span>
+      <span class="top-banner-message">신규 회원 가입 시 3,000원 쿠폰 증정</span>
+    </a>
+
+    <header class="site-header">
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+      <a class="brand" href="index.html" aria-label="SENNE home">
+        <img src="assets/senne-logo.svg" alt="SENNE" />
+      </a>
+      <nav class="nav nav-primary" aria-label="Product navigation">
+        <div class="nav-item"><a href="products.html?category=new">New</a></div>
+        <div class="nav-item"><a href="products.html?category=hair">Hair</a></div>
+        <div class="nav-item"><a href="products.html?category=body">Body</a></div>
+        <div class="nav-item"><a href="products.html?category=hand-cream">Hand Cream</a></div>
+        <div class="nav-item"><a href="products.html?category=home">Home</a></div>
+        <div class="nav-item nav-item-simple"><a href="stockist.html">Stockist</a></div>
+      </nav>
+      <nav class="nav nav-utility" aria-label="Account navigation">
+        <a href="#" data-search-open>Search</a>
+        <a href="mypage.html" data-mypage-link>Mypage</a>
+        <a href="login.html" data-login-link>Login</a>
+        <button class="cart-button" type="button" aria-label="Open cart">Bag(0)</button>
+      </nav>
+    </header>
+
+    <div class="mobile-menu" id="mobile-menu" hidden>
+      <nav aria-label="Mobile navigation">
+        <a href="products.html?category=new">New</a>
+        <a href="products.html?category=hair">Hair</a>
+        <a href="products.html?category=body">Body</a>
+        <a href="products.html?category=hand-cream">Hand Cream</a>
+        <a href="products.html?category=home">Home</a>
+        <a href="stockist.html">Stockist</a>
+        <a href="#" data-search-open>Search</a>
+        <a href="mypage.html" data-mypage-link>Mypage</a>
+        <a href="mypage.html" data-mypage-link>Mypage</a>
+        <a href="login.html" data-login-link>Login</a>
+      </nav>
+    </div>
+
+    <div class="search-overlay" id="search-overlay" hidden>
+      <div class="search-panel" role="dialog" aria-modal="true" aria-label="제품 검색">
+        <div class="search-bar">
+          <span class="search-icon" aria-hidden="true"></span>
+          <input type="search" class="search-input" placeholder="제품명을 검색해보세요" aria-label="검색어 입력" data-search-input />
+          <button class="search-close" type="button" aria-label="검색 닫기" data-search-close>닫기</button>
+        </div>
+        <div class="search-results" data-search-results aria-live="polite"></div>
+      </div>
+    </div>
+
+    <main>
+      <div class="my-wrap" id="my-wrap">
+        <!-- JS로 채워짐 -->
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-top">
+        <div class="footer-col footer-brand-col">
+          <span class="footer-logo"><img src="assets/senne-logo.svg" alt="SENNE" /></span>
+        </div>
+        <nav class="footer-col" aria-label="Shop">
+          <h4>Shop</h4>
+          <a href="products.html?category=new">New</a>
+          <a href="products.html?category=hair">Hair</a>
+          <a href="products.html?category=body">Body</a>
+          <a href="products.html?category=hand-cream">Hand Cream</a>
+          <a href="products.html?category=home">Home</a>
+        </nav>
+        <div class="footer-col">
+          <h4>Customer</h4>
+          <p>고객센터 1644-0000</p>
+          <p>평일 10:00–17:00<br />점심 12:30–13:30</p>
+          <a href="mailto:hello@senne.care">hello@senne.care</a>
+        </div>
+        <nav class="footer-col" aria-label="About">
+          <h4>About</h4>
+          <a href="stockist.html">Stockist</a>
+          <a href="#">Story</a>
+          <a href="#">Instagram</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-company">
+          주식회사 센느 · 대표 이서연 · 사업자등록번호 123-45-67890 · 통신판매업신고 제2026-서울용산-0123호 · 서울특별시 용산구 한남대로 12, 3층
+        </p>
+        <div class="footer-legal">
+          <a href="#">이용약관</a>
+          <a href="#">개인정보처리방침</a>
+          <span>© 2026 SENNE</span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="shop.js"></script>
+    <script>
+      const USER_KEY = "senne_user";
+      const WISH_KEY = "senne_wish";
+
+      const user = JSON.parse(localStorage.getItem(USER_KEY) || "null");
+
+      // 비로그인 시 로그인 페이지로
+      if (!user) {
+        window.location.href = "login.html";
+      }
+
+      // 샘플 데이터
+      const sampleOrders = [
+        {
+          id: "ORD-2026-0042",
+          date: "2026.06.15",
+          status: "배송 완료",
+          carrier: "CJ대한통운 · 운송장번호 1234-5678-9012",
+          tracking: [
+            { label: "배송 완료", time: "2026.06.17 14:23", done: true, current: false },
+            { label: "배송 출발", time: "2026.06.17 08:51", done: true, current: false },
+            { label: "배송 터미널 도착", time: "2026.06.16 22:10", done: true, current: false },
+            { label: "상품 발송", time: "2026.06.16 11:04", done: true, current: false },
+            { label: "결제 완료 · 상품 준비 중", time: "2026.06.15 09:30", done: true, current: false },
+          ],
+          items: [
+            { name: "리페어 헤어 마스크", sub: "200ml", price: "38,000원", img: "assets/senne hair mask png.png" },
+            { name: "센느 바디 워시", sub: "300ml", price: "34,000원", img: "assets/senne body wash png.png" },
+          ],
+          total: "72,000원",
+        },
+        {
+          id: "ORD-2026-0031",
+          date: "2026.05.28",
+          status: "배송 중",
+          carrier: "한진택배 · 운송장번호 9876-5432-1098",
+          tracking: [
+            { label: "배송 완료", time: "", done: false, current: false },
+            { label: "배송 출발", time: "2026.05.30 09:14", done: false, current: true },
+            { label: "배송 터미널 도착", time: "2026.05.29 23:40", done: true, current: false },
+            { label: "상품 발송", time: "2026.05.29 13:22", done: true, current: false },
+            { label: "결제 완료 · 상품 준비 중", time: "2026.05.28 10:05", done: true, current: false },
+          ],
+          items: [
+            { name: "핸드 크림 화이트 티", sub: "50ml", price: "26,000원", img: "assets/hand cream white tea png.png" },
+          ],
+          total: "26,000원",
+        },
+      ];
+
+      const sampleWish = [
+        { id: "hair-mist",            name: "헤어 미스트",        price: "28,000원", img: "assets/hair mist png.png" },
+        { id: "scented-candle",       name: "센티드 캔들",        price: "42,000원", img: "assets/scented candle png.png" },
+        { id: "hand-cream-bergamot",  name: "핸드 크림 베르가못",  price: "26,000원", img: "assets/hand cream bergamot png.png" },
+      ];
+
+      const sampleCoupons = [
+        { amount: "3,000", unit: "원", name: "신규 회원 혜택 쿠폰", cond: "3만원 이상 구매 시 사용 가능", expire: "2026.12.31 만료" },
+        { amount: "10",    unit: "%",  name: "여름 시즌 할인",      cond: "전 제품 적용 · 중복 불가",     expire: "2026.07.31 만료" },
+      ];
+
+      function renderMyPage() {
+        const wish = JSON.parse(localStorage.getItem(WISH_KEY) || "null") || sampleWish;
+        const wrap = document.getElementById("my-wrap");
+
+        wrap.innerHTML = `
+          <h1 class="my-greeting">안녕하세요, ${user.name}님</h1>
+          <p class="my-email">${user.email}</p>
+
+          <div class="my-summary">
+            <div class="my-summary-item" onclick="switchTab('orders')">
+              <span class="my-summary-num">${sampleOrders.length}</span>
+              <span class="my-summary-label">구매 내역</span>
+            </div>
+            <div class="my-summary-item" onclick="switchTab('wish')">
+              <span class="my-summary-num">${wish.length}</span>
+              <span class="my-summary-label">관심 상품</span>
+            </div>
+            <div class="my-summary-item" onclick="switchTab('coupons')">
+              <span class="my-summary-num">${sampleCoupons.length}</span>
+              <span class="my-summary-label">쿠폰</span>
+            </div>
+          </div>
+
+          <div class="my-tabs" role="tablist">
+            <button class="my-tab is-active" role="tab" onclick="switchTab('orders')">구매 내역</button>
+            <button class="my-tab" role="tab" onclick="switchTab('wish')">관심 상품</button>
+            <button class="my-tab" role="tab" onclick="switchTab('coupons')">쿠폰함</button>
+            <button class="my-tab" role="tab" onclick="switchTab('profile')">정보 수정</button>
+          </div>
+
+          <div class="my-panels-area">
+          <!-- 구매 내역 -->
+          <div class="my-panel is-active" id="panel-orders">
+            <div class="my-order-list">
+              ${sampleOrders.map((o, oi) => `
+                <div class="my-order-card">
+                  <div class="my-order-meta">
+                    <span>${o.date} · ${o.id}</span>
+                    <span class="my-order-status">${o.status}</span>
+                  </div>
+                  <div class="my-order-items">
+                    ${o.items.map(it => `
+                      <div class="my-order-item">
+                        <img class="my-order-thumb" src="${it.img}" alt="${it.name}" />
+                        <div class="my-order-info">
+                          <p class="my-order-name">${it.name}</p>
+                          <p class="my-order-sub">${it.sub}</p>
+                        </div>
+                        <span class="my-order-price">${it.price}</span>
+                      </div>
+                    `).join("")}
+                  </div>
+                  <div class="my-order-footer">
+                    <p class="my-order-total"><span>총 결제금액</span>${o.total}</p>
+                    <div class="my-order-actions">
+                      <button class="my-track-btn" onclick="toggleTrack(${oi})">배송 조회</button>
+                      ${o.status === "배송 완료"
+                        ? `<button class="my-return-btn" onclick="handleReturn('${o.id}')">반품 신청</button>`
+                        : `<button class="my-cancel-btn" onclick="handleCancel('${o.id}')">주문 취소</button>`
+                      }
+                    </div>
+                  </div>
+                  <div class="my-track-panel" id="track-${oi}">
+                    <p class="my-track-carrier">${o.carrier}</p>
+                    <div class="my-track-timeline">
+                      ${o.tracking.map(t => `
+                        <div class="my-track-step${t.current ? " is-current" : t.done ? " is-done" : ""}">
+                          <div class="my-track-dot"></div>
+                          <div class="my-track-body">
+                            <p class="my-track-label">${t.label}</p>
+                            ${t.time ? `<p class="my-track-time">${t.time}</p>` : ""}
+                          </div>
+                        </div>
+                      `).join("")}
+                    </div>
+                  </div>
+                </div>
+              `).join("")}
+            </div>
+          </div>
+
+          <!-- 관심 상품 -->
+          <div class="my-panel" id="panel-wish">
+            ${wish.length === 0
+              ? `<div class="my-wish-empty">
+                  <p>찜한 상품이 없습니다</p>
+                  <a href="products.html">제품 둘러보기</a>
+                </div>`
+              : `<div class="my-wish-grid" id="wish-grid">
+                  ${wish.map((p, i) => `
+                    <div class="my-wish-card" id="wish-${i}">
+                      <a href="product-detail.html?id=${p.id}">
+                        <img class="my-wish-img" src="${p.img}" alt="${p.name}" />
+                      </a>
+                      <button class="my-wish-remove" onclick="removeWish(${i})" aria-label="찜 해제">✕</button>
+                      <p class="my-wish-name"><a href="product-detail.html?id=${p.id}">${p.name}</a></p>
+                      <p class="my-wish-price">${p.price}</p>
+                    </div>
+                  `).join("")}
+                </div>`
+            }
+          </div>
+
+          <!-- 쿠폰 -->
+          <div class="my-panel" id="panel-coupons">
+            <div class="my-coupon-list">
+              ${sampleCoupons.map(c => `
+                <div class="my-coupon-card">
+                  <div class="my-coupon-badge">
+                    <span class="my-coupon-amount">${c.amount}</span>
+                    <span class="my-coupon-unit">${c.unit}</span>
+                  </div>
+                  <div class="my-coupon-info">
+                    <p class="my-coupon-name">${c.name}</p>
+                    <p class="my-coupon-cond">${c.cond}</p>
+                    <p class="my-coupon-expire">${c.expire}</p>
+                  </div>
+                </div>
+              `).join("")}
+            </div>
+          </div>
+
+          <!-- 정보 수정 -->
+          <div class="my-panel" id="panel-profile">
+            <form class="my-profile-form" id="profile-form" novalidate>
+              <div class="my-field">
+                <label for="pf-name">이름</label>
+                <input id="pf-name" type="text" value="${user.name}" required />
+              </div>
+              <div class="my-field">
+                <label for="pf-email">이메일</label>
+                <input id="pf-email" type="email" value="${user.email}" disabled />
+              </div>
+
+              <div class="my-pw-section">
+                <h3 class="my-section-title">비밀번호 변경</h3>
+                <div class="my-field">
+                  <label for="pf-pw-cur">현재 비밀번호</label>
+                  <input id="pf-pw-cur" type="password" placeholder="••••••••" autocomplete="current-password" />
+                </div>
+                <div class="my-field">
+                  <label for="pf-pw-new">새 비밀번호</label>
+                  <input id="pf-pw-new" type="password" placeholder="••••••••" autocomplete="new-password" />
+                </div>
+                <div class="my-field">
+                  <label for="pf-pw-new2">새 비밀번호 확인</label>
+                  <input id="pf-pw-new2" type="password" placeholder="••••••••" autocomplete="new-password" />
+                </div>
+                <p class="my-field-hint">변경하지 않으려면 비워두세요</p>
+              </div>
+
+              <button class="my-save-btn" type="submit">저장하기</button>
+              <p class="my-save-msg" id="save-msg">저장되었습니다.</p>
+            </form>
+
+            <div class="my-withdraw">
+              <p class="my-withdraw-title">회원 탈퇴</p>
+              <p>탈퇴 시 모든 정보와 쿠폰이 삭제되며 복구되지 않습니다.</p>
+              <button class="my-withdraw-btn" onclick="confirmWithdraw()">회원 탈퇴</button>
+            </div>
+          </div>
+          </div>
+        `;
+
+        // 프로필 저장
+        document.getElementById("profile-form")?.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const name = document.getElementById("pf-name").value.trim();
+          if (name) {
+            user.name = name;
+            localStorage.setItem(USER_KEY, JSON.stringify(user));
+            document.querySelector(".my-greeting").textContent = `안녕하세요, ${name}님`;
+          }
+          document.getElementById("save-msg").classList.add("is-visible");
+          setTimeout(() => document.getElementById("save-msg").classList.remove("is-visible"), 2500);
+        });
+      }
+
+      function switchTab(id) {
+        document.querySelectorAll(".my-tab").forEach((t, i) => {
+          const ids = ["orders", "wish", "coupons", "profile"];
+          t.classList.toggle("is-active", ids[i] === id);
+        });
+        document.querySelectorAll(".my-panel").forEach(p => p.classList.remove("is-active"));
+        document.getElementById(`panel-${id}`)?.classList.add("is-active");
+      }
+
+      function removeWish(i) {
+        const wish = JSON.parse(localStorage.getItem(WISH_KEY) || "null") || sampleWish;
+        wish.splice(i, 1);
+        localStorage.setItem(WISH_KEY, JSON.stringify(wish));
+        renderMyPage();
+        switchTab("wish");
+      }
+
+      function handleCancel(id) {
+        if (confirm(`주문 ${id}을 취소하시겠습니까?`)) {
+          alert("주문 취소가 접수되었습니다.\n영업일 기준 1~2일 내 처리됩니다.");
+        }
+      }
+
+      function handleReturn(id) {
+        if (confirm(`주문 ${id}의 반품을 신청하시겠습니까?\n수령 후 7일 이내 신청 가능합니다.`)) {
+          alert("반품 신청이 접수되었습니다.\n담당자가 영업일 기준 1~2일 내 연락드립니다.");
+        }
+      }
+
+      function toggleTrack(i) {
+        const panel = document.getElementById(`track-${i}`);
+        panel.classList.toggle("is-open");
+        const btn = panel.previousElementSibling.querySelector(".my-track-btn");
+        btn.textContent = panel.classList.contains("is-open") ? "조회 닫기" : "배송 조회";
+      }
+
+      function confirmWithdraw() {
+        if (confirm("정말 탈퇴하시겠습니까? 모든 정보가 삭제됩니다.")) {
+          localStorage.removeItem(USER_KEY);
+          localStorage.removeItem(WISH_KEY);
+          window.location.href = "index.html";
+        }
+      }
+
+      renderMyPage();
+    </script>
+  </body>
+</html>
+
+

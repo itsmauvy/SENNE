@@ -1,7 +1,7 @@
 /* SENNE shop — cart drawer, add to bag, login / mypage (mock, localStorage) */
 (() => {
   const CART_KEY = "senne-cart";
-  const USER_KEY = "senne-user";
+  const USER_KEY = "senne_user";
   const FREE_SHIPPING = 50000;
   const won = (n) => `${n.toLocaleString("ko-KR")}원`;
   const slugify = (s) => s.trim().toLowerCase().replace(/\s+/g, "-");
@@ -36,20 +36,6 @@
         <a class="btn-solid" href="checkout.html" data-cart-checkout>CHECKOUT</a>
       </footer>
     </aside>
-
-    <div class="modal" data-modal="login" aria-hidden="true">
-      <div class="modal-card" role="dialog" aria-modal="true" aria-label="로그인">
-        <button class="icon-close" type="button" data-modal-close aria-label="닫기">✕</button>
-        <p class="modal-eyebrow">SENNE</p>
-        <h2 class="modal-title">로그인</h2>
-        <form data-login-form>
-          <label class="field"><span>이메일</span><input type="email" name="email" required placeholder="hello@senne.care" /></label>
-          <label class="field"><span>비밀번호</span><input type="password" name="password" required placeholder="••••••••" /></label>
-          <button class="btn-solid" type="submit">로그인</button>
-        </form>
-        <p class="modal-foot">아직 회원이 아니신가요? <a href="#" data-login-demo>게스트로 시작</a></p>
-      </div>
-    </div>
 
   `;
   document.body.appendChild(root);
@@ -209,38 +195,27 @@
   const getUser = () => read(USER_KEY, null);
   const refreshAuthUI = () => {
     const user = getUser();
+    // LOGIN / LOGOUT 토글
     document.querySelectorAll("[data-login-link]").forEach((a) => {
       a.textContent = user ? "Logout" : "Login";
+      a.href = user ? "#" : "login.html";
+    });
+    // MYPAGE — 로그인 여부에 따라 목적지 결정
+    document.querySelectorAll("[data-mypage-link]").forEach((a) => {
+      a.href = user ? "mypage.html" : "login.html";
     });
   };
 
   document.querySelectorAll("[data-login-link]").forEach((a) =>
     a.addEventListener("click", (e) => {
-      e.preventDefault();
       if (getUser()) {
+        e.preventDefault();
         localStorage.removeItem(USER_KEY);
         refreshAuthUI();
-      } else {
-        openModal("login");
       }
     })
   );
 
-  const loginForm = root.querySelector("[data-login-form]");
-  const doLogin = (email) => {
-    const name = email ? email.split("@")[0] : "Guest";
-    write(USER_KEY, { email: email || "guest@senne.care", name, orders: 0 });
-    refreshAuthUI();
-    closeAll();
-  };
-  loginForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    doLogin(new FormData(loginForm).get("email"));
-  });
-  root.querySelector("[data-login-demo]").addEventListener("click", (e) => {
-    e.preventDefault();
-    doLogin("");
-  });
 
   /* ---------- expose for checkout page ---------- */
   window.SenneShop = {

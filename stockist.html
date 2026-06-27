@@ -1,0 +1,257 @@
+﻿<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SENNE | Stockist</title>
+    <meta name="description" content="SENNE 오프라인 및 온라인 스토어 정보" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="top-banner" href="products.html" aria-label="SENNE promotion">
+      <span class="top-banner-message is-active">트래블 키트 신규 출시</span>
+      <span class="top-banner-message">5만원 이상 구매 시 무료 배송</span>
+      <span class="top-banner-message">신규 회원 가입 시 3,000원 쿠폰 증정</span>
+    </a>
+
+    <header class="site-header">
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+      <a class="brand" href="index.html" aria-label="SENNE home">
+        <img src="assets/senne-logo.svg" alt="SENNE" />
+      </a>
+      <nav class="nav nav-primary" aria-label="Product navigation">
+        <div class="nav-item">
+          <a href="products.html?category=new">New</a>
+          <div class="mega-panel">
+            <a class="mega-product" href="product-detail.html?id=hand-cream-white-tea">
+              <img src="assets/hand cream card hover.jpg" alt="White tea hand cream" />
+              <span>Hand Cream White Tea</span>
+            </a>
+            <a class="mega-product" href="products.html?category=new">
+              <img src="assets/travel kit essentials.jpg" alt="Travel kit" />
+              <span>Travel Kit</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="products.html?category=hair">Hair</a>
+          <div class="mega-panel">
+            <a class="mega-product" href="product-detail.html?id=hair-mist">
+              <img src="assets/hair mist left.jpg" alt="Hair mist" />
+              <span>Hair Mist</span>
+            </a>
+            <a class="mega-product" href="product-detail.html?id=hair-oil">
+              <img src="assets/hair oil img.jpg" alt="Hair oil" />
+              <span>Hair Oil</span>
+            </a>
+            <a class="mega-product" href="product-detail.html?id=hair-mask">
+              <img src="assets/senne hair mask card hover.jpg" alt="Hair mask" />
+              <span>Repair Hair Mask</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="products.html?category=body">Body</a>
+          <div class="mega-panel">
+            <a class="mega-product" href="product-detail.html?id=body-wash">
+              <img src="assets/body wash card hover.jpg" alt="Body wash" />
+              <span>Body Wash</span>
+            </a>
+            <a class="mega-product" href="product-detail.html?id=body-lotion">
+              <img src="assets/body-lotion.jpg" alt="Body lotion" />
+              <span>Body Lotion</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="products.html?category=hand-cream">Hand Cream</a>
+          <div class="mega-panel">
+            <a class="mega-product" href="product-detail.html?id=hand-cream-white-tea">
+              <img src="assets/hand cream card hover.jpg" alt="Hand cream trio" style="object-position: center bottom" />
+              <span>Hand Cream Trio</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="products.html?category=home">Home</a>
+          <div class="mega-panel">
+            <a class="mega-product" href="product-detail.html?id=scented-candle">
+              <img src="assets/scented candle left.jpg" alt="Scented candle" />
+              <span>Scented Candle</span>
+            </a>
+            <a class="mega-product" href="product-detail.html?id=reed-diffuser">
+              <img src="assets/diffuser.jpg" alt="Diffuser" style="object-position: center bottom" />
+              <span>Diffuser</span>
+            </a>
+            <a class="mega-product" href="product-detail.html?id=room-mist">
+              <img src="assets/room-mist.jpg" alt="Room mist" />
+              <span>Room Mist</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-item nav-item-simple"><a href="stockist.html">Stockist</a></div>
+      </nav>
+      <nav class="nav nav-utility" aria-label="Account navigation">
+        <a href="#" data-search-open>Search</a>
+        <a href="mypage.html" data-mypage-link>Mypage</a>
+        <a href="login.html" data-login-link>Login</a>
+        <button class="cart-button" type="button" aria-label="Open cart">Bag(0)</button>
+      </nav>
+    </header>
+
+    <div class="mobile-menu" id="mobile-menu" hidden>
+      <nav aria-label="Mobile navigation">
+        <a href="products.html?category=new">New</a>
+        <a href="products.html?category=hair">Hair</a>
+        <a href="products.html?category=body">Body</a>
+        <a href="products.html?category=hand-cream">Hand Cream</a>
+        <a href="products.html?category=home">Home</a>
+        <a href="stockist.html">Stockist</a>
+        <a href="#" data-search-open>Search</a>
+        <a href="mypage.html" data-mypage-link>Mypage</a>
+        <a href="mypage.html" data-mypage-link>Mypage</a>
+        <a href="login.html" data-login-link>Login</a>
+      </nav>
+    </div>
+
+    <div class="search-overlay" id="search-overlay" hidden>
+      <div class="search-panel" role="dialog" aria-modal="true" aria-label="제품 검색">
+        <div class="search-bar">
+          <span class="search-icon" aria-hidden="true"></span>
+          <input type="search" class="search-input" placeholder="제품명을 검색해보세요" aria-label="검색어 입력" data-search-input />
+          <button class="search-close" type="button" aria-label="검색 닫기" data-search-close>닫기</button>
+        </div>
+        <div class="search-results" data-search-results aria-live="polite"></div>
+      </div>
+    </div>
+
+    <main>
+      <div class="stockist-hero">
+        <h1 class="stockist-eyebrow">Stockist</h1>
+      </div>
+
+      <div class="stockist-body">
+
+        <!-- 오프라인 -->
+        <section class="stockist-section">
+          <h2 class="stockist-section-title">Offline</h2>
+
+          <div class="stockist-flagship">
+            <div class="stockist-flagship-image">
+              <img src="assets/stockist page store.jpg" alt="센느 한남 플래그십 스토어" />
+            </div>
+            <div class="stockist-flagship-info">
+              <div class="stockist-card-label">Flagship Store</div>
+              <h3>센느 한남</h3>
+              <address>
+                서울특별시 용산구 한남대로 12, 3층<br />
+                (한남동, 한남빌딩)
+              </address>
+              <dl class="stockist-meta">
+                <div><dt>운영 시간</dt><dd>화–일 11:00–20:00 (월요일 휴무)</dd></div>
+                <div><dt>전화</dt><dd><a href="tel:027991234">02-799-1234</a></dd></div>
+                <div><dt>이메일</dt><dd><a href="mailto:hello@senne.care">hello@senne.care</a></dd></div>
+              </dl>
+              <p class="stockist-note">주차 가능 · 한강진역 2번 출구 도보 5분</p>
+              <a class="stockist-map-link" href="https://map.naver.com/v5/search/서울특별시 용산구 한남대로 12" target="_blank" rel="noopener">지도 보기 →</a>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- 온라인 -->
+        <section class="stockist-section">
+          <h2 class="stockist-section-title">Online</h2>
+
+          <div class="stockist-grid stockist-grid-online">
+            <a class="stockist-online-card" href="#" target="_blank" rel="noopener">
+              <span class="stockist-online-name">SENNE 공식몰</span>
+              <span class="stockist-online-desc">전 제품 · 단독 기획 세트 · 구독 서비스</span>
+              <span class="stockist-online-arrow">→</span>
+            </a>
+            <a class="stockist-online-card" href="#" target="_blank" rel="noopener">
+              <span class="stockist-online-name">네이버 스마트스토어</span>
+              <span class="stockist-online-desc">네이버페이 · 리뷰 적립 혜택</span>
+              <span class="stockist-online-arrow">→</span>
+            </a>
+            <a class="stockist-online-card" href="#" target="_blank" rel="noopener">
+              <span class="stockist-online-name">29CM</span>
+              <span class="stockist-online-desc">큐레이션 기획전 · 단독 할인 프로모션</span>
+              <span class="stockist-online-arrow">→</span>
+            </a>
+            <a class="stockist-online-card" href="#" target="_blank" rel="noopener">
+              <span class="stockist-online-name">무신사</span>
+              <span class="stockist-online-desc">헤어·바디 카테고리 공식 입점</span>
+              <span class="stockist-online-arrow">→</span>
+            </a>
+            <a class="stockist-online-card" href="#" target="_blank" rel="noopener">
+              <span class="stockist-online-name">올리브영 온라인</span>
+              <span class="stockist-online-desc">핸드 크림 · 바디 워시 라인 판매</span>
+              <span class="stockist-online-arrow">→</span>
+            </a>
+            <a class="stockist-online-card" href="#" target="_blank" rel="noopener">
+              <span class="stockist-online-name">카카오선물하기</span>
+              <span class="stockist-online-desc">기프트 패키지 · 기념일 선물 세트</span>
+              <span class="stockist-online-arrow">→</span>
+            </a>
+          </div>
+        </section>
+
+        <!-- 입점 문의 -->
+        <section class="stockist-inquiry">
+          <h2>입점 문의</h2>
+          <p>도매 및 편집숍 입점 문의는 아래 이메일로 연락해주세요.<br />담당자가 영업일 기준 2일 이내에 답변드립니다.</p>
+          <a class="stockist-inquiry-email" href="mailto:wholesale@senne.care">wholesale@senne.care</a>
+        </section>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-top">
+        <div class="footer-col footer-brand-col">
+          <span class="footer-logo"><img src="assets/senne-logo.svg" alt="SENNE" /></span>
+        </div>
+        <nav class="footer-col" aria-label="Shop">
+          <h4>Shop</h4>
+          <a href="products.html?category=new">New</a>
+          <a href="products.html?category=hair">Hair</a>
+          <a href="products.html?category=body">Body</a>
+          <a href="products.html?category=hand-cream">Hand Cream</a>
+          <a href="products.html?category=home">Home</a>
+        </nav>
+        <div class="footer-col">
+          <h4>Customer</h4>
+          <p>고객센터 1644-0000</p>
+          <p>평일 10:00–17:00<br />점심 12:30–13:30</p>
+          <a href="mailto:hello@senne.care">hello@senne.care</a>
+        </div>
+        <nav class="footer-col" aria-label="About">
+          <h4>About</h4>
+          <a href="stockist.html">Stockist</a>
+          <a href="#">Story</a>
+          <a href="#">Instagram</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-company">
+          주식회사 센느 · 대표 이서연 · 사업자등록번호 123-45-67890 · 통신판매업신고 제2026-서울용산-0123호 · 서울특별시 용산구 한남대로 12, 3층
+        </p>
+        <div class="footer-legal">
+          <a href="#">이용약관</a>
+          <a href="#">개인정보처리방침</a>
+          <span>© 2026 SENNE</span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="shop.js"></script>
+  </body>
+</html>
+
+
+
+

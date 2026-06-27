@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SENNE | 로그인</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .auth-wrap {
+        min-height: calc(100vh - 76px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 60px 24px 80px;
+      }
+
+      .auth-card {
+        width: 100%;
+        max-width: 400px;
+      }
+
+      .auth-logo {
+        display: block;
+        width: 100px;
+        margin: 0 auto 36px;
+      }
+
+      .auth-title {
+        margin: 0 0 6px;
+        font-size: 24px;
+        font-weight: 500;
+        text-align: center;
+        letter-spacing: -0.01em;
+      }
+
+      .auth-subtitle {
+        margin: 0 0 32px;
+        font-size: 16px;
+        color: var(--muted);
+        text-align: center;
+      }
+
+      .auth-field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-bottom: 16px;
+      }
+
+      .auth-field label {
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--ink);
+      }
+
+      .auth-field input {
+        width: 100%;
+        height: 48px;
+        padding: 0 14px;
+        border: 1px solid var(--line);
+        background: transparent;
+        color: var(--ink);
+        font: inherit;
+        font-size: 16px;
+        outline: none;
+        transition: border-color 160ms ease;
+      }
+
+      .auth-field input:focus {
+        border-color: var(--ink);
+      }
+
+      .auth-field input::placeholder {
+        color: var(--stone);
+      }
+
+      .auth-forgot {
+        display: block;
+        margin: -8px 0 24px;
+        font-size: 13px;
+        color: var(--muted);
+        text-align: right;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      .auth-btn {
+        display: block;
+        width: 100%;
+        height: 52px;
+        border: none;
+        background: var(--ink);
+        color: var(--white);
+        font: inherit;
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: background 160ms ease;
+      }
+
+      .auth-btn:hover {
+        background: #3a3732;
+      }
+
+      .auth-divider {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 24px 0;
+        color: var(--stone);
+        font-size: 13px;
+      }
+
+      .auth-divider::before,
+      .auth-divider::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--line);
+      }
+
+      .auth-social {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 28px;
+      }
+
+      .auth-social-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        height: 48px;
+        border: 1px solid var(--line);
+        background: transparent;
+        color: var(--ink);
+        font: inherit;
+        font-size: 15px;
+        cursor: pointer;
+        transition: border-color 160ms ease, background 160ms ease;
+      }
+
+      .auth-social-btn:hover {
+        border-color: var(--ink);
+        background: #f7f6f2;
+      }
+
+      .auth-social-btn svg {
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+      }
+
+      .auth-foot {
+        margin: 24px 0 0;
+        font-size: 15px;
+        color: var(--muted);
+        text-align: center;
+      }
+
+      .auth-foot a {
+        color: var(--ink);
+        font-weight: 600;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      .auth-message {
+        display: none;
+        padding: 12px 14px;
+        margin-bottom: 16px;
+        font-size: 14px;
+        background: #fdf0ee;
+        color: #b94040;
+        border-left: 3px solid #b94040;
+      }
+
+      .auth-message.is-visible { display: block; }
+    </style>
+  </head>
+  <body>
+    <a class="top-banner" href="products.html" aria-label="SENNE promotion">
+      <span class="top-banner-message is-active">트래블 키트 신규 출시</span>
+      <span class="top-banner-message">5만원 이상 구매 시 무료 배송</span>
+      <span class="top-banner-message">신규 회원 가입 시 3,000원 쿠폰 증정</span>
+    </a>
+
+    <header class="site-header">
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+      <a class="brand" href="index.html" aria-label="SENNE home">
+        <img src="assets/senne-logo.svg" alt="SENNE" />
+      </a>
+      <nav class="nav nav-primary" aria-label="Product navigation">
+        <div class="nav-item">
+          <a href="products.html?category=new">New</a>
+          <div class="mega-panel">
+            <a class="mega-product" href="product-detail.html?id=hand-cream-white-tea">
+              <img src="assets/hand cream card hover.jpg" alt="White tea hand cream" />
+              <span>Hand Cream White Tea</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-item"><a href="products.html?category=hair">Hair</a></div>
+        <div class="nav-item"><a href="products.html?category=body">Body</a></div>
+        <div class="nav-item"><a href="products.html?category=hand-cream">Hand Cream</a></div>
+        <div class="nav-item"><a href="products.html?category=home">Home</a></div>
+        <div class="nav-item nav-item-simple"><a href="stockist.html">Stockist</a></div>
+      </nav>
+      <nav class="nav nav-utility" aria-label="Account navigation">
+        <a href="#" data-search-open>Search</a>
+        <a href="login.html" style="font-weight:600">Login</a>
+        <button class="cart-button" type="button" aria-label="Open cart">Bag(0)</button>
+      </nav>
+    </header>
+
+    <div class="mobile-menu" id="mobile-menu" hidden>
+      <nav aria-label="Mobile navigation">
+        <a href="products.html?category=new">New</a>
+        <a href="products.html?category=hair">Hair</a>
+        <a href="products.html?category=body">Body</a>
+        <a href="products.html?category=hand-cream">Hand Cream</a>
+        <a href="products.html?category=home">Home</a>
+        <a href="stockist.html">Stockist</a>
+        <a href="#" data-search-open>Search</a>
+        <a href="login.html">Login</a>
+      </nav>
+    </div>
+
+    <div class="search-overlay" id="search-overlay" hidden>
+      <div class="search-panel" role="dialog" aria-modal="true" aria-label="제품 검색">
+        <div class="search-bar">
+          <span class="search-icon" aria-hidden="true"></span>
+          <input type="search" class="search-input" placeholder="제품명을 검색해보세요" aria-label="검색어 입력" data-search-input />
+          <button class="search-close" type="button" aria-label="검색 닫기" data-search-close>닫기</button>
+        </div>
+        <div class="search-results" data-search-results aria-live="polite"></div>
+      </div>
+    </div>
+
+    <main>
+      <div class="auth-wrap">
+        <div class="auth-card">
+          <h1 class="auth-title">로그인</h1>
+
+          <div class="auth-message" id="auth-error"></div>
+
+          <form id="login-form" novalidate>
+            <div class="auth-field">
+              <label for="login-email">이메일</label>
+              <input id="login-email" type="email" name="email" placeholder="hello@example.com" autocomplete="email" required />
+            </div>
+            <div class="auth-field">
+              <label for="login-pw">비밀번호</label>
+              <input id="login-pw" type="password" name="password" placeholder="••••••••" autocomplete="current-password" required />
+            </div>
+            <a class="auth-forgot" href="#">비밀번호를 잊으셨나요?</a>
+            <button class="auth-btn" type="submit">로그인</button>
+          </form>
+
+          <div class="auth-divider">또는</div>
+
+          <div class="auth-social">
+            <button class="auth-social-btn" type="button" onclick="socialLogin('kakao')">
+              <svg viewBox="0 0 24 24" fill="#3A1D1D"><path d="M12 3C6.477 3 2 6.477 2 10.8c0 2.73 1.63 5.13 4.1 6.57L5.14 21l4.43-2.93c.78.12 1.59.18 2.43.18 5.523 0 10-3.477 10-7.8S17.523 3 12 3z"/></svg>
+              카카오로 시작하기
+            </button>
+            <button class="auth-social-btn" type="button" onclick="socialLogin('naver')">
+              <svg viewBox="0 0 24 24" fill="#03C75A"><path d="M13.5 12.36L10.2 7H7v10h3.5v-5.36L14.1 17H17V7h-3.5z"/></svg>
+              네이버로 시작하기
+            </button>
+          </div>
+
+          <p class="auth-foot">아직 회원이 아니신가요? <a href="signup.html">회원가입</a></p>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-top">
+        <div class="footer-col footer-brand-col">
+          <span class="footer-logo"><img src="assets/senne-logo.svg" alt="SENNE" /></span>
+        </div>
+        <nav class="footer-col" aria-label="Shop">
+          <h4>Shop</h4>
+          <a href="products.html?category=new">New</a>
+          <a href="products.html?category=hair">Hair</a>
+          <a href="products.html?category=body">Body</a>
+          <a href="products.html?category=hand-cream">Hand Cream</a>
+          <a href="products.html?category=home">Home</a>
+        </nav>
+        <div class="footer-col">
+          <h4>Customer</h4>
+          <p>고객센터 1644-0000</p>
+          <p>평일 10:00–17:00<br />점심 12:30–13:30</p>
+          <a href="mailto:hello@senne.care">hello@senne.care</a>
+        </div>
+        <nav class="footer-col" aria-label="About">
+          <h4>About</h4>
+          <a href="stockist.html">Stockist</a>
+          <a href="#">Story</a>
+          <a href="#">Instagram</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-company">
+          주식회사 센느 · 대표 이서연 · 사업자등록번호 123-45-67890 · 통신판매업신고 제2026-서울용산-0123호 · 서울특별시 용산구 한남대로 12, 3층
+        </p>
+        <div class="footer-legal">
+          <a href="#">이용약관</a>
+          <a href="#">개인정보처리방침</a>
+          <span>© 2026 SENNE</span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="shop.js"></script>
+    <script>
+      document.getElementById("login-form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        const email = document.getElementById("login-email").value.trim();
+        const pw = document.getElementById("login-pw").value;
+        const errEl = document.getElementById("auth-error");
+
+        if (!email || !pw) {
+          errEl.textContent = "이메일과 비밀번호를 모두 입력해주세요.";
+          errEl.classList.add("is-visible");
+          return;
+        }
+
+        // mock: store user and redirect
+        localStorage.setItem("senne_user", JSON.stringify({ email, name: email.split("@")[0], orders: 0 }));
+        window.location.href = "index.html";
+      });
+
+      function socialLogin(provider) {
+        // mock: treat as guest login
+        const name = provider === "kakao" ? "카카오 사용자" : "네이버 사용자";
+        localStorage.setItem("senne_user", JSON.stringify({ email: `${provider}@senne.care`, name, orders: 0 }));
+        window.location.href = "index.html";
+      }
+    </script>
+  </body>
+</html>

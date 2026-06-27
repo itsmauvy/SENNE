@@ -44,13 +44,31 @@ const heroCopy = [
     eyebrow: "",
     title: "리페어 헤어 마스크",
     text: "물기를 머금은 모발에 깊은 영양과<br />부드러운 윤기를 남깁니다",
+    productId: "hair-mask",
   },
   {
     eyebrow: "",
     title: "센느 바디 워시",
     text: "부드러운 거품과 잔잔한 향으로<br />하루의 긴장을 씻어냅니다",
+    productId: "body-wash",
   },
 ];
+
+const heroLink = document.querySelector(".hero-actions a");
+const heroSlidesEl = document.querySelector(".hero-slides");
+
+if (heroLink) {
+  heroLink.href = `product-detail.html?id=${heroCopy[0].productId}`;
+}
+
+if (heroSlidesEl) {
+  heroSlidesEl.style.cursor = "pointer";
+  heroSlidesEl.addEventListener("click", () => {
+    const activeIndex = heroSlides.findIndex((s) => s.classList.contains("is-active"));
+    const copy = heroCopy[activeIndex];
+    if (copy) window.location.href = `product-detail.html?id=${copy.productId}`;
+  });
+}
 
 if (menuToggle && mobileMenu) {
   const closeMenu = () => {
@@ -102,6 +120,7 @@ if (heroSlides.length > 1) {
       heroEyebrow.textContent = copy.eyebrow;
       heroTitle.innerHTML = copy.title;
       heroText.innerHTML = copy.text;
+      if (heroLink) heroLink.href = `product-detail.html?id=${copy.productId}`;
     }
   }, 4200);
 }
@@ -242,19 +261,18 @@ if (searchOverlay && searchOpeners.length) {
   const searchClose = searchOverlay.querySelector("[data-search-close]");
 
   const searchData = [
-    { name: "헤어 미스트", keywords: "hair mist 헤어미스트 미스트", price: "28,000원", category: "hair", label: "Hair" },
-    { name: "헤어 오일", keywords: "hair oil 헤어오일 오일", price: "32,000원", category: "hair", label: "Hair" },
-    { name: "리페어 헤어 마스크", keywords: "repair hair mask 헤어마스크 마스크", price: "38,000원", category: "hair", label: "Hair" },
-    { name: "센느 바디 워시", keywords: "body wash 바디워시 워시", price: "34,000원", category: "body", label: "Body" },
-    { name: "센느 바디 로션", keywords: "body lotion 바디로션 로션", price: "36,000원", category: "body", label: "Body" },
-    { name: "핸드 크림 화이트 티", keywords: "hand cream white tea 핸드크림 화이트티", price: "26,000원", category: "hand-cream", label: "Hand Cream" },
-    { name: "핸드 크림 베르가못", keywords: "hand cream bergamot 핸드크림 베르가못", price: "26,000원", category: "hand-cream", label: "Hand Cream" },
-    { name: "핸드 크림 샌달우드", keywords: "hand cream sandalwood 핸드크림 샌달우드", price: "26,000원", category: "hand-cream", label: "Hand Cream" },
-    { name: "핸드 크림 트리오 세트", keywords: "hand cream trio set 핸드크림 트리오 세트", price: "68,000원", category: "hand-cream", label: "Hand Cream" },
-    { name: "센티드 캔들", keywords: "scented candle 센티드캔들 캔들", price: "42,000원", category: "home", label: "Home" },
-    { name: "리드 디퓨저", keywords: "reed diffuser 리드디퓨저 디퓨저", price: "38,000원", category: "home", label: "Home" },
-    { name: "룸 미스트", keywords: "room mist 룸미스트 미스트", price: "30,000원", category: "home", label: "Home" },
-    { name: "트래블 키트", keywords: "travel kit 트래블키트 키트 세트", price: "58,000원", category: "new", label: "New" },
+    { name: "헤어 미스트", keywords: "hair mist 헤어미스트 미스트", price: "28,000원", href: "product-detail.html?id=hair-mist", label: "Hair" },
+    { name: "헤어 오일", keywords: "hair oil 헤어오일 오일", price: "32,000원", href: "product-detail.html?id=hair-oil", label: "Hair" },
+    { name: "리페어 헤어 마스크", keywords: "repair hair mask 헤어마스크 마스크", price: "38,000원", href: "product-detail.html?id=hair-mask", label: "Hair" },
+    { name: "센느 바디 워시", keywords: "body wash 바디워시 워시", price: "34,000원", href: "product-detail.html?id=body-wash", label: "Body" },
+    { name: "센느 바디 로션", keywords: "body lotion 바디로션 로션", price: "36,000원", href: "product-detail.html?id=body-lotion", label: "Body" },
+    { name: "핸드 크림 화이트 티", keywords: "hand cream white tea 핸드크림 화이트티", price: "26,000원", href: "product-detail.html?id=hand-cream-white-tea", label: "Hand Cream" },
+    { name: "핸드 크림 베르가못", keywords: "hand cream bergamot 핸드크림 베르가못", price: "26,000원", href: "product-detail.html?id=hand-cream-bergamot", label: "Hand Cream" },
+    { name: "핸드 크림 샌달우드", keywords: "hand cream sandalwood 핸드크림 샌달우드", price: "26,000원", href: "product-detail.html?id=hand-cream-sandalwood", label: "Hand Cream" },
+    { name: "센티드 캔들", keywords: "scented candle 센티드캔들 캔들", price: "42,000원", href: "product-detail.html?id=scented-candle", label: "Home" },
+    { name: "리드 디퓨저", keywords: "reed diffuser 리드디퓨저 디퓨저", price: "38,000원", href: "product-detail.html?id=reed-diffuser", label: "Home" },
+    { name: "룸 미스트", keywords: "room mist 룸미스트 미스트", price: "30,000원", href: "product-detail.html?id=room-mist", label: "Home" },
+    { name: "트래블 키트", keywords: "travel kit 트래블키트 키트 세트", price: "58,000원", href: "products.html?category=new", label: "New" },
   ];
 
   const escapeHtml = (value) =>
@@ -281,7 +299,7 @@ if (searchOverlay && searchOpeners.length) {
     searchResults.innerHTML = matches
       .map(
         (item) =>
-          `<a class="search-result" href="products.html?category=${item.category}">` +
+          `<a class="search-result" href="${item.href}">` +
           `<span class="search-result-meta"><span class="search-result-cat">${item.label}</span>` +
           `<span>${escapeHtml(item.name)}</span></span>` +
           `<span class="search-result-price">${item.price}</span></a>`
@@ -291,14 +309,12 @@ if (searchOverlay && searchOpeners.length) {
 
   const openSearch = () => {
     searchOverlay.hidden = false;
-    document.body.style.overflow = "hidden";
     renderResults();
     window.requestAnimationFrame(() => searchInput.focus());
   };
 
   const closeSearch = () => {
     searchOverlay.hidden = true;
-    document.body.style.overflow = "";
     searchInput.value = "";
     searchResults.innerHTML = "";
   };
