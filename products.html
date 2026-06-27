@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SENNE | Shop</title>
+    <meta
+      name="description"
+      content="SENNE 전 제품을 카테고리별로 만나보세요 — 헤어, 바디, 핸드크림, 홈 프래그런스."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="top-banner" href="products.html" aria-label="SENNE promotion">
+      <span class="top-banner-message is-active">트래블 키트 신규 출시</span>
+      <span class="top-banner-message">5만원 이상 구매 시 무료 배송</span>
+      <span class="top-banner-message">신규 회원 가입 시 3,000원 쿠폰 증정</span>
+    </a>
+
+    <header class="site-header">
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="Open menu"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+      >
+        <span></span>
+        <span></span>
+      </button>
+      <a class="brand" href="index.html" aria-label="SENNE home">
+        <img src="assets/senne-logo.svg" alt="SENNE" />
+      </a>
+      <nav class="nav nav-primary" aria-label="Product navigation">
+        <div class="nav-item">
+          <a href="products.html?category=new">New</a>
+          <div class="mega-panel">
+            <a class="mega-product" href="products.html?category=new">
+              <img src="assets/hand cream card hover.jpg" alt="White tea hand cream" />
+              <span>Hand Cream White Tea</span>
+            </a>
+            <a class="mega-product" href="products.html?category=new">
+              <img src="assets/travel kit essentials.jpg" alt="Travel kit" />
+              <span>Travel Kit</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="products.html?category=hair">Hair</a>
+          <div class="mega-panel">
+            <a class="mega-product" href="products.html?category=hair">
+              <img src="assets/hair mist left.jpg" alt="Hair mist" />
+              <span>Hair Mist</span>
+            </a>
+            <a class="mega-product" href="products.html?category=hair">
+              <img src="assets/hair oil img.jpg" alt="Hair oil" />
+              <span>Hair Oil</span>
+            </a>
+            <a class="mega-product" href="products.html?category=hair">
+              <img src="assets/senne hair mask card hover.jpg" alt="Hair mask" />
+              <span>Repair Hair Mask</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="products.html?category=body">Body</a>
+          <div class="mega-panel">
+            <a class="mega-product" href="products.html?category=body">
+              <img src="assets/body wash card hover.jpg" alt="Body wash" />
+              <span>Body Wash</span>
+            </a>
+            <a class="mega-product" href="products.html?category=body">
+              <img src="assets/body-lotion.jpg" alt="Body lotion" />
+              <span>Body Lotion</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="products.html?category=hand-cream">Hand Cream</a>
+          <div class="mega-panel">
+            <a class="mega-product" href="products.html?category=hand-cream">
+              <img src="assets/hand cream card hover.jpg" alt="Hand cream trio" style="object-position: center bottom" />
+              <span>Hand Cream Trio</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="products.html?category=home">Home</a>
+          <div class="mega-panel">
+            <a class="mega-product" href="products.html?category=home">
+              <img src="assets/scented candle left.jpg" alt="Scented candle" />
+              <span>Scented Candle</span>
+            </a>
+            <a class="mega-product" href="products.html?category=home">
+              <img src="assets/diffuser.jpg" alt="Diffuser" style="object-position: center bottom" />
+              <span>Diffuser</span>
+            </a>
+            <a class="mega-product" href="products.html?category=home">
+              <img src="assets/room-mist.jpg" alt="Room mist" />
+              <span>Room Mist</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-item nav-item-simple"><a href="index.html#stockist">Stockist</a></div>
+      </nav>
+      <nav class="nav nav-utility" aria-label="Account navigation">
+        <a href="#" data-search-open>Search</a>
+        <a href="#" data-login-link>Login</a>
+        <button class="cart-button" type="button" aria-label="Open cart">Bag(0)</button>
+      </nav>
+    </header>
+
+    <div class="mobile-menu" id="mobile-menu" hidden>
+      <nav aria-label="Mobile navigation">
+        <a href="products.html?category=new">New</a>
+        <a href="products.html?category=hair">Hair</a>
+        <a href="products.html?category=body">Body</a>
+        <a href="products.html?category=hand-cream">Hand Cream</a>
+        <a href="products.html?category=home">Home</a>
+        <a href="index.html#stockist">Stockist</a>
+        <a href="#" data-search-open>Search</a>
+        <a href="#" data-login-link>Login</a>
+      </nav>
+    </div>
+
+    <div class="search-overlay" id="search-overlay" hidden>
+      <div class="search-panel" role="dialog" aria-modal="true" aria-label="제품 검색">
+        <div class="search-bar">
+          <span class="search-icon" aria-hidden="true"></span>
+          <input
+            type="search"
+            class="search-input"
+            placeholder="제품명을 검색해보세요"
+            aria-label="검색어 입력"
+            data-search-input
+          />
+          <button class="search-close" type="button" aria-label="검색 닫기" data-search-close>닫기</button>
+        </div>
+        <div class="search-results" data-search-results aria-live="polite"></div>
+      </div>
+    </div>
+
+    <main id="top">
+      <section class="shop" aria-label="SENNE 제품 목록">
+        <div class="shop-head">
+          <h1 data-shop-title>All</h1>
+        </div>
+
+        <div class="category-tabs" role="tablist" aria-label="카테고리">
+          <button class="category-tab" type="button" role="tab" data-filter="all" aria-selected="true">전체</button>
+          <button class="category-tab" type="button" role="tab" data-filter="new" aria-selected="false">신상품</button>
+          <button class="category-tab" type="button" role="tab" data-filter="hair" aria-selected="false">헤어</button>
+          <button class="category-tab" type="button" role="tab" data-filter="body" aria-selected="false">바디</button>
+          <button class="category-tab" type="button" role="tab" data-filter="hand-cream" aria-selected="false">핸드크림</button>
+          <button class="category-tab" type="button" role="tab" data-filter="home" aria-selected="false">홈</button>
+        </div>
+
+        <p class="shop-count" data-shop-count aria-live="polite"></p>
+
+        <div class="product-grid" data-product-grid>
+          <!-- HAIR -->
+          <article class="product-card" data-category="hair new">
+            <div class="product-media">
+              <div
+                class="product-image image-field"
+                role="img"
+                aria-label="헤어 미스트"
+                style="--image: url('assets/hair mist png.png'); --hover-image: url('assets/hair mist left.jpg'); --image-scale: 1.25"
+              ></div>
+              <button class="wishlist-button" type="button" aria-label="찜하기" aria-pressed="false">♡</button>
+            </div>
+            <div class="product-info">
+              <h3>헤어 미스트</h3>
+              <p>가볍게 뿌리는 헤어 퍼퓸 미스트, 은은하게 머무는 잔향</p>
+              <span>28,000원</span>
+              <div class="product-actions"><button type="button">장바구니</button></div>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="hair">
+            <div class="product-media">
+              <div
+                class="product-image image-field"
+                role="img"
+                aria-label="헤어 오일"
+                style="--image: url('assets/hair oil png.png'); --hover-image: url('assets/hair oil left.jpg')"
+              ></div>
+              <button class="wishlist-button" type="button" aria-label="찜하기" aria-pressed="false">♡</button>
+            </div>
+            <div class="product-info">
+              <h3>헤어 오일</h3>
+              <p>아르간·동백 오일로 윤기와 결을 정돈하는 데일리 헤어 오일</p>
+              <span>32,000원</span>
+              <div class="product-actions"><button type="button">장바구니</button></div>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="hair">
+            <div class="product-media">
+              <div
+                class="product-image image-field"
+                role="img"
+                aria-label="리페어 헤어 마스크"
+                style="--image: url('assets/senne hair mask png.png'); --hover-image: url('assets/senne hair mask card hover.jpg')"
+              ></div>
+              <button class="wishlist-button" type="button" aria-label="찜하기" aria-pressed="false">♡</button>
+            </div>
+            <div class="product-info">
+              <h3>리페어 헤어 마스크</h3>
+              <p>물기를 머금은 모발에 깊은 영양과 차분한 윤기를 남기는 집중 케어</p>
+              <span>38,000원</span>
+              <div class="product-actions"><button type="button">장바구니</button></div>
+            </div>
+          </article>
+
+          <!-- BODY -->
+          <article class="product-card" data-category="body">
+            <div class="product-media">
+              <div
+                class="product-image image-field"
+                role="img"
+                aria-label="센느 바디 워시"
+                style="--image: url('assets/senne body wash png.png'); --hover-image: url('assets/body wash card hover.jpg')"
+              ></div>
+              <button class="wishlist-button" type="button" aria-label="찜하기" aria-pressed="false">♡</button>
+            </div>
+            <div class="product-info">
+              <h3>센느 바디 워시</h3>
+              <p>부드러운 거품과 잔잔한 향으로 하루의 긴장을 씻어내는 데일리 클렌저</p>
+              <span>34,000원</span>
+              <div class="product-actions"><button type="button">장바구니</button></div>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="body new">
+            <div class="product-media">
+              <div
+                class="product-image image-field"
+                role="img"
+                aria-label="센느 바디 로션"
+                style="--image: url('assets/body lotion png.png'); --hover-image: url('assets/body-lotion.jpg'); --image-scale: 0.66"
+              ></div>
+              <button class="wishlist-button" type="button" aria-label="찜하기" aria-pressed="false">♡</button>
+            </div>
+            <div class="product-info">
+              <h3>센느 바디 로션</h3>
+              <p>산뜻하게 스며드는 보습감과 은은한 머스크 노트로 마무리하는 바디 로션</p>
+              <span>36,000원</span>
+              <div class="product-actions"><button type="button">장바구니</button></div>
+            </div>
+          </article>
+
+          <!-- HAND CREAM -->
+          <article class="product-card" data-category="hand-cream new">
+            <div class="product-media">
+              <div
+                class="product-image image-field"
+                role="img"
+                aria-label="핸드 크림 화이트 티"
+                style="--image: url('assets/hand cream white tea png.png'); --hover-image: url('assets/hand cream card hover.jpg')"
+              ></div>
+              <button class="wishlist-button" type="button" aria-label="찜하기" aria-pressed="false">♡</button>
+            </div>
+            <div class="product-info">
+              <h3>핸드 크림 화이트 티</h3>
+              <p>건조한 손끝에 산뜻하게 스며드는 보습감과 맑은 화이트 티 노트</p>
+              <span>26,000원</span>
+              <div class="product-actions"><button type="button">장바구니</button></div>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="hand-cream">
+            <div class="product-media">
+              <div
+                class="product-image image-field"
+                role="img"
+                aria-label="핸드 크림 베르가못"
+                style="--image: url('assets/hand cream bergamot png.png'); --hover-image: url('assets/hand cream card hover.jpg'); --image-scale: 0.9"
+              ></div>
+              <button class="wishlist-button" type="button" aria-label="찜하기" aria-pressed="false">♡</button>
+            </div>
+            <div class="product-info">
+              <h3>핸드 크림 베르가못</h3>
+              <p>상쾌한 시트러스로 시작해 머스크로 가라앉는 산뜻한 베르가못 핸드 크림</p>
+              <span>26,000원</span>
+              <div class="product-actions"><button type="button">장바구니</button></div>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="hand-cream">
+            <div class="product-media">
+              <div
+                class="product-image image-field"
+                role="img"
+                aria-label="핸드 크림 샌달우드"
+                style="--image: url('assets/hand cream sandalwood.png'); --hover-image: url('assets/hand cream card hover.jpg')"
+              ></div>
+              <button class="wishlist-button" type="button" aria-label="찜하기" aria-pressed="false">♡</button>
+            </div>
+            <div class="product-info">
+              <h3>핸드 크림 샌달우드</h3>
+              <p>따뜻한 샌달우드가 오래 머무는, 차분한 무드의 핸드 크림</p>
+              <span>26,000원</span>
+              <div class="product-actions"><button type="button">장바구니</button></div>
+            </div>
+          </article>
+
+          <!-- HOME -->
+          <article class="product-card" data-category="home">
+            <div class="product-media">
+              <div
+                class="product-image image-field"
+                role="img"
+                aria-label="센티드 캔들"
+                style="--image: url('assets/scented candle png.png'); --hover-image: url('assets/scented candle left.jpg')"
+              ></div>
+              <button class="wishlist-button" type="button" aria-label="찜하기" aria-pressed="false">♡</button>
+            </div>
+            <div class="product-info">
+              <h3>센티드 캔들</h3>
+              <p>샌달우드 & 화이트 티, 공간을 천천히 데우는 따뜻한 향의 캔들</p>
+              <span>42,000원</span>
+              <div class="product-actions"><button type="button">장바구니</button></div>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="home new">
+            <div class="product-media">
+              <div
+                class="product-image image-field"
+                role="img"
+                aria-label="리드 디퓨저"
+                style="--image: url('assets/diffuser png.png'); --hover-image: url('assets/diffuser.jpg')"
+              ></div>
+              <button class="wishlist-button" type="button" aria-label="찜하기" aria-pressed="false">♡</button>
+            </div>
+            <div class="product-info">
+              <h3>리드 디퓨저</h3>
+              <p>은은하게 퍼지는 잔향으로 공간의 결을 잡아주는 리드 디퓨저</p>
+              <span>38,000원</span>
+              <div class="product-actions"><button type="button">장바구니</button></div>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="home">
+            <div class="product-media">
+              <div
+                class="product-image image-field"
+                role="img"
+                aria-label="룸 미스트"
+                style="--image: url('assets/room mist png.png'); --hover-image: url('assets/room-mist.jpg')"
+              ></div>
+              <button class="wishlist-button" type="button" aria-label="찜하기" aria-pressed="false">♡</button>
+            </div>
+            <div class="product-info">
+              <h3>룸 미스트</h3>
+              <p>침구와 커튼 위로 가볍게, 잠들기 전 공간을 정돈하는 룸 미스트</p>
+              <span>30,000원</span>
+              <div class="product-actions"><button type="button">장바구니</button></div>
+            </div>
+          </article>
+
+        </div>
+
+        <p class="shop-empty" data-shop-empty hidden>해당 카테고리에 제품이 없습니다.</p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-top">
+        <div class="footer-col footer-brand-col">
+          <span class="footer-logo"><img src="assets/senne-logo.svg" alt="SENNE" /></span>
+          <p class="footer-tagline">향과 질감으로 완성하는<br />매일의 차분한 리추얼</p>
+        </div>
+        <nav class="footer-col" aria-label="Shop">
+          <h4>Shop</h4>
+          <a href="products.html?category=new">New</a>
+          <a href="products.html?category=hair">Hair</a>
+          <a href="products.html?category=body">Body</a>
+          <a href="products.html?category=hand-cream">Hand Cream</a>
+          <a href="products.html?category=home">Home</a>
+        </nav>
+        <div class="footer-col">
+          <h4>Customer</h4>
+          <p>고객센터 1644-0000</p>
+          <p>평일 10:00–17:00<br />점심 12:30–13:30</p>
+          <a href="mailto:hello@senne.care">hello@senne.care</a>
+        </div>
+        <nav class="footer-col" aria-label="About">
+          <h4>About</h4>
+          <a href="index.html#stockist">Stockist</a>
+          <a href="#">Story</a>
+          <a href="#">Instagram</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-company">
+          주식회사 센느 · 대표 이서연 · 사업자등록번호 123-45-67890 · 통신판매업신고 제2026-서울용산-0123호 · 서울특별시 용산구 한남대로 12, 3층
+        </p>
+        <div class="footer-legal">
+          <a href="#">이용약관</a>
+          <a href="#">개인정보처리방침</a>
+          <span>© 2026 SENNE</span>
+        </div>
+      </div>
+    </footer>
+    <script src="script.js"></script>
+    <script src="products.js"></script>
+    <script src="shop.js"></script>
+  </body>
+</html>

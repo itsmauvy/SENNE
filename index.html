@@ -33,44 +33,40 @@
       </a>
       <nav class="nav nav-primary" aria-label="Product navigation">
         <div class="nav-item">
-          <a href="#shop">New</a>
+          <a href="products.html?category=new">New</a>
           <div class="mega-panel">
             <a class="mega-product" href="#shop">
-              <img src="assets/hand cream white tea png.png" alt="White tea hand cream" />
+              <img src="assets/hand cream card hover.jpg" alt="White tea hand cream" />
               <span>Hand Cream White Tea</span>
             </a>
             <a class="mega-product" href="#shop">
               <img src="assets/travel kit essentials.jpg" alt="Travel kit" />
               <span>Travel Kit</span>
             </a>
-            <a class="mega-product" href="#shop">
-              <img src="assets/solid-perfume.jpg" alt="Solid perfume" />
-              <span>Solid Perfume</span>
-            </a>
           </div>
         </div>
         <div class="nav-item">
-          <a href="#shop">Hair</a>
+          <a href="products.html?category=hair">Hair</a>
           <div class="mega-panel">
             <a class="mega-product" href="#shop">
-              <img src="assets/hair mist png.png" alt="Hair mist" />
-              <span>Neroli Hair Mist</span>
+              <img src="assets/hair mist left.jpg" alt="Hair mist" />
+              <span>Hair Mist</span>
             </a>
             <a class="mega-product" href="#shop">
-              <img src="assets/hair oil png.png" alt="Hair oil" />
-              <span>Neroli Hair Oil</span>
+              <img src="assets/hair oil img.jpg" alt="Hair oil" />
+              <span>Hair Oil</span>
             </a>
             <a class="mega-product" href="#shop">
-              <img src="assets/senne hair mask png.png" alt="Hair mask" />
+              <img src="assets/senne hair mask card hover.jpg" alt="Hair mask" />
               <span>Repair Hair Mask</span>
             </a>
           </div>
         </div>
         <div class="nav-item">
-          <a href="#shop">Body</a>
+          <a href="products.html?category=body">Body</a>
           <div class="mega-panel">
             <a class="mega-product" href="#shop">
-              <img src="assets/senne body wash png.png" alt="Body wash" />
+              <img src="assets/body wash card hover.jpg" alt="Body wash" />
               <span>Body Wash</span>
             </a>
             <a class="mega-product" href="#shop">
@@ -80,23 +76,23 @@
           </div>
         </div>
         <div class="nav-item">
-          <a href="#shop">Hand Cream</a>
+          <a href="products.html?category=hand-cream">Hand Cream</a>
           <div class="mega-panel">
             <a class="mega-product" href="#shop">
-              <img src="assets/hand cream card hover.jpg" alt="Hand cream trio" />
+              <img src="assets/hand cream card hover.jpg" alt="Hand cream trio" style="object-position: center bottom" />
               <span>Hand Cream Trio</span>
             </a>
           </div>
         </div>
         <div class="nav-item">
-          <a href="#top">Home</a>
+          <a href="products.html?category=home">Home</a>
           <div class="mega-panel">
             <a class="mega-product" href="#shop">
-              <img src="assets/scented candle png.png" alt="Scented candle" />
+              <img src="assets/scented candle left.jpg" alt="Scented candle" />
               <span>Scented Candle</span>
             </a>
             <a class="mega-product" href="#shop">
-              <img src="assets/diffuser.jpg" alt="Diffuser" />
+              <img src="assets/diffuser.jpg" alt="Diffuser" style="object-position: center bottom" />
               <span>Diffuser</span>
             </a>
             <a class="mega-product" href="#shop">
@@ -110,32 +106,47 @@
         </div>
       </nav>
       <nav class="nav nav-utility" aria-label="Account navigation">
-        <a href="#">Login</a>
-        <a href="#">Mypage</a>
-        <a href="#">Search</a>
+        <a href="#" data-search-open>Search</a>
+        <a href="#" data-login-link>Login</a>
         <button class="cart-button" type="button" aria-label="Open cart">Bag(0)</button>
       </nav>
     </header>
 
     <div class="mobile-menu" id="mobile-menu" hidden>
       <nav aria-label="Mobile navigation">
-        <a href="#shop">New</a>
-        <a href="#shop">Hair</a>
-        <a href="#shop">Body</a>
-        <a href="#shop">Hand Cream</a>
-        <a href="#top">Home</a>
+        <a href="products.html?category=new">New</a>
+        <a href="products.html?category=hair">Hair</a>
+        <a href="products.html?category=body">Body</a>
+        <a href="products.html?category=hand-cream">Hand Cream</a>
+        <a href="products.html?category=home">Home</a>
         <a href="#stockist">Stockist</a>
-        <a href="#">Login</a>
-        <a href="#">Mypage</a>
-        <a href="#">Search</a>
+        <a href="#" data-search-open>Search</a>
+        <a href="#" data-login-link>Login</a>
       </nav>
+    </div>
+
+    <div class="search-overlay" id="search-overlay" hidden>
+      <div class="search-panel" role="dialog" aria-modal="true" aria-label="제품 검색">
+        <div class="search-bar">
+          <span class="search-icon" aria-hidden="true"></span>
+          <input
+            type="search"
+            class="search-input"
+            placeholder="제품명을 검색해보세요"
+            aria-label="검색어 입력"
+            data-search-input
+          />
+          <button class="search-close" type="button" aria-label="검색 닫기" data-search-close>닫기</button>
+        </div>
+        <div class="search-results" data-search-results aria-live="polite"></div>
+      </div>
     </div>
 
     <main id="top">
       <section class="hero" aria-label="Featured SENNE products">
         <div class="hero-slides" aria-hidden="true">
-          <div class="hero-slide is-active" style="--hero-image: url('assets/hero.jpg')"></div>
-          <div class="hero-slide" style="--hero-image: url('assets/ritual.jpg')"></div>
+          <div class="hero-slide is-active" style="--hero-image: url('assets/hair mist hero.jpg')"></div>
+          <div class="hero-slide" style="--hero-image: url('assets/body wash hero.jpg')"></div>
         </div>
         <div class="hero-copy">
           <p class="eyebrow" data-hero-eyebrow></p>
@@ -261,8 +272,7 @@
                 style="--story-product: url('assets/scented candle png.png'); --product-size: min(112%, 820px) auto"
               ></div>
               <div class="story-copy">
-                <p>SENNE Object</p>
-                <h2>Sandalwood & White Tea</h2>
+                <h2 style="white-space: nowrap; max-width: none">Sandalwood & White Tea</h2>
                 <a href="#shop">제품보기</a>
               </div>
             </article>
@@ -286,8 +296,7 @@
                 style="--story-product: url('assets/hair oil png.png'); --product-size: min(112%, 820px) auto"
               ></div>
               <div class="story-copy">
-                <p>SENNE Hair</p>
-                <h2>Neroli Hair Oil</h2>
+                <h2>Hair Oil</h2>
                 <a href="#shop">제품보기</a>
               </div>
             </article>
@@ -308,25 +317,14 @@
                 class="story-product-only"
                 role="img"
                 aria-label="SENNE hair mist"
-                style="--story-product: url('assets/hair mist png.png'); --product-size: min(54%, 420px) auto"
+                style="--story-product: url('assets/hair mist png.png'); --product-size: min(88%, 640px) auto"
               ></div>
               <div class="story-copy">
-                <p>SENNE Hair</p>
-                <h2>Neroli Hair Mist</h2>
+                <h2>Hair Mist</h2>
                 <a href="#shop">제품보기</a>
               </div>
             </article>
           </div>
-        </div>
-
-        <div class="story-controls" aria-label="Story slider controls">
-          <button type="button" data-carousel-prev aria-label="Previous set">−</button>
-          <div class="story-dots" aria-hidden="true">
-            <span class="is-active"></span>
-            <span></span>
-            <span></span>
-          </div>
-          <button type="button" data-carousel-next aria-label="Next set">＋</button>
         </div>
       </section>
 
@@ -345,6 +343,7 @@
         id="stockist"
         class="flagship-visual"
         aria-label="SENNE flagship store"
+        data-parallax
         style="--image: url('assets/flagship store.jpg')"
       >
         <div class="flagship-copy">
@@ -356,31 +355,44 @@
     </main>
 
     <footer class="site-footer">
-      <div class="footer-brand">
-        <span class="footer-logo">
-          <img src="assets/senne-logo.svg" alt="SENNE" />
-        </span>
+      <div class="footer-top">
+        <div class="footer-col footer-brand-col">
+          <span class="footer-logo"><img src="assets/senne-logo.svg" alt="SENNE" /></span>
+          <p class="footer-tagline">향과 질감으로 완성하는<br />매일의 차분한 리추얼</p>
+        </div>
+        <nav class="footer-col" aria-label="Shop">
+          <h4>Shop</h4>
+          <a href="products.html?category=new">New</a>
+          <a href="products.html?category=hair">Hair</a>
+          <a href="products.html?category=body">Body</a>
+          <a href="products.html?category=hand-cream">Hand Cream</a>
+          <a href="products.html?category=home">Home</a>
+        </nav>
+        <div class="footer-col">
+          <h4>Customer</h4>
+          <p>고객센터 1644-0000</p>
+          <p>평일 10:00–17:00<br />점심 12:30–13:30</p>
+          <a href="mailto:hello@senne.care">hello@senne.care</a>
+        </div>
+        <nav class="footer-col" aria-label="About">
+          <h4>About</h4>
+          <a href="#stockist">Stockist</a>
+          <a href="#">Story</a>
+          <a href="#">Instagram</a>
+        </nav>
       </div>
-
-      <div class="footer-info">
-        <p>주식회사 센느</p>
-        <p>대표 이서연 | 사업자등록번호 123-45-67890</p>
-        <p>통신판매업신고번호 제2026-서울용산-0123호</p>
-        <p>서울특별시 용산구 한남대로 12, 3층</p>
-        <p>개인정보관리책임자 김하린</p>
-      </div>
-
-      <div class="footer-contact">
-        <p>고객센터 1644-0000</p>
-        <p>평일 10:00-17:00 | 점심 12:30-13:30</p>
-        <p>hello@senne.care</p>
-        <nav aria-label="Footer navigation">
+      <div class="footer-bottom">
+        <p class="footer-company">
+          주식회사 센느 · 대표 이서연 · 사업자등록번호 123-45-67890 · 통신판매업신고 제2026-서울용산-0123호 · 서울특별시 용산구 한남대로 12, 3층
+        </p>
+        <div class="footer-legal">
           <a href="#">이용약관</a>
           <a href="#">개인정보처리방침</a>
-          <a href="#">인스타그램</a>
-        </nav>
+          <span>© 2026 SENNE</span>
+        </div>
       </div>
     </footer>
     <script src="script.js"></script>
+    <script src="shop.js"></script>
   </body>
 </html>

@@ -7,8 +7,8 @@ body-care design.
 
 Place your final images in `assets/` with these filenames:
 
-- `hero.jpg` - wide hero product image, landscape
-- `ritual.jpg` - lifestyle or still-life ritual image, portrait or square
+- `hair mist hero.jpg` - wide hero product image, landscape
+- `body wash hero.jpg` - lifestyle or still-life ritual image, portrait or square
 - `travel kit essentials.jpg` - large left feature card image
 - `signature scent.jpg` - large right feature card image
 - `diffuser.jpg` - generated home fragrance menu image

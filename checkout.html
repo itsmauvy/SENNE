@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SENNE | Checkout</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="top-banner" href="products.html" aria-label="SENNE promotion">
+      <span class="top-banner-message is-active">5만원 이상 구매 시 무료 배송</span>
+    </a>
+
+    <header class="site-header">
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+      <a class="brand" href="index.html" aria-label="SENNE home">
+        <img src="assets/senne-logo.svg" alt="SENNE" />
+      </a>
+      <nav class="nav nav-primary" aria-label="Product navigation">
+        <div class="nav-item"><a href="products.html?category=new">New</a></div>
+        <div class="nav-item"><a href="products.html?category=hair">Hair</a></div>
+        <div class="nav-item"><a href="products.html?category=body">Body</a></div>
+        <div class="nav-item"><a href="products.html?category=hand-cream">Hand Cream</a></div>
+        <div class="nav-item"><a href="products.html?category=home">Home</a></div>
+        <div class="nav-item nav-item-simple"><a href="index.html#stockist">Stockist</a></div>
+      </nav>
+      <nav class="nav nav-utility" aria-label="Account navigation">
+        <a href="#" data-search-open>Search</a>
+        <a href="#" data-login-link>Login</a>
+        <button class="cart-button" type="button" aria-label="Open cart">Bag(0)</button>
+      </nav>
+    </header>
+
+    <div class="mobile-menu" id="mobile-menu" hidden>
+      <nav aria-label="Mobile navigation">
+        <a href="products.html?category=new">New</a>
+        <a href="products.html?category=hair">Hair</a>
+        <a href="products.html?category=body">Body</a>
+        <a href="products.html?category=hand-cream">Hand Cream</a>
+        <a href="products.html?category=home">Home</a>
+        <a href="index.html#stockist">Stockist</a>
+        <a href="#" data-search-open>Search</a>
+        <a href="#" data-login-link>Login</a>
+      </nav>
+    </div>
+
+    <div class="search-overlay" id="search-overlay" hidden>
+      <div class="search-panel" role="dialog" aria-modal="true" aria-label="제품 검색">
+        <div class="search-bar">
+          <span class="search-icon" aria-hidden="true"></span>
+          <input type="search" class="search-input" placeholder="제품명을 검색해보세요" aria-label="검색어 입력" data-search-input />
+          <button class="search-close" type="button" aria-label="검색 닫기" data-search-close>닫기</button>
+        </div>
+        <div class="search-results" data-search-results aria-live="polite"></div>
+      </div>
+    </div>
+
+    <main class="checkout" id="top">
+      <div class="checkout-head">
+        <h1>Checkout</h1>
+      </div>
+
+      <div class="checkout-grid" data-checkout-grid>
+        <div class="checkout-main">
+          <section class="checkout-block">
+            <h2>주문 상품</h2>
+            <div class="checkout-items" data-checkout-items></div>
+          </section>
+
+          <section class="checkout-block">
+            <h2>배송 정보</h2>
+            <div class="checkout-fields">
+              <label class="field"><span>받는 분</span><input type="text" name="name" required placeholder="이름" /></label>
+              <label class="field"><span>연락처</span><input type="tel" name="phone" required placeholder="010-0000-0000" /></label>
+              <label class="field field-wide"><span>주소</span><input type="text" name="address" required placeholder="주소를 입력하세요" /></label>
+              <label class="field field-wide"><span>배송 요청사항</span><input type="text" name="memo" placeholder="문 앞에 놓아주세요 (선택)" /></label>
+            </div>
+          </section>
+
+          <section class="checkout-block">
+            <h2>결제 수단</h2>
+            <div class="pay-options">
+              <label class="pay-option"><input type="radio" name="pay" value="card" checked /><span>신용 / 체크카드</span></label>
+              <label class="pay-option"><input type="radio" name="pay" value="transfer" /><span>무통장 입금</span></label>
+              <label class="pay-option"><input type="radio" name="pay" value="easy" /><span>간편결제</span></label>
+            </div>
+          </section>
+        </div>
+
+        <aside class="checkout-summary">
+          <h2>Order Summary</h2>
+          <div class="summary-rows">
+            <div class="summary-row"><span>상품 금액</span><span data-sum-products>0원</span></div>
+            <div class="summary-row"><span>배송비</span><span data-sum-shipping>0원</span></div>
+          </div>
+          <div class="summary-total"><span>총 결제금액</span><span data-sum-total>0원</span></div>
+          <button class="btn-solid" type="button" data-checkout-pay>결제하기</button>
+          <a class="checkout-back" href="products.html">← 쇼핑 계속하기</a>
+        </aside>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-top">
+        <div class="footer-col footer-brand-col">
+          <span class="footer-logo"><img src="assets/senne-logo.svg" alt="SENNE" /></span>
+          <p class="footer-tagline">향과 질감으로 완성하는<br />매일의 차분한 리추얼</p>
+        </div>
+        <nav class="footer-col" aria-label="Shop">
+          <h4>Shop</h4>
+          <a href="products.html?category=new">New</a>
+          <a href="products.html?category=hair">Hair</a>
+          <a href="products.html?category=body">Body</a>
+          <a href="products.html?category=hand-cream">Hand Cream</a>
+          <a href="products.html?category=home">Home</a>
+        </nav>
+        <div class="footer-col">
+          <h4>Customer</h4>
+          <p>고객센터 1644-0000</p>
+          <p>평일 10:00–17:00<br />점심 12:30–13:30</p>
+          <a href="mailto:hello@senne.care">hello@senne.care</a>
+        </div>
+        <nav class="footer-col" aria-label="About">
+          <h4>About</h4>
+          <a href="index.html#stockist">Stockist</a>
+          <a href="#">Story</a>
+          <a href="#">Instagram</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-company">
+          주식회사 센느 · 대표 이서연 · 사업자등록번호 123-45-67890 · 통신판매업신고 제2026-서울용산-0123호 · 서울특별시 용산구 한남대로 12, 3층
+        </p>
+        <div class="footer-legal">
+          <a href="#">이용약관</a>
+          <a href="#">개인정보처리방침</a>
+          <span>© 2026 SENNE</span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="shop.js"></script>
+    <script src="checkout.js"></script>
+  </body>
+</html>
