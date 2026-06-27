@@ -1653,9 +1653,28 @@ h3 {
     justify-self: start;
   }
 
-  .nav-primary,
+  .nav-primary {
+    display: none;
+  }
+
+  /* 모바일: Search 아이콘·Bag만 헤더에 표시 */
   .nav-utility a {
     display: none;
+  }
+
+  .nav-utility a[data-search-open] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    font-size: 0;
+  }
+
+  .nav-utility a[data-search-open]::before {
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%2320201d' stroke-width='1.8' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='6.5'/%3E%3Cline x1='15.5' y1='15.5' x2='21' y2='21'/%3E%3C/svg%3E");
+    display: block;
+    line-height: 1;
   }
 
   .mega-panel {
@@ -1678,8 +1697,12 @@ h3 {
     grid-template-columns: 1fr;
   }
 
-  .hero-slide {
-    background-position: 58% center;
+  .hero-slide--1 {
+    background-position: 80% center;
+  }
+
+  .hero-slide--2 {
+    background-position: 50% center;
   }
 
   .hero-copy {
