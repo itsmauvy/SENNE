@@ -7,7 +7,7 @@ if (parallaxEls.length && !window.matchMedia("(prefers-reduced-motion: reduce)")
       // 0 as the section enters from the bottom, 1 as it leaves past the top
       const progress = Math.max(0, Math.min(1, (vh - rect.top) / (vh + rect.height)));
       const range = rect.height * 0.3;
-      el.style.setProperty("--parallax", `${(-progress * range).toFixed(1)}px`);
+      el.style.setProperty("--parallax", `${((0.5 - progress) * range).toFixed(1)}px`);
     });
   };
   let ticking = false;
