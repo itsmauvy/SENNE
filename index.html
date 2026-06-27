@@ -11,8 +11,10 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <a class="top-banner" href="#shop" aria-label="View new products">
-      신제품 출시
+    <a class="top-banner" href="#shop" aria-label="SENNE promotion">
+      <span class="top-banner-message is-active">트래블 키트 신규 출시</span>
+      <span class="top-banner-message">5만원 이상 구매 시 무료 배송</span>
+      <span class="top-banner-message">신규 회원 가입 시 3,000원 쿠폰 증정</span>
     </a>
 
     <header class="site-header">
@@ -30,11 +32,82 @@
         <img src="assets/senne-logo.svg" alt="SENNE" />
       </a>
       <nav class="nav nav-primary" aria-label="Product navigation">
-        <a href="#shop">New</a>
-        <a href="#shop">Hair</a>
-        <a href="#shop">Body</a>
-        <a href="#shop">Hand Cream</a>
-        <a href="#top">Home</a>
+        <div class="nav-item">
+          <a href="#shop">New</a>
+          <div class="mega-panel">
+            <a class="mega-product" href="#shop">
+              <img src="assets/hand cream white tea png.png" alt="White tea hand cream" />
+              <span>Hand Cream White Tea</span>
+            </a>
+            <a class="mega-product" href="#shop">
+              <img src="assets/travel kit essentials.jpg" alt="Travel kit" />
+              <span>Travel Kit</span>
+            </a>
+            <a class="mega-product" href="#shop">
+              <img src="assets/solid-perfume.jpg" alt="Solid perfume" />
+              <span>Solid Perfume</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="#shop">Hair</a>
+          <div class="mega-panel">
+            <a class="mega-product" href="#shop">
+              <img src="assets/hair mist png.png" alt="Hair mist" />
+              <span>Neroli Hair Mist</span>
+            </a>
+            <a class="mega-product" href="#shop">
+              <img src="assets/hair oil png.png" alt="Hair oil" />
+              <span>Neroli Hair Oil</span>
+            </a>
+            <a class="mega-product" href="#shop">
+              <img src="assets/senne hair mask png.png" alt="Hair mask" />
+              <span>Repair Hair Mask</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="#shop">Body</a>
+          <div class="mega-panel">
+            <a class="mega-product" href="#shop">
+              <img src="assets/senne body wash png.png" alt="Body wash" />
+              <span>Body Wash</span>
+            </a>
+            <a class="mega-product" href="#shop">
+              <img src="assets/body-lotion.jpg" alt="Body lotion" />
+              <span>Body Lotion</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="#shop">Hand Cream</a>
+          <div class="mega-panel">
+            <a class="mega-product" href="#shop">
+              <img src="assets/hand cream card hover.jpg" alt="Hand cream trio" />
+              <span>Hand Cream Trio</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="#top">Home</a>
+          <div class="mega-panel">
+            <a class="mega-product" href="#shop">
+              <img src="assets/scented candle png.png" alt="Scented candle" />
+              <span>Scented Candle</span>
+            </a>
+            <a class="mega-product" href="#shop">
+              <img src="assets/diffuser.jpg" alt="Diffuser" />
+              <span>Diffuser</span>
+            </a>
+            <a class="mega-product" href="#shop">
+              <img src="assets/room-mist.jpg" alt="Room mist" />
+              <span>Room Mist</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-item nav-item-simple">
+          <a href="#stockist">Stockist</a>
+        </div>
       </nav>
       <nav class="nav nav-utility" aria-label="Account navigation">
         <a href="#">Login</a>
@@ -51,6 +124,7 @@
         <a href="#shop">Body</a>
         <a href="#shop">Hand Cream</a>
         <a href="#top">Home</a>
+        <a href="#stockist">Stockist</a>
         <a href="#">Login</a>
         <a href="#">Mypage</a>
         <a href="#">Search</a>
@@ -256,20 +330,56 @@
         </div>
       </section>
 
-      <section class="stores" id="stores">
-        <p class="eyebrow">Visit</p>
-        <h2>Seoul showroom opening soon.</h2>
-        <p>12 Hannam-daero, Yongsan-gu. Weekdays 12:00-19:00.</p>
-        <a class="text-link" href="mailto:hello@senne.care">hello@senne.care</a>
+      <section
+        class="apricot-visual"
+        aria-label="Apricot series"
+        style="--image: url('assets/apricot series.jpg')"
+      >
+        <div class="apricot-copy">
+          <h2>싱그러운 살구의 과즙 위로<br />포근한 스웨이드가 부드럽게 내려앉는 향</h2>
+          <a href="#shop">컬렉션 보기</a>
+        </div>
+      </section>
+
+      <section
+        id="stockist"
+        class="flagship-visual"
+        aria-label="SENNE flagship store"
+        style="--image: url('assets/flagship store.jpg')"
+      >
+        <div class="flagship-copy">
+          <p>Flagship Store</p>
+          <h2>향과 질감을 천천히 경험하는<br />센느의 첫 번째 공간</h2>
+          <a href="#">매장 안내</a>
+        </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <span class="footer-logo">
-        <img src="assets/senne-logo.svg" alt="SENNE" />
-      </span>
-      <span>Personal care, Seoul</span>
-      <span>Instagram / Contact / Terms</span>
+      <div class="footer-brand">
+        <span class="footer-logo">
+          <img src="assets/senne-logo.svg" alt="SENNE" />
+        </span>
+      </div>
+
+      <div class="footer-info">
+        <p>주식회사 센느</p>
+        <p>대표 이서연 | 사업자등록번호 123-45-67890</p>
+        <p>통신판매업신고번호 제2026-서울용산-0123호</p>
+        <p>서울특별시 용산구 한남대로 12, 3층</p>
+        <p>개인정보관리책임자 김하린</p>
+      </div>
+
+      <div class="footer-contact">
+        <p>고객센터 1644-0000</p>
+        <p>평일 10:00-17:00 | 점심 12:30-13:30</p>
+        <p>hello@senne.care</p>
+        <nav aria-label="Footer navigation">
+          <a href="#">이용약관</a>
+          <a href="#">개인정보처리방침</a>
+          <a href="#">인스타그램</a>
+        </nav>
+      </div>
     </footer>
     <script src="script.js"></script>
   </body>

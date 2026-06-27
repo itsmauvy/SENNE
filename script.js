@@ -7,6 +7,7 @@ const heroText = document.querySelector("[data-hero-text]");
 const wishlistButtons = document.querySelectorAll(".wishlist-button");
 const storyCards = document.querySelectorAll("[data-story-card]");
 const storyCarousel = document.querySelector("[data-story-carousel]");
+const topBannerMessages = [...document.querySelectorAll(".top-banner-message")];
 
 const heroCopy = [
   {
@@ -46,6 +47,16 @@ if (menuToggle && mobileMenu) {
       closeMenu();
     }
   });
+}
+
+if (topBannerMessages.length > 1) {
+  let activeBanner = 0;
+
+  window.setInterval(() => {
+    topBannerMessages[activeBanner].classList.remove("is-active");
+    activeBanner = (activeBanner + 1) % topBannerMessages.length;
+    topBannerMessages[activeBanner].classList.add("is-active");
+  }, 3200);
 }
 
 if (heroSlides.length > 1) {
