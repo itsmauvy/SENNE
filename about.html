@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SENNE | About</title>
+    <meta name="description" content="SENNE의 이야기 — 향과 감각, 일상의 루틴에 대하여" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* ── About 전용 ── */
+
+      .about-hero {
+        position: relative;
+        height: 100vh;
+        min-height: 560px;
+        display: flex;
+        align-items: flex-end;
+        padding: 60px 48px;
+        overflow: hidden;
+        background: var(--ink);
+      }
+
+      .about-hero-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 30%;
+        opacity: 0.72;
+      }
+
+      .about-hero-copy {
+        position: relative;
+        z-index: 2;
+        max-width: 640px;
+        color: var(--white);
+      }
+
+      .about-hero-copy .label {
+        display: block;
+        margin-bottom: 18px;
+        font-size: 13px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        opacity: 0.7;
+      }
+
+      .about-hero-copy h1 {
+        font-size: clamp(36px, 5vw, 64px);
+        font-weight: 400;
+        line-height: 1.12;
+        letter-spacing: -0.02em;
+        margin-bottom: 0;
+      }
+
+      /* ── 인트로 ── */
+
+      .about-intro {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        min-height: 560px;
+      }
+
+      .about-intro-img {
+        width: 100%;
+        height: 100%;
+        min-height: 460px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .about-intro-copy {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: clamp(40px, 6vw, 96px) clamp(36px, 5vw, 80px);
+      }
+
+      .about-intro-copy .label {
+        display: block;
+        margin-bottom: 20px;
+        font-size: 13px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .about-intro-copy h2 {
+        font-size: clamp(28px, 3.2vw, 46px);
+        font-weight: 400;
+        line-height: 1.18;
+        letter-spacing: -0.015em;
+        margin-bottom: 28px;
+      }
+
+      .about-intro-copy p {
+        font-size: 16px;
+        line-height: 1.8;
+        color: var(--muted);
+        max-width: 420px;
+      }
+
+      /* ── 철학 섹션 ── */
+
+      .about-values {
+        padding: clamp(72px, 10vw, 140px) clamp(24px, 6vw, 96px);
+        text-align: center;
+        background: #f0ede7;
+      }
+
+      .about-values-eyebrow {
+        display: block;
+        margin-bottom: 16px;
+        font-size: 13px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .about-values h2 {
+        font-size: clamp(30px, 4vw, 56px);
+        font-weight: 400;
+        line-height: 1.14;
+        letter-spacing: -0.02em;
+        margin-bottom: 72px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .about-values-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 48px 40px;
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: left;
+      }
+
+      .about-value-num {
+        display: block;
+        font-size: 32px;
+        font-weight: 300;
+        color: var(--stone);
+        margin-bottom: 16px;
+        letter-spacing: -0.03em;
+      }
+
+      .about-value-title {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 10px;
+        letter-spacing: -0.01em;
+      }
+
+      .about-value-text {
+        font-size: 15px;
+        line-height: 1.75;
+        color: var(--muted);
+      }
+
+      /* ── 풀 이미지 ── */
+
+      .about-full-img {
+        width: 100%;
+        height: clamp(380px, 55vw, 680px);
+        object-fit: cover;
+        object-position: center 40%;
+        display: block;
+      }
+
+      /* ── 스토리 텍스트 ── */
+
+      .about-story {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        align-items: center;
+        padding: clamp(60px, 8vw, 120px) clamp(24px, 6vw, 96px);
+      }
+
+      .about-story-text h2 {
+        font-size: clamp(26px, 3vw, 42px);
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: -0.015em;
+        margin-bottom: 28px;
+      }
+
+      .about-story-text p {
+        font-size: 16px;
+        line-height: 1.85;
+        color: var(--muted);
+        max-width: 460px;
+      }
+
+      .about-story-text p + p {
+        margin-top: 20px;
+      }
+
+      .about-story-img-wrap {
+        padding-left: clamp(32px, 5vw, 72px);
+      }
+
+      .about-story-img {
+        width: 100%;
+        aspect-ratio: 3 / 4;
+        object-fit: cover;
+        display: block;
+      }
+
+      /* ── 숫자 강조 ── */
+
+      .about-numbers {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .about-number-item {
+        padding: 52px 40px;
+        border-right: 1px solid var(--line);
+        text-align: center;
+      }
+
+      .about-number-item:last-child { border-right: none; }
+
+      .about-number-val {
+        display: block;
+        font-size: clamp(36px, 5vw, 60px);
+        font-weight: 300;
+        letter-spacing: -0.04em;
+        line-height: 1;
+        margin-bottom: 10px;
+      }
+
+      .about-number-label {
+        font-size: 14px;
+        color: var(--muted);
+        letter-spacing: 0.04em;
+      }
+
+      /* ── CTA ── */
+
+      .about-cta {
+        padding: clamp(80px, 10vw, 140px) 24px;
+        text-align: center;
+        background: var(--ink);
+        color: var(--white);
+      }
+
+      .about-cta h2 {
+        font-size: clamp(28px, 4vw, 54px);
+        font-weight: 400;
+        line-height: 1.16;
+        letter-spacing: -0.02em;
+        margin-bottom: 32px;
+        max-width: 560px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .about-cta-btn {
+        display: inline-block;
+        padding: 0 40px;
+        height: 52px;
+        line-height: 52px;
+        border: 1px solid rgba(255,253,248,0.5);
+        color: var(--white);
+        font-size: 15px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        transition: background 200ms ease, border-color 200ms ease;
+      }
+
+      .about-cta-btn:hover {
+        background: rgba(255,253,248,0.12);
+        border-color: var(--white);
+      }
+
+      /* ── 모바일 ── */
+
+      @media (max-width: 768px) {
+        .about-hero { padding: 40px 24px; }
+
+        .about-intro {
+          grid-template-columns: 1fr;
+        }
+
+        .about-intro-img { min-height: 320px; }
+
+        .about-values-grid {
+          grid-template-columns: 1fr;
+          gap: 36px;
+        }
+
+        .about-story {
+          grid-template-columns: 1fr;
+        }
+
+        .about-story-img-wrap {
+          padding-left: 0;
+          margin-top: 36px;
+        }
+
+        .about-numbers {
+          grid-template-columns: 1fr;
+        }
+
+        .about-number-item {
+          border-right: none;
+          border-bottom: 1px solid var(--line);
+          padding: 36px 24px;
+        }
+
+        .about-number-item:last-child { border-bottom: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="top-banner" href="products.html" aria-label="SENNE promotion">
+      <span class="top-banner-message is-active">트래블 키트 신규 출시</span>
+      <span class="top-banner-message">5만원 이상 구매 시 무료 배송</span>
+      <span class="top-banner-message">신규 회원 가입 시 3,000원 쿠폰 증정</span>
+    </a>
+
+    <header class="site-header">
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+      <a class="brand" href="index.html" aria-label="SENNE home">
+        <img src="assets/senne-logo.svg" alt="SENNE" />
+      </a>
+      <nav class="nav nav-primary" aria-label="Product navigation">
+        <div class="nav-item">
+          <a href="products.html?category=new">New</a>
+          <div class="mega-panel">
+            <a class="mega-product" href="product-detail.html?id=hand-cream-white-tea">
+              <img src="assets/hand cream card hover.jpg" alt="White tea hand cream" />
+              <span>Hand Cream White Tea</span>
+            </a>
+            <a class="mega-product" href="products.html?category=new">
+              <img src="assets/travel kit essentials.jpg" alt="Travel kit" />
+              <span>Travel Kit</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="products.html?category=hair">Hair</a>
+          <div class="mega-panel">
+            <a class="mega-product" href="product-detail.html?id=hair-mist">
+              <img src="assets/hair mist left.jpg" alt="Hair mist" />
+              <span>Hair Mist</span>
+            </a>
+            <a class="mega-product" href="product-detail.html?id=hair-oil">
+              <img src="assets/hair oil img.jpg" alt="Hair oil" />
+              <span>Hair Oil</span>
+            </a>
+            <a class="mega-product" href="product-detail.html?id=hair-mask">
+              <img src="assets/senne hair mask card hover.jpg" alt="Hair mask" />
+              <span>Repair Hair Mask</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="products.html?category=body">Body</a>
+          <div class="mega-panel">
+            <a class="mega-product" href="product-detail.html?id=body-wash">
+              <img src="assets/body wash card hover.jpg" alt="Body wash" />
+              <span>Body Wash</span>
+            </a>
+            <a class="mega-product" href="product-detail.html?id=body-lotion">
+              <img src="assets/body-lotion.jpg" alt="Body lotion" />
+              <span>Body Lotion</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="products.html?category=hand-cream">Hand Cream</a>
+          <div class="mega-panel">
+            <a class="mega-product" href="product-detail.html?id=hand-cream-white-tea">
+              <img src="assets/hand cream card hover.jpg" alt="Hand cream trio" style="object-position: center bottom" />
+              <span>Hand Cream Trio</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="products.html?category=home">Home</a>
+          <div class="mega-panel">
+            <a class="mega-product" href="product-detail.html?id=scented-candle">
+              <img src="assets/scented candle left.jpg" alt="Scented candle" />
+              <span>Scented Candle</span>
+            </a>
+            <a class="mega-product" href="product-detail.html?id=reed-diffuser">
+              <img src="assets/diffuser.jpg" alt="Diffuser" style="object-position: center bottom" />
+              <span>Diffuser</span>
+            </a>
+            <a class="mega-product" href="product-detail.html?id=room-mist">
+              <img src="assets/room-mist.jpg" alt="Room mist" />
+              <span>Room Mist</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-item nav-item-simple"><a href="stockist.html">Stockist</a></div>
+      </nav>
+      <nav class="nav nav-utility" aria-label="Account navigation">
+        <a href="#" data-search-open>Search</a>
+        <a href="mypage.html" data-mypage-link>Mypage</a>
+        <a href="login.html" data-login-link>Login</a>
+        <button class="cart-button" type="button" aria-label="Open cart">Bag(0)</button>
+      </nav>
+    </header>
+
+    <div class="mobile-menu" id="mobile-menu" hidden>
+      <nav aria-label="Mobile navigation">
+        <a href="products.html?category=new">New</a>
+        <a href="products.html?category=hair">Hair</a>
+        <a href="products.html?category=body">Body</a>
+        <a href="products.html?category=hand-cream">Hand Cream</a>
+        <a href="products.html?category=home">Home</a>
+        <a href="stockist.html">Stockist</a>
+        <a href="mypage.html" data-mypage-link>Mypage</a>
+        <a href="login.html" data-login-link>Login</a>
+      </nav>
+    </div>
+
+    <div class="search-overlay" id="search-overlay" hidden>
+      <div class="search-panel" role="dialog" aria-modal="true" aria-label="제품 검색">
+        <div class="search-bar">
+          <span class="search-icon" aria-hidden="true"></span>
+          <input type="search" class="search-input" placeholder="제품명을 검색해보세요" aria-label="검색어 입력" data-search-input />
+          <button class="search-close" type="button" aria-label="검색 닫기" data-search-close>닫기</button>
+        </div>
+        <div class="search-results" data-search-results aria-live="polite"></div>
+      </div>
+    </div>
+
+    <main>
+
+      <!-- 히어로 -->
+      <section class="about-hero">
+        <img class="about-hero-img" src="assets/senne hero img.jpg" alt="SENNE" />
+        <div class="about-hero-copy">
+          <span class="label">Our Story</span>
+          <h1>향이 기억을<br />만드는 방식</h1>
+        </div>
+      </section>
+
+      <!-- 인트로 -->
+      <section class="about-intro">
+        <img class="about-intro-img" src="assets/signature scent.jpg" alt="SENNE signature scent" />
+        <div class="about-intro-copy">
+          <span class="label">About SENNE</span>
+          <h2>센느는<br />일상의 감각을<br />설계합니다</h2>
+          <p>
+            SENNE는 2021년 서울에서 시작된 퍼스널 케어 브랜드입니다.
+            우리는 향이 단순한 취향이 아니라, 하루의 리듬과 감정을
+            구성하는 요소라고 믿습니다.
+          </p>
+          <p style="margin-top:16px; font-size:16px; line-height:1.8; color:var(--muted); max-width:420px;">
+            매일 아침 샤워를 마치고, 헤어를 정돈하고, 손을 씻는 순간들.
+            그 작은 루틴 속에서 센느의 향은 당신의 하루를 조용히 완성합니다.
+          </p>
+        </div>
+      </section>
+
+      <!-- 철학 -->
+      <section class="about-values">
+        <span class="about-values-eyebrow">Our Philosophy</span>
+        <h2>세 가지 원칙으로<br />제품을 만듭니다</h2>
+        <div class="about-values-grid">
+          <div class="about-value">
+            <span class="about-value-num">01</span>
+            <p class="about-value-title">Quiet Luxury</p>
+            <p class="about-value-text">
+              과하지 않은 것이 오래갑니다. 센느는 드러내기보다
+              스며드는 향과 질감을 추구합니다. 사용하는 순간보다
+              사용하고 난 뒤의 감각을 더 중요하게 생각합니다.
+            </p>
+          </div>
+          <div class="about-value">
+            <span class="about-value-num">02</span>
+            <p class="about-value-title">Clean Formula</p>
+            <p class="about-value-text">
+              모든 제품은 피부과 테스트를 거치고, 불필요한 성분을
+              배제한 클린 포뮬러로 설계됩니다. 효과는 타협하지 않되,
+              성분은 투명하게 공개합니다.
+            </p>
+          </div>
+          <div class="about-value">
+            <span class="about-value-num">03</span>
+            <p class="about-value-title">Daily Ritual</p>
+            <p class="about-value-text">
+              특별한 날이 아닌 매일을 위한 제품. 센느의 모든 라인은
+              아침과 저녁의 루틴 안에서 자연스럽게 자리 잡을 수 있도록
+              기획됩니다.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 풀 이미지 -->
+      <img class="about-full-img" src="assets/apricot series.jpg" alt="SENNE apricot series" />
+
+      <!-- 브랜드 스토리 -->
+      <section class="about-story">
+        <div class="about-story-text">
+          <h2>향으로 연결되는<br />일상의 순간들</h2>
+          <p>
+            센느(SENNE)는 프랑스어로 '씨앗'을 뜻합니다.
+            작고 단단한 씨앗처럼, 우리의 제품은 당신의 루틴 속에
+            조용히 심어져 매일 조금씩 성장합니다.
+          </p>
+          <p>
+            헤어 미스트 한 번, 바디 워시의 거품 한 번,
+            핸드 크림의 잔향 한 번. 그 반복이 쌓여
+            당신만의 향의 정체성이 됩니다.
+          </p>
+          <p>
+            2021년 첫 번째 향을 출시한 이후, 센느는
+            국내외 10만 명 이상의 고객과 함께
+            각자의 루틴을 만들어왔습니다.
+          </p>
+        </div>
+        <div class="about-story-img-wrap">
+          <img class="about-story-img" src="assets/hair oil left.jpg" alt="SENNE hair oil" />
+        </div>
+      </section>
+
+      <!-- 숫자 -->
+      <div class="about-numbers">
+        <div class="about-number-item">
+          <span class="about-number-val">2021</span>
+          <span class="about-number-label">브랜드 설립</span>
+        </div>
+        <div class="about-number-item">
+          <span class="about-number-val">100K+</span>
+          <span class="about-number-label">누적 고객</span>
+        </div>
+        <div class="about-number-item">
+          <span class="about-number-val">11</span>
+          <span class="about-number-label">제품 라인업</span>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <section class="about-cta">
+        <h2>센느와 함께<br />당신의 루틴을 시작하세요</h2>
+        <a class="about-cta-btn" href="products.html">제품 보러가기</a>
+      </section>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-top">
+        <div class="footer-col footer-brand-col">
+          <span class="footer-logo"><img src="assets/senne-logo.svg" alt="SENNE" /></span>
+        </div>
+        <nav class="footer-col" aria-label="Shop">
+          <h4>Shop</h4>
+          <a href="products.html?category=new">New</a>
+          <a href="products.html?category=hair">Hair</a>
+          <a href="products.html?category=body">Body</a>
+          <a href="products.html?category=hand-cream">Hand Cream</a>
+          <a href="products.html?category=home">Home</a>
+        </nav>
+        <div class="footer-col">
+          <h4>Customer</h4>
+          <p>고객센터 1644-0000</p>
+          <p>평일 10:00–17:00<br />점심 12:30–13:30</p>
+          <a href="mailto:hello@senne.care">hello@senne.care</a>
+        </div>
+        <nav class="footer-col" aria-label="About">
+          <h4>About</h4>
+          <a href="stockist.html">Stockist</a>
+          <a href="about.html">Story</a>
+          <a href="#">Instagram</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-company">
+          주식회사 센느 · 대표 이서연 · 사업자등록번호 123-45-67890 · 통신판매업신고 제2026-서울용산-0123호 · 서울특별시 용산구 한남대로 12, 3층
+        </p>
+        <div class="footer-legal">
+          <a href="#">이용약관</a>
+          <a href="#">개인정보처리방침</a>
+          <span>© 2026 SENNE</span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="shop.js"></script>
+  </body>
+</html>

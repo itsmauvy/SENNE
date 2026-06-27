@@ -87,10 +87,11 @@ const PRODUCTS = [
     price: 36000,
     volume: "200ml / 6.7 fl.oz",
     volumes: [
-      { label: "50ml", price: 18000 },
-      { label: "300ml", price: 52000 },
+      { label: "100ml", price: 22000, image: "assets/senne body lotion 100ml png.png" },
+      { label: "300ml", price: 52000, image: "assets/body lotion png.png" },
     ],
     images: [
+      "assets/senne body lotion 100ml png.png",
       "assets/body lotion png.png",
       "assets/body-lotion.jpg",
     ],

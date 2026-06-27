@@ -72,7 +72,7 @@ function renderDetail() {
         <p class="pd-volume-label">용량 선택</p>
         <div class="pd-volume-options">
           ${product.volumes.map((v, i) => `
-            <button type="button" class="pd-volume-opt${i === 0 ? " is-active" : ""}" data-price="${v.price}" data-label="${v.label}">
+            <button type="button" class="pd-volume-opt${i === 0 ? " is-active" : ""}" data-price="${v.price}" data-label="${v.label}"${v.image ? ` data-image="${v.image}"` : ""}>
               ${v.label}
             </button>`).join("")}
         </div>
@@ -135,6 +135,15 @@ function renderDetail() {
         document.querySelectorAll(".pd-volume-opt").forEach((b) => b.classList.remove("is-active"));
         btn.classList.add("is-active");
         priceEl.textContent = `${Number(btn.dataset.price).toLocaleString("ko-KR")}원`;
+        if (btn.dataset.image) {
+          clearInterval(cycleTimer);
+          mainImg.style.opacity = "0";
+          setTimeout(() => {
+            mainImg.src = btn.dataset.image;
+            mainImg.style.opacity = "1";
+          }, 180);
+          thumbBtns.forEach((b) => b.classList.remove("is-active"));
+        }
       });
     });
   }
