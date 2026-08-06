@@ -318,6 +318,8 @@
             </a>
           </div>
         </div>
+        <div class="nav-item nav-item-simple"><a href="scent-quiz.html">Scent Finder</a></div>
+        <div class="nav-item nav-item-simple"><a href="brand-story.html">Brand</a></div>
         <div class="nav-item nav-item-simple"><a href="stockist.html">Stockist</a></div>
       </nav>
       <nav class="nav nav-utility" aria-label="Account navigation">
@@ -335,6 +337,8 @@
         <a href="products.html?category=body">Body</a>
         <a href="products.html?category=hand-cream">Hand Cream</a>
         <a href="products.html?category=home">Home</a>
+        <a href="scent-quiz.html">Scent Finder</a>
+        <a href="brand-story.html">Brand</a>
         <a href="stockist.html">Stockist</a>
         <a href="mypage.html" data-mypage-link>Mypage</a>
         <a href="login.html" data-login-link>Login</a>
@@ -444,6 +448,7 @@
           <p class="quiz-result-desc" id="result-desc"></p>
           <div class="quiz-result-actions">
             <a class="quiz-btn-primary" id="result-link" href="#">제품 상세보기</a>
+            <a class="quiz-btn-ghost" id="result-mood-link" href="#">이 무드의 다른 제품 보기</a>
             <button class="quiz-btn-ghost" onclick="restartQuiz()">다시 찾기</button>
           </div>
           <p class="quiz-reason" id="result-reason"></p>
@@ -475,6 +480,7 @@
           <h4>About</h4>
           <a href="stockist.html">Stockist</a>
           <a href="about.html">Story</a>
+          <a href="brand-story.html">Brand Story</a>
           <a href="#">Instagram</a>
         </nav>
       </div>
@@ -570,6 +576,7 @@
         document.getElementById("result-price").textContent = p.price;
         document.getElementById("result-desc").textContent = p.desc;
         document.getElementById("result-link").href = `product-detail.html?id=${productId}`;
+        document.getElementById("result-mood-link").href = `products.html?mood=${mood}`;
         document.getElementById("result-reason").textContent = REASONS[productId];
 
         document.getElementById("quiz-result").classList.add("is-active");

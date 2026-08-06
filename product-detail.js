@@ -67,6 +67,26 @@ function renderDetail() {
 
       <p class="pd-description">${product.description}</p>
 
+      ${product.notes ? `
+      <div class="pd-scent-pyramid">
+        <p class="pd-scent-pyramid-label">Scent Pyramid</p>
+        <div class="pd-scent-tier">
+          <span class="pd-scent-tier-name">Top</span>
+          <span class="pd-scent-bar"><span style="width:36%"></span></span>
+          <span class="pd-scent-tier-notes">${product.notes.top}</span>
+        </div>
+        <div class="pd-scent-tier">
+          <span class="pd-scent-tier-name">Middle</span>
+          <span class="pd-scent-bar"><span style="width:68%"></span></span>
+          <span class="pd-scent-tier-notes">${product.notes.mid}</span>
+        </div>
+        <div class="pd-scent-tier">
+          <span class="pd-scent-tier-name">Base</span>
+          <span class="pd-scent-bar"><span style="width:100%"></span></span>
+          <span class="pd-scent-tier-notes">${product.notes.base}</span>
+        </div>
+      </div>` : ""}
+
       ${product.volumes ? `
       <div class="pd-volume-selector">
         <p class="pd-volume-label">용량 선택</p>

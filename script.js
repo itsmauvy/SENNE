@@ -41,15 +41,15 @@ const topBannerMessages = [...document.querySelectorAll(".top-banner-message")];
 
 const heroCopy = [
   {
-    eyebrow: "",
-    title: "리페어 헤어 마스크",
-    text: "물기를 머금은 모발에 깊은 영양과<br />부드러운 윤기를 남깁니다",
+    eyebrow: "나이트 리추얼 · 헤어 마스크",
+    title: "조용히 채워지는<br />밤의 향",
+    text: "재스민과 앰버 머스크가 밤사이 모발 깊숙이 스며들어,<br />아침엔 차분한 윤기와 옅은 잔향만 남습니다",
     productId: "hair-mask",
   },
   {
-    eyebrow: "",
-    title: "센느 바디 워시",
-    text: "부드러운 거품과 잔잔한 향으로<br />하루의 긴장을 씻어냅니다",
+    eyebrow: "데일리 리추얼 · 바디 워시",
+    title: "하루의 긴장을<br />씻어내는 향",
+    text: "그린 시트러스로 시작해 화이트 머스크로 가라앉는,<br />부드러운 거품의 데일리 클렌저",
     productId: "body-wash",
   },
 ];

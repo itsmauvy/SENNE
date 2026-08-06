@@ -94,6 +94,8 @@
             </a>
           </div>
         </div>
+        <div class="nav-item nav-item-simple"><a href="scent-quiz.html">Scent Finder</a></div>
+        <div class="nav-item nav-item-simple"><a href="brand-story.html">Brand</a></div>
         <div class="nav-item nav-item-simple"><a href="stockist.html">Stockist</a></div>
       </nav>
       <nav class="nav nav-utility" aria-label="Account navigation">
@@ -111,6 +113,8 @@
         <a href="products.html?category=body">Body</a>
         <a href="products.html?category=hand-cream">Hand Cream</a>
         <a href="products.html?category=home">Home</a>
+        <a href="scent-quiz.html">Scent Finder</a>
+        <a href="brand-story.html">Brand</a>
         <a href="stockist.html">Stockist</a>
         <a href="mypage.html" data-mypage-link>Mypage</a>
         <a href="login.html" data-login-link>Login</a>
@@ -147,11 +151,20 @@
           <button class="category-tab" type="button" role="tab" data-filter="home" aria-selected="false">홈</button>
         </div>
 
+        <div class="mood-tabs" role="tablist" aria-label="향 무드">
+          <span class="mood-tabs-label">Scent Mood</span>
+          <button class="mood-tab" type="button" role="tab" data-mood-filter="all" aria-selected="true">전체</button>
+          <button class="mood-tab" type="button" role="tab" data-mood-filter="floral" aria-selected="false">플로럴</button>
+          <button class="mood-tab" type="button" role="tab" data-mood-filter="citrus" aria-selected="false">시트러스</button>
+          <button class="mood-tab" type="button" role="tab" data-mood-filter="woody" aria-selected="false">우디</button>
+          <button class="mood-tab" type="button" role="tab" data-mood-filter="musk" aria-selected="false">머스크</button>
+        </div>
+
         <p class="shop-count" data-shop-count aria-live="polite"></p>
 
         <div class="product-grid" data-product-grid>
           <!-- HAIR -->
-          <article class="product-card" data-category="hair new">
+          <article class="product-card" data-category="hair new" data-mood="floral musk">
             <div class="product-media">
               <a href="product-detail.html?id=hair-mist"
                 class="product-image image-field"
@@ -169,7 +182,7 @@
             </div>
           </article>
 
-          <article class="product-card" data-category="hair">
+          <article class="product-card" data-category="hair" data-mood="woody floral">
             <div class="product-media">
               <a href="product-detail.html?id=hair-oil"
                 class="product-image image-field"
@@ -187,7 +200,7 @@
             </div>
           </article>
 
-          <article class="product-card" data-category="hair">
+          <article class="product-card" data-category="hair" data-mood="floral musk">
             <div class="product-media">
               <a href="product-detail.html?id=hair-mask"
                 class="product-image image-field"
@@ -206,7 +219,7 @@
           </article>
 
           <!-- BODY -->
-          <article class="product-card" data-category="body">
+          <article class="product-card" data-category="body" data-mood="citrus musk">
             <div class="product-media">
               <a href="product-detail.html?id=body-wash"
                 class="product-image image-field"
@@ -224,7 +237,7 @@
             </div>
           </article>
 
-          <article class="product-card" data-category="body new">
+          <article class="product-card" data-category="body new" data-mood="citrus musk">
             <div class="product-media">
               <a href="product-detail.html?id=body-lotion"
                 class="product-image image-field"
@@ -243,7 +256,7 @@
           </article>
 
           <!-- HAND CREAM -->
-          <article class="product-card" data-category="hand-cream new">
+          <article class="product-card" data-category="hand-cream new" data-mood="musk floral">
             <div class="product-media">
               <a href="product-detail.html?id=hand-cream-white-tea"
                 class="product-image image-field"
@@ -261,7 +274,7 @@
             </div>
           </article>
 
-          <article class="product-card" data-category="hand-cream">
+          <article class="product-card" data-category="hand-cream" data-mood="citrus musk">
             <div class="product-media">
               <a href="product-detail.html?id=hand-cream-bergamot"
                 class="product-image image-field"
@@ -279,7 +292,7 @@
             </div>
           </article>
 
-          <article class="product-card" data-category="hand-cream">
+          <article class="product-card" data-category="hand-cream" data-mood="woody">
             <div class="product-media">
               <a href="product-detail.html?id=hand-cream-sandalwood"
                 class="product-image image-field"
@@ -298,7 +311,7 @@
           </article>
 
           <!-- HOME -->
-          <article class="product-card" data-category="home">
+          <article class="product-card" data-category="home" data-mood="woody floral">
             <div class="product-media">
               <a href="product-detail.html?id=scented-candle"
                 class="product-image image-field"
@@ -316,7 +329,7 @@
             </div>
           </article>
 
-          <article class="product-card" data-category="home new">
+          <article class="product-card" data-category="home new" data-mood="citrus woody">
             <div class="product-media">
               <a href="product-detail.html?id=reed-diffuser"
                 class="product-image image-field"
@@ -334,7 +347,7 @@
             </div>
           </article>
 
-          <article class="product-card" data-category="home">
+          <article class="product-card" data-category="home" data-mood="floral musk">
             <div class="product-media">
               <a href="product-detail.html?id=room-mist"
                 class="product-image image-field"
@@ -381,6 +394,7 @@
           <h4>About</h4>
           <a href="index.html#stockist">Stockist</a>
           <a href="about.html">Story</a>
+          <a href="brand-story.html">Brand Story</a>
           <a href="#">Instagram</a>
         </nav>
       </div>

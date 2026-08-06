@@ -3,16 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SENNE | About</title>
-    <meta name="description" content="SENNE의 이야기 — 향과 감각, 일상의 루틴에 대하여" />
+    <title>SENNE | Brand Story</title>
+    <meta name="description" content="센느가 걸어온 길 — 작은 발견에서 지금의 브랜드가 되기까지" />
     <link rel="stylesheet" href="styles.css" />
     <style>
-      /* ── About 전용 ── */
+      /* ── Brand Story 전용 ── */
 
-      .about-hero {
+      .bs-hero {
         position: relative;
-        height: 100vh;
-        min-height: 560px;
+        height: 92vh;
+        min-height: 520px;
         display: flex;
         align-items: flex-end;
         padding: 60px 48px;
@@ -20,24 +20,24 @@
         background: var(--ink);
       }
 
-      .about-hero-img {
+      .bs-hero-img {
         position: absolute;
         inset: 0;
         width: 100%;
         height: 100%;
         object-fit: cover;
-        object-position: center 30%;
-        opacity: 0.72;
+        object-position: center 35%;
+        opacity: 0.68;
       }
 
-      .about-hero-copy {
+      .bs-hero-copy {
         position: relative;
         z-index: 2;
-        max-width: 640px;
+        max-width: 680px;
         color: var(--white);
       }
 
-      .about-hero-copy .label {
+      .bs-hero-copy .label {
         display: block;
         margin-bottom: 18px;
         font-size: 13px;
@@ -46,23 +46,122 @@
         opacity: 0.7;
       }
 
-      .about-hero-copy h1 {
-        font-size: clamp(36px, 5vw, 64px);
+      .bs-hero-copy h1 {
+        font-size: clamp(34px, 4.6vw, 58px);
         font-weight: 400;
-        line-height: 1.12;
+        line-height: 1.18;
         letter-spacing: -0.02em;
         margin-bottom: 0;
       }
 
-      /* ── 인트로 ── */
+      /* ── 창업자의 글 ── */
 
-      .about-intro {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        min-height: 560px;
+      .bs-letter {
+        padding: clamp(88px, 11vw, 160px) clamp(24px, 8vw, 120px);
+        max-width: 780px;
+        margin: 0 auto;
+        text-align: center;
       }
 
-      .about-intro-img {
+      .bs-letter .label {
+        display: block;
+        margin-bottom: 28px;
+        font-size: 13px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .bs-letter blockquote {
+        margin: 0 0 32px;
+        font-size: clamp(22px, 2.6vw, 32px);
+        font-weight: 400;
+        line-height: 1.55;
+        letter-spacing: -0.01em;
+      }
+
+      .bs-letter cite {
+        display: block;
+        font-style: normal;
+        font-size: 14px;
+        letter-spacing: 0.04em;
+        color: var(--muted);
+      }
+
+      /* ── 타임라인 ── */
+
+      .bs-timeline {
+        padding: clamp(72px, 9vw, 120px) clamp(24px, 6vw, 96px);
+        background: #f0ede7;
+      }
+
+      .bs-timeline-head {
+        text-align: center;
+        margin-bottom: clamp(56px, 7vw, 96px);
+      }
+
+      .bs-timeline-head .label {
+        display: block;
+        margin-bottom: 16px;
+        font-size: 13px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .bs-timeline-head h2 {
+        font-size: clamp(28px, 3.6vw, 48px);
+        font-weight: 400;
+        line-height: 1.16;
+        letter-spacing: -0.02em;
+        margin: 0;
+      }
+
+      .bs-timeline-list {
+        max-width: 720px;
+        margin: 0 auto;
+        border-top: 1px solid var(--line);
+      }
+
+      .bs-timeline-item {
+        display: grid;
+        grid-template-columns: 120px 1fr;
+        gap: 32px;
+        padding: 36px 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .bs-timeline-year {
+        font-size: 28px;
+        font-weight: 300;
+        letter-spacing: -0.02em;
+        color: var(--clay);
+      }
+
+      .bs-timeline-title {
+        font-size: 17px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        margin: 0 0 8px;
+      }
+
+      .bs-timeline-text {
+        font-size: 15px;
+        line-height: 1.75;
+        color: var(--muted);
+        margin: 0;
+        max-width: 460px;
+      }
+
+      /* ── 만드는 방식 ── */
+
+      .bs-craft {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+      }
+
+      .bs-craft-img {
         width: 100%;
         height: 100%;
         min-height: 460px;
@@ -70,14 +169,11 @@
         display: block;
       }
 
-      .about-intro-copy {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+      .bs-craft-copy {
         padding: clamp(40px, 6vw, 96px) clamp(36px, 5vw, 80px);
       }
 
-      .about-intro-copy .label {
+      .bs-craft-copy .label {
         display: block;
         margin-bottom: 20px;
         font-size: 13px;
@@ -86,183 +182,44 @@
         color: var(--muted);
       }
 
-      .about-intro-copy h2 {
-        font-size: clamp(28px, 3.2vw, 46px);
-        font-weight: 400;
-        line-height: 1.18;
-        letter-spacing: -0.015em;
-        margin-bottom: 28px;
-      }
-
-      .about-intro-copy p {
-        font-size: 16px;
-        line-height: 1.8;
-        color: var(--muted);
-        max-width: 420px;
-      }
-
-      /* ── 철학 섹션 ── */
-
-      .about-values {
-        padding: clamp(72px, 10vw, 140px) clamp(24px, 6vw, 96px);
-        text-align: center;
-        background: #f0ede7;
-      }
-
-      .about-values-eyebrow {
-        display: block;
-        margin-bottom: 16px;
-        font-size: 13px;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--muted);
-      }
-
-      .about-values h2 {
-        font-size: clamp(30px, 4vw, 56px);
-        font-weight: 400;
-        line-height: 1.14;
-        letter-spacing: -0.02em;
-        margin-bottom: 72px;
-        max-width: 700px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .about-values-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 48px 40px;
-        max-width: 900px;
-        margin: 0 auto;
-        text-align: left;
-      }
-
-      .about-value-num {
-        display: block;
-        font-size: 32px;
-        font-weight: 300;
-        color: var(--stone);
-        margin-bottom: 16px;
-        letter-spacing: -0.03em;
-      }
-
-      .about-value-title {
-        font-size: 18px;
-        font-weight: 600;
-        margin-bottom: 10px;
-        letter-spacing: -0.01em;
-      }
-
-      .about-value-text {
-        font-size: 15px;
-        line-height: 1.75;
-        color: var(--muted);
-      }
-
-      /* ── 풀 이미지 ── */
-
-      .about-full-img {
-        width: 100%;
-        height: clamp(380px, 55vw, 680px);
-        object-fit: cover;
-        object-position: center 40%;
-        display: block;
-      }
-
-      /* ── 스토리 텍스트 ── */
-
-      .about-story {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 0;
-        align-items: center;
-        padding: clamp(60px, 8vw, 120px) clamp(24px, 6vw, 96px);
-      }
-
-      .about-story-text h2 {
+      .bs-craft-copy h2 {
         font-size: clamp(26px, 3vw, 42px);
         font-weight: 400;
         line-height: 1.2;
         letter-spacing: -0.015em;
-        margin-bottom: 28px;
+        margin-bottom: 24px;
       }
 
-      .about-story-text p {
+      .bs-craft-copy p {
         font-size: 16px;
         line-height: 1.85;
         color: var(--muted);
-        max-width: 460px;
+        max-width: 440px;
       }
 
-      .about-story-text p + p {
-        margin-top: 20px;
+      .bs-craft-copy p + p {
+        margin-top: 18px;
       }
 
-      .about-story-img-wrap {
-        padding-left: clamp(32px, 5vw, 72px);
-      }
+      /* ── 클로징 ── */
 
-      .about-story-img {
-        width: 100%;
-        aspect-ratio: 3 / 4;
-        object-fit: cover;
-        display: block;
-      }
-
-      /* ── 숫자 강조 ── */
-
-      .about-numbers {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        border-top: 1px solid var(--line);
-        border-bottom: 1px solid var(--line);
-      }
-
-      .about-number-item {
-        padding: 52px 40px;
-        border-right: 1px solid var(--line);
-        text-align: center;
-      }
-
-      .about-number-item:last-child { border-right: none; }
-
-      .about-number-val {
-        display: block;
-        font-size: clamp(36px, 5vw, 60px);
-        font-weight: 300;
-        letter-spacing: -0.04em;
-        line-height: 1;
-        margin-bottom: 10px;
-      }
-
-      .about-number-label {
-        font-size: 14px;
-        color: var(--muted);
-        letter-spacing: 0.04em;
-      }
-
-      /* ── CTA ── */
-
-      .about-cta {
-        padding: clamp(80px, 10vw, 140px) 24px;
+      .bs-closing {
+        padding: clamp(90px, 12vw, 160px) 24px;
         text-align: center;
         background: var(--ink);
         color: var(--white);
       }
 
-      .about-cta h2 {
-        font-size: clamp(28px, 4vw, 54px);
+      .bs-closing p {
+        font-size: clamp(22px, 3vw, 36px);
         font-weight: 400;
-        line-height: 1.16;
-        letter-spacing: -0.02em;
-        margin-bottom: 32px;
-        max-width: 560px;
-        margin-left: auto;
-        margin-right: auto;
+        line-height: 1.5;
+        letter-spacing: -0.01em;
+        max-width: 640px;
+        margin: 0 auto 36px;
       }
 
-      .about-cta-btn {
+      .bs-closing-btn {
         display: inline-block;
         padding: 0 40px;
         height: 52px;
@@ -275,7 +232,7 @@
         transition: background 200ms ease, border-color 200ms ease;
       }
 
-      .about-cta-btn:hover {
+      .bs-closing-btn:hover {
         background: rgba(255,253,248,0.12);
         border-color: var(--white);
       }
@@ -283,39 +240,18 @@
       /* ── 모바일 ── */
 
       @media (max-width: 768px) {
-        .about-hero { padding: 40px 24px; }
+        .bs-hero { padding: 40px 24px; }
 
-        .about-intro {
+        .bs-timeline-item {
+          grid-template-columns: 1fr;
+          gap: 10px;
+        }
+
+        .bs-craft {
           grid-template-columns: 1fr;
         }
 
-        .about-intro-img { min-height: 320px; }
-
-        .about-values-grid {
-          grid-template-columns: 1fr;
-          gap: 36px;
-        }
-
-        .about-story {
-          grid-template-columns: 1fr;
-        }
-
-        .about-story-img-wrap {
-          padding-left: 0;
-          margin-top: 36px;
-        }
-
-        .about-numbers {
-          grid-template-columns: 1fr;
-        }
-
-        .about-number-item {
-          border-right: none;
-          border-bottom: 1px solid var(--line);
-          padding: 36px 24px;
-        }
-
-        .about-number-item:last-child { border-bottom: none; }
+        .bs-craft-img { min-height: 320px; }
       }
     </style>
   </head>
@@ -444,115 +380,107 @@
     <main>
 
       <!-- 히어로 -->
-      <section class="about-hero">
-        <img class="about-hero-img" src="assets/senne hero img.jpg" alt="SENNE" />
-        <div class="about-hero-copy">
-          <span class="label">Our Story</span>
-          <h1>향이 기억을<br />만드는 방식</h1>
+      <section class="bs-hero">
+        <img class="bs-hero-img" src="assets/senne hero2.jpg" alt="SENNE" />
+        <div class="bs-hero-copy">
+          <span class="label">Brand Story</span>
+          <h1>작은 발견에서<br />시작된 이야기</h1>
         </div>
       </section>
 
-      <!-- 인트로 -->
-      <section class="about-intro">
-        <img class="about-intro-img" src="assets/signature scent.jpg" alt="SENNE signature scent" />
-        <div class="about-intro-copy">
-          <span class="label">About SENNE</span>
-          <h2>센느는<br />일상의 감각을<br />설계합니다</h2>
-          <p>
-            SENNE는 2021년 서울에서 시작된 퍼스널 케어 브랜드입니다.
-            우리는 향이 단순한 취향이 아니라, 하루의 리듬과 감정을
-            구성하는 요소라고 믿습니다.
-          </p>
-          <p style="margin-top:16px; font-size:16px; line-height:1.8; color:var(--muted); max-width:420px;">
-            매일 아침 샤워를 마치고, 헤어를 정돈하고, 손을 씻는 순간들.
-            그 작은 루틴 속에서 센느의 향은 당신의 하루를 조용히 완성합니다.
-          </p>
-        </div>
+      <!-- 창업자의 글 -->
+      <section class="bs-letter">
+        <span class="label">A Letter from the Founder</span>
+        <blockquote>
+          "제 손등에 남은 마른 향 하나가 하루를 버티게 했습니다.
+          그 순간을 병 하나에 담을 수 있다면 — 그것이 센느의 시작이었습니다."
+        </blockquote>
+        <cite>이서연, SENNE 창립자</cite>
       </section>
 
-      <!-- 철학 -->
-      <section class="about-values">
-        <span class="about-values-eyebrow">Our Philosophy</span>
-        <h2>세 가지 원칙으로<br />제품을 만듭니다</h2>
-        <div class="about-values-grid">
-          <div class="about-value">
-            <span class="about-value-num">01</span>
-            <p class="about-value-title">Quiet Luxury</p>
-            <p class="about-value-text">
-              과하지 않은 것이 오래갑니다. 센느는 드러내기보다
-              스며드는 향과 질감을 추구합니다. 사용하는 순간보다
-              사용하고 난 뒤의 감각을 더 중요하게 생각합니다.
-            </p>
+      <!-- 타임라인 -->
+      <section class="bs-timeline">
+        <div class="bs-timeline-head">
+          <span class="label">Our Journey</span>
+          <h2>센느가 걸어온 길</h2>
+        </div>
+        <div class="bs-timeline-list">
+          <div class="bs-timeline-item">
+            <span class="bs-timeline-year">2021</span>
+            <div>
+              <p class="bs-timeline-title">첫 향, 첫 제품</p>
+              <p class="bs-timeline-text">
+                서울의 작은 작업실에서 핸드 크림 한 종으로 센느가 시작됐습니다.
+                조향사와 함께 백 번 넘는 테스트를 거쳐 첫 번째 향을 완성했습니다.
+              </p>
+            </div>
           </div>
-          <div class="about-value">
-            <span class="about-value-num">02</span>
-            <p class="about-value-title">Clean Formula</p>
-            <p class="about-value-text">
-              모든 제품은 피부과 테스트를 거치고, 불필요한 성분을
-              배제한 클린 포뮬러로 설계됩니다. 효과는 타협하지 않되,
-              성분은 투명하게 공개합니다.
-            </p>
+          <div class="bs-timeline-item">
+            <span class="bs-timeline-year">2022</span>
+            <div>
+              <p class="bs-timeline-title">헤어 라인 론칭</p>
+              <p class="bs-timeline-text">
+                헤어 미스트와 헤어 오일을 시작으로 라인업을 넓히며,
+                아침과 저녁의 루틴 전체를 향으로 잇기 시작했습니다.
+              </p>
+            </div>
           </div>
-          <div class="about-value">
-            <span class="about-value-num">03</span>
-            <p class="about-value-title">Daily Ritual</p>
-            <p class="about-value-text">
-              특별한 날이 아닌 매일을 위한 제품. 센느의 모든 라인은
-              아침과 저녁의 루틴 안에서 자연스럽게 자리 잡을 수 있도록
-              기획됩니다.
-            </p>
+          <div class="bs-timeline-item">
+            <span class="bs-timeline-year">2023</span>
+            <div>
+              <p class="bs-timeline-title">플래그십 스토어 오픈</p>
+              <p class="bs-timeline-text">
+                한남동에 첫 오프라인 공간을 열어, 온라인에서만 만나던
+                향과 질감을 직접 경험할 수 있는 자리를 마련했습니다.
+              </p>
+            </div>
+          </div>
+          <div class="bs-timeline-item">
+            <span class="bs-timeline-year">2024</span>
+            <div>
+              <p class="bs-timeline-title">전 제품 클린 포뮬러 전환</p>
+              <p class="bs-timeline-text">
+                전 라인업의 성분을 재설계해 피부과 테스트를 완료하고,
+                불필요한 성분을 뺀 클린 포뮬러로 전환했습니다.
+              </p>
+            </div>
+          </div>
+          <div class="bs-timeline-item">
+            <span class="bs-timeline-year">2026</span>
+            <div>
+              <p class="bs-timeline-title">누적 고객 10만 명</p>
+              <p class="bs-timeline-text">
+                국내외 10만 명 이상의 고객과 함께 각자의 루틴을 만들어오며,
+                지금도 다음 향을 준비하고 있습니다.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- 풀 이미지 -->
-      <img class="about-full-img" src="assets/apricot series.jpg" alt="SENNE apricot series" />
-
-      <!-- 브랜드 스토리 -->
-      <section class="about-story">
-        <div class="about-story-text">
-          <h2>향으로 연결되는<br />일상의 순간들</h2>
+      <!-- 만드는 방식 -->
+      <section class="bs-craft">
+        <img class="bs-craft-img" src="assets/flagship store.jpg" alt="SENNE flagship store" />
+        <div class="bs-craft-copy">
+          <span class="label">How We Make It</span>
+          <h2>느리게 완성되는<br />향과 질감</h2>
           <p>
-            센느(SENNE)는 프랑스어로 '씨앗'을 뜻합니다.
-            작고 단단한 씨앗처럼, 우리의 제품은 당신의 루틴 속에
-            조용히 심어져 매일 조금씩 성장합니다.
+            센느의 모든 제품은 작은 배치로 생산됩니다.
+            원료 하나를 고르는 데도 여러 계절을 거치고,
+            조향과 배합을 수십 차례 조정한 뒤에야 완성됩니다.
           </p>
           <p>
-            헤어 미스트 한 번, 바디 워시의 거품 한 번,
-            핸드 크림의 잔향 한 번. 그 반복이 쌓여
-            당신만의 향의 정체성이 됩니다.
+            빠르게 만들 수 있는 방법을 알면서도, 우리는 느린 방식을 택합니다.
+            그 시간이 결국 사용하는 사람의 피부와 하루에 그대로 전해진다고
+            믿기 때문입니다.
           </p>
-          <p>
-            2021년 첫 번째 향을 출시한 이후, 센느는
-            국내외 10만 명 이상의 고객과 함께
-            각자의 루틴을 만들어왔습니다.
-          </p>
-        </div>
-        <div class="about-story-img-wrap">
-          <img class="about-story-img" src="assets/hair oil left.jpg" alt="SENNE hair oil" />
         </div>
       </section>
 
-      <!-- 숫자 -->
-      <div class="about-numbers">
-        <div class="about-number-item">
-          <span class="about-number-val">2021</span>
-          <span class="about-number-label">브랜드 설립</span>
-        </div>
-        <div class="about-number-item">
-          <span class="about-number-val">100K+</span>
-          <span class="about-number-label">누적 고객</span>
-        </div>
-        <div class="about-number-item">
-          <span class="about-number-val">11</span>
-          <span class="about-number-label">제품 라인업</span>
-        </div>
-      </div>
-
-      <!-- CTA -->
-      <section class="about-cta">
-        <h2>센느와 함께<br />당신의 루틴을 시작하세요</h2>
-        <a class="about-cta-btn" href="products.html">제품 보러가기</a>
+      <!-- 클로징 -->
+      <section class="bs-closing">
+        <p>씨앗 하나가 자라 지금의 센느가 되었듯,<br />이 이야기는 당신의 루틴 안에서 계속됩니다.</p>
+        <a class="bs-closing-btn" href="about.html">브랜드 철학 더 보기</a>
       </section>
 
     </main>
