@@ -69,6 +69,7 @@ const PRODUCTS = [
     volume: "250ml / 8.4 fl.oz",
     images: [
       "assets/senne body wash png.png",
+      "assets/body wash card hover.jpg",
     ],
     description:
       "부드러운 거품과 잔잔한 향으로 하루의 긴장을 씻어내는 데일리 바디 클렌저. 피부 자극을 최소화한 저자극 계면활성제를 사용하여 세정 후에도 촉촉함이 남습니다.",
@@ -105,64 +106,65 @@ const PRODUCTS = [
     ],
   },
   {
-    id: "hand-cream-white-tea",
-    name: "핸드 크림 화이트 티",
-    subtitle: "Hand Cream · White Tea",
+    id: "hand-cream",
+    name: "핸드 크림",
+    subtitle: "Hand Cream · 3 Scents",
     category: "hand-cream",
     price: 26000,
     volume: "50ml / 1.7 fl.oz",
     images: [
       "assets/hand cream white tea png.png",
       "assets/hand cream white tea img.jpg",
+      "assets/hand cream bergamot png.png",
+      "assets/hand cream bergamot img.jpg",
+      "assets/hand cream sandalwood.png",
+      "assets/hand cream sandalwood img.jpg",
       "assets/hand cream card hover.jpg",
     ],
     description:
-      "건조한 손끝에 산뜻하게 스며드는 보습감과 맑은 화이트 티 노트. 끈적이지 않는 가벼운 텍스처로 언제 어디서나 편리하게 사용할 수 있습니다.",
+      "건조한 손끝에 산뜻하게 스며드는 보습감. 끈적이지 않는 가벼운 텍스처로 언제 어디서나 편리하게 사용할 수 있습니다.",
     notes: { top: "그린 티", mid: "화이트 머스크, 재스민", base: "시더우드" },
+    scents: [
+      {
+        id: "white-tea",
+        label: "화이트 티",
+        images: [
+          "assets/hand cream white tea png.png",
+          "assets/hand cream white tea img.jpg",
+        ],
+        description:
+          "건조한 손끝에 산뜻하게 스며드는 보습감과 맑은 화이트 티 노트. 끈적이지 않는 가벼운 텍스처로 언제 어디서나 편리하게 사용할 수 있습니다.",
+        notes: { top: "그린 티", mid: "화이트 머스크, 재스민", base: "시더우드" },
+        ingredient: "시어버터, 글리세린, 그린 티 추출물",
+      },
+      {
+        id: "bergamot",
+        label: "베르가못",
+        images: [
+          "assets/hand cream bergamot png.png",
+          "assets/hand cream bergamot img.jpg",
+        ],
+        description:
+          "상쾌한 시트러스로 시작해 머스크로 가라앉는 산뜻한 베르가못 핸드 크림. 맑고 가벼운 향이 기분을 환기시켜 줍니다.",
+        notes: { top: "베르가못", mid: "네롤리", base: "앰버 머스크" },
+        ingredient: "시어버터, 글리세린, 베르가못 오일",
+      },
+      {
+        id: "sandalwood",
+        label: "샌달우드",
+        images: [
+          "assets/hand cream sandalwood.png",
+          "assets/hand cream sandalwood img.jpg",
+        ],
+        description:
+          "따뜻한 샌달우드가 오래 머무는, 차분한 무드의 핸드 크림. 깊이 있는 우디 향이 마음을 안정시켜 줍니다.",
+        notes: { top: "스파이시 우드", mid: "샌달우드", base: "바닐라 앰버" },
+        ingredient: "시어버터, 글리세린, 샌달우드 오일",
+      },
+    ],
     details: [
       { label: "용량", value: "50ml / 1.7 fl.oz" },
       { label: "주요 성분", value: "시어버터, 글리세린, 그린 티 추출물" },
-      { label: "사용법", value: "손에 적당량을 덜어 손등과 손가락 사이까지 골고루 발라주세요." },
-    ],
-  },
-  {
-    id: "hand-cream-bergamot",
-    name: "핸드 크림 베르가못",
-    subtitle: "Hand Cream · Bergamot",
-    category: "hand-cream",
-    price: 26000,
-    volume: "50ml / 1.7 fl.oz",
-    images: [
-      "assets/hand cream bergamot png.png",
-      "assets/hand cream bergamot img.jpg",
-      "assets/hand cream card hover.jpg",
-    ],
-    description:
-      "상쾌한 시트러스로 시작해 머스크로 가라앉는 산뜻한 베르가못 핸드 크림. 맑고 가벼운 향이 기분을 환기시켜 줍니다.",
-    notes: { top: "베르가못", mid: "네롤리", base: "앰버 머스크" },
-    details: [
-      { label: "용량", value: "50ml / 1.7 fl.oz" },
-      { label: "주요 성분", value: "시어버터, 글리세린, 베르가못 오일" },
-      { label: "사용법", value: "손에 적당량을 덜어 손등과 손가락 사이까지 골고루 발라주세요." },
-    ],
-  },
-  {
-    id: "hand-cream-sandalwood",
-    name: "핸드 크림 샌달우드",
-    subtitle: "Hand Cream · Sandalwood",
-    category: "hand-cream",
-    price: 26000,
-    volume: "50ml / 1.7 fl.oz",
-    images: [
-      "assets/hand cream sandalwood.png",
-      "assets/hand cream sandalwood img.jpg",
-    ],
-    description:
-      "따뜻한 샌달우드가 오래 머무는, 차분한 무드의 핸드 크림. 깊이 있는 우디 향이 마음을 안정시켜 줍니다.",
-    notes: { top: "스파이시 우드", mid: "샌달우드", base: "바닐라 앰버" },
-    details: [
-      { label: "용량", value: "50ml / 1.7 fl.oz" },
-      { label: "주요 성분", value: "시어버터, 글리세린, 샌달우드 오일" },
       { label: "사용법", value: "손에 적당량을 덜어 손등과 손가락 사이까지 골고루 발라주세요." },
     ],
   },

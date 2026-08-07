@@ -28,6 +28,8 @@
         object-fit: cover;
         object-position: center 30%;
         opacity: 0.72;
+        transform: translate3d(0, calc(var(--parallax, 0px) * 0.6), 0) scale(1.2);
+        will-change: transform;
       }
 
       .about-hero-copy {
@@ -40,7 +42,7 @@
       .about-hero-copy .label {
         display: block;
         margin-bottom: 18px;
-        font-size: 13px;
+        font-size: 16px;
         letter-spacing: 0.14em;
         text-transform: uppercase;
         opacity: 0.7;
@@ -62,12 +64,20 @@
         min-height: 560px;
       }
 
+      .about-intro-img-wrap {
+        position: relative;
+        overflow: hidden;
+        min-height: 460px;
+      }
+
       .about-intro-img {
         width: 100%;
         height: 100%;
         min-height: 460px;
         object-fit: cover;
         display: block;
+        transform: translate3d(0, calc(var(--parallax, 0px) * 0.6), 0) scale(1.2);
+        will-change: transform;
       }
 
       .about-intro-copy {
@@ -80,7 +90,7 @@
       .about-intro-copy .label {
         display: block;
         margin-bottom: 20px;
-        font-size: 13px;
+        font-size: 16px;
         letter-spacing: 0.12em;
         text-transform: uppercase;
         color: var(--muted);
@@ -98,7 +108,7 @@
         font-size: 16px;
         line-height: 1.8;
         color: var(--muted);
-        max-width: 420px;
+        max-width: 560px;
       }
 
       /* ── 철학 섹션 ── */
@@ -112,7 +122,7 @@
       .about-values-eyebrow {
         display: block;
         margin-bottom: 16px;
-        font-size: 13px;
+        font-size: 16px;
         letter-spacing: 0.12em;
         text-transform: uppercase;
         color: var(--muted);
@@ -132,8 +142,8 @@
       .about-values-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 48px 40px;
-        max-width: 900px;
+        gap: 48px 56px;
+        max-width: 1240px;
         margin: 0 auto;
         text-align: left;
       }
@@ -155,7 +165,7 @@
       }
 
       .about-value-text {
-        font-size: 15px;
+        font-size: 16px;
         line-height: 1.75;
         color: var(--muted);
       }
@@ -192,7 +202,7 @@
         font-size: 16px;
         line-height: 1.85;
         color: var(--muted);
-        max-width: 460px;
+        max-width: 560px;
       }
 
       .about-story-text p + p {
@@ -203,11 +213,73 @@
         padding-left: clamp(32px, 5vw, 72px);
       }
 
+      .about-story-img-frame {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 3 / 4;
+      }
+
       .about-story-img {
         width: 100%;
-        aspect-ratio: 3 / 4;
+        height: 100%;
         object-fit: cover;
         display: block;
+        transform: translate3d(0, calc(var(--parallax, 0px) * 0.6), 0) scale(1.2);
+        will-change: transform;
+      }
+
+      /* ── 스크롤 등장 모션 ── */
+
+      /* 텍스트 블록은 자식 요소가 한 줄씩 차례로 올라오며 나타난다 */
+      [data-reveal] > * {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 1500ms ease,
+          transform 1500ms cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      [data-reveal].is-revealed > * {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* 중첩된 리빌 컨테이너는 자기 자식들이 직접 등장을 맡는다 */
+      [data-reveal] > [data-reveal] {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+
+      [data-reveal].is-revealed > *:nth-child(2) { transition-delay: 320ms; }
+      [data-reveal].is-revealed > *:nth-child(3) { transition-delay: 640ms; }
+      [data-reveal].is-revealed > *:nth-child(4) { transition-delay: 960ms; }
+      [data-reveal].is-revealed > *:nth-child(5) { transition-delay: 1280ms; }
+      [data-reveal].is-revealed > *:nth-child(6) { transition-delay: 1600ms; }
+
+      /* 이미지는 움직임 없이 천천히 밝아지기만 (패럴랙스 transform과 겹치지 않게) */
+      [data-fade] {
+        opacity: 0;
+        transition: opacity 2000ms ease;
+      }
+
+      [data-fade].is-revealed {
+        opacity: 1;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .about-hero-img,
+        .about-intro-img,
+        .about-story-img {
+          transform: none;
+        }
+
+        [data-reveal] > *,
+        [data-fade] {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
       }
 
       /* ── 숫자 강조 ── */
@@ -237,7 +309,7 @@
       }
 
       .about-number-label {
-        font-size: 14px;
+        font-size: 16px;
         color: var(--muted);
         letter-spacing: 0.04em;
       }
@@ -269,7 +341,7 @@
         line-height: 52px;
         border: 1px solid rgba(255,253,248,0.5);
         color: var(--white);
-        font-size: 15px;
+        font-size: 16px;
         letter-spacing: 0.08em;
         text-transform: uppercase;
         transition: background 200ms ease, border-color 200ms ease;
@@ -337,9 +409,9 @@
         <div class="nav-item">
           <a href="products.html?category=new">New</a>
           <div class="mega-panel">
-            <a class="mega-product" href="product-detail.html?id=hand-cream-white-tea">
+            <a class="mega-product" href="product-detail.html?id=hand-cream">
               <img src="assets/hand cream card hover.jpg" alt="White tea hand cream" />
-              <span>Hand Cream White Tea</span>
+              <span>Hand Cream</span>
             </a>
             <a class="mega-product" href="products.html?category=new">
               <img src="assets/travel kit essentials.jpg" alt="Travel kit" />
@@ -378,11 +450,11 @@
           </div>
         </div>
         <div class="nav-item">
-          <a href="products.html?category=hand-cream">Hand Cream</a>
+          <a href="products.html?category=hand-cream">Hand</a>
           <div class="mega-panel">
-            <a class="mega-product" href="product-detail.html?id=hand-cream-white-tea">
+            <a class="mega-product" href="product-detail.html?id=hand-cream">
               <img src="assets/hand cream card hover.jpg" alt="Hand cream trio" style="object-position: center bottom" />
-              <span>Hand Cream Trio</span>
+              <span>Hand Cream</span>
             </a>
           </div>
         </div>
@@ -404,7 +476,7 @@
           </div>
         </div>
         <div class="nav-item nav-item-simple"><a href="scent-quiz.html">Scent Finder</a></div>
-        <div class="nav-item nav-item-simple"><a href="brand-story.html">Brand</a></div>
+        <div class="nav-item nav-item-simple"><a href="about.html">Brand</a></div>
         <div class="nav-item nav-item-simple"><a href="stockist.html">Stockist</a></div>
       </nav>
       <nav class="nav nav-utility" aria-label="Account navigation">
@@ -420,10 +492,10 @@
         <a href="products.html?category=new">New</a>
         <a href="products.html?category=hair">Hair</a>
         <a href="products.html?category=body">Body</a>
-        <a href="products.html?category=hand-cream">Hand Cream</a>
+        <a href="products.html?category=hand-cream">Hand</a>
         <a href="products.html?category=home">Home</a>
         <a href="scent-quiz.html">Scent Finder</a>
-        <a href="brand-story.html">Brand</a>
+        <a href="about.html">Brand</a>
         <a href="stockist.html">Stockist</a>
         <a href="mypage.html" data-mypage-link>Mypage</a>
         <a href="login.html" data-login-link>Login</a>
@@ -444,9 +516,9 @@
     <main>
 
       <!-- 히어로 -->
-      <section class="about-hero">
+      <section class="about-hero" data-parallax>
         <img class="about-hero-img" src="assets/senne hero img.jpg" alt="SENNE" />
-        <div class="about-hero-copy">
+        <div class="about-hero-copy" data-reveal>
           <span class="label">Our Story</span>
           <h1>향이 기억을<br />만드는 방식</h1>
         </div>
@@ -454,105 +526,80 @@
 
       <!-- 인트로 -->
       <section class="about-intro">
-        <img class="about-intro-img" src="assets/signature scent.jpg" alt="SENNE signature scent" />
-        <div class="about-intro-copy">
+        <div class="about-intro-img-wrap" data-parallax data-fade>
+          <img class="about-intro-img" src="assets/signature scent.jpg" alt="SENNE signature scent" />
+        </div>
+        <div class="about-intro-copy" data-reveal>
           <span class="label">About SENNE</span>
-          <h2>센느는<br />일상의 감각을<br />설계합니다</h2>
+          <h2>센느는<br />일상에 머무는 향을<br />만듭니다</h2>
           <p>
-            SENNE는 2021년 서울에서 시작된 퍼스널 케어 브랜드입니다.
-            우리는 향이 단순한 취향이 아니라, 하루의 리듬과 감정을
-            구성하는 요소라고 믿습니다.
+            향은 특별한 순간에만 필요한 것이 아니라<br />
+            매일 반복되는 작은 행동 속에서도 기억을 남긴다고 생각합니다.
           </p>
-          <p style="margin-top:16px; font-size:16px; line-height:1.8; color:var(--muted); max-width:420px;">
-            매일 아침 샤워를 마치고, 헤어를 정돈하고, 손을 씻는 순간들.
-            그 작은 루틴 속에서 센느의 향은 당신의 하루를 조용히 완성합니다.
+          <p style="margin-top:16px; font-size:16px; line-height:1.8; color:var(--muted); max-width:560px;">
+            샤워를 마친 뒤의 피부, 손끝에 남은 크림,<br />
+            머리카락을 스치는 향과 공간에 천천히 퍼지는 잔향까지.
+          </p>
+          <p style="margin-top:16px; font-size:16px; line-height:1.8; color:var(--muted); max-width:560px;">
+            센느는 몸을 돌보는 순간부터 공간을 채우는 순간까지,<br />
+            하루의 여러 장면을 하나의 향과 감각으로 연결합니다.
           </p>
         </div>
       </section>
 
       <!-- 철학 -->
-      <section class="about-values">
+      <section class="about-values" data-reveal>
         <span class="about-values-eyebrow">Our Philosophy</span>
-        <h2>세 가지 원칙으로<br />제품을 만듭니다</h2>
-        <div class="about-values-grid">
+        <h2>세 가지 원칙으로<br />센느의 제품을 만듭니다</h2>
+        <div class="about-values-grid" data-reveal>
           <div class="about-value">
             <span class="about-value-num">01</span>
-            <p class="about-value-title">Quiet Luxury</p>
+            <p class="about-value-title">Quiet Scent</p>
             <p class="about-value-text">
-              과하지 않은 것이 오래갑니다. 센느는 드러내기보다
-              스며드는 향과 질감을 추구합니다. 사용하는 순간보다
-              사용하고 난 뒤의 감각을 더 중요하게 생각합니다.
+              가까이에서 은은하게 느껴지고, 시간이 지나도<br />
+              부담 없이 머무는 향을 지향합니다.
             </p>
           </div>
           <div class="about-value">
             <span class="about-value-num">02</span>
-            <p class="about-value-title">Clean Formula</p>
+            <p class="about-value-title">Thoughtful Formula</p>
             <p class="about-value-text">
-              모든 제품은 피부과 테스트를 거치고, 불필요한 성분을
-              배제한 클린 포뮬러로 설계됩니다. 효과는 타협하지 않되,
-              성분은 투명하게 공개합니다.
+              매일 사용하는 제품인 만큼 향뿐 아니라<br />
+              텍스처와 사용감까지 세심하게 설계합니다.
             </p>
           </div>
           <div class="about-value">
             <span class="about-value-num">03</span>
             <p class="about-value-title">Daily Ritual</p>
             <p class="about-value-text">
-              특별한 날이 아닌 매일을 위한 제품. 센느의 모든 라인은
-              아침과 저녁의 루틴 안에서 자연스럽게 자리 잡을 수 있도록
-              기획됩니다.
+              특별한 날보다 평범한 하루 속에서<br />
+              자연스럽게 반복될 수 있는 제품을 만듭니다.
             </p>
           </div>
         </div>
       </section>
 
-      <!-- 풀 이미지 -->
-      <img class="about-full-img" src="assets/apricot series.jpg" alt="SENNE apricot series" />
-
       <!-- 브랜드 스토리 -->
       <section class="about-story">
-        <div class="about-story-text">
-          <h2>향으로 연결되는<br />일상의 순간들</h2>
+        <div class="about-story-text" data-reveal>
+          <h2>향으로 이어지는<br />일상의 순간들</h2>
+          <p>센느의 향은 하나의 제품에서 끝나지 않습니다.</p>
           <p>
-            센느(SENNE)는 프랑스어로 '씨앗'을 뜻합니다.
-            작고 단단한 씨앗처럼, 우리의 제품은 당신의 루틴 속에
-            조용히 심어져 매일 조금씩 성장합니다.
+            아침의 헤어 케어에서 시작한 향이 피부에 이어지고,<br />
+            하루를 마친 공간에도 같은 분위기로 천천히 머물 수 있도록<br />
+            서로 다른 제품을 하나의 감각으로 연결합니다.
           </p>
           <p>
-            헤어 미스트 한 번, 바디 워시의 거품 한 번,
-            핸드 크림의 잔향 한 번. 그 반복이 쌓여
-            당신만의 향의 정체성이 됩니다.
+            그날의 기분과 시간, 공간에 따라<br />
+            자신만의 방식으로 향을 겹쳐 사용하는 것.
           </p>
-          <p>
-            2021년 첫 번째 향을 출시한 이후, 센느는
-            국내외 10만 명 이상의 고객과 함께
-            각자의 루틴을 만들어왔습니다.
-          </p>
+          <p>센느가 제안하는 일상의 향 루틴입니다.</p>
         </div>
         <div class="about-story-img-wrap">
-          <img class="about-story-img" src="assets/hair oil left.jpg" alt="SENNE hair oil" />
+          <div class="about-story-img-frame" data-parallax data-fade>
+            <img class="about-story-img" src="assets/hair oil left.jpg" alt="SENNE hair oil" />
+          </div>
         </div>
-      </section>
-
-      <!-- 숫자 -->
-      <div class="about-numbers">
-        <div class="about-number-item">
-          <span class="about-number-val">2021</span>
-          <span class="about-number-label">브랜드 설립</span>
-        </div>
-        <div class="about-number-item">
-          <span class="about-number-val">100K+</span>
-          <span class="about-number-label">누적 고객</span>
-        </div>
-        <div class="about-number-item">
-          <span class="about-number-val">11</span>
-          <span class="about-number-label">제품 라인업</span>
-        </div>
-      </div>
-
-      <!-- CTA -->
-      <section class="about-cta">
-        <h2>센느와 함께<br />당신의 루틴을 시작하세요</h2>
-        <a class="about-cta-btn" href="products.html">제품 보러가기</a>
       </section>
 
     </main>
@@ -580,7 +627,6 @@
           <h4>About</h4>
           <a href="stockist.html">Stockist</a>
           <a href="about.html">Story</a>
-          <a href="brand-story.html">Brand Story</a>
           <a href="#">Instagram</a>
         </nav>
       </div>

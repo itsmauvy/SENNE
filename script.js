@@ -28,6 +28,26 @@ if (parallaxEls.length && !window.matchMedia("(prefers-reduced-motion: reduce)")
   updateParallax();
 }
 
+// 스크롤로 뷰포트에 들어오면 한 번만 등장 모션
+const revealEls = [...document.querySelectorAll("[data-reveal], [data-fade]")];
+if (revealEls.length) {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) {
+    revealEls.forEach((el) => el.classList.add("is-revealed"));
+  } else {
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-revealed");
+          revealObserver.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -8% 0px" }
+    );
+    revealEls.forEach((el) => revealObserver.observe(el));
+  }
+}
+
 const menuToggle = document.querySelector(".menu-toggle");
 const mobileMenu = document.querySelector("#mobile-menu");
 const heroSlides = [...document.querySelectorAll(".hero-slide")];
@@ -41,13 +61,13 @@ const topBannerMessages = [...document.querySelectorAll(".top-banner-message")];
 
 const heroCopy = [
   {
-    eyebrow: "나이트 리추얼 · 헤어 마스크",
+    eyebrow: "Night Ritual · Hair Mask",
     title: "조용히 채워지는<br />밤의 향",
     text: "재스민과 앰버 머스크가 밤사이 모발 깊숙이 스며들어,<br />아침엔 차분한 윤기와 옅은 잔향만 남습니다",
     productId: "hair-mask",
   },
   {
-    eyebrow: "데일리 리추얼 · 바디 워시",
+    eyebrow: "Daily Ritual · Body Wash",
     title: "하루의 긴장을<br />씻어내는 향",
     text: "그린 시트러스로 시작해 화이트 머스크로 가라앉는,<br />부드러운 거품의 데일리 클렌저",
     productId: "body-wash",
@@ -266,9 +286,10 @@ if (searchOverlay && searchOpeners.length) {
     { name: "리페어 헤어 마스크", keywords: "repair hair mask 헤어마스크 마스크", price: "38,000원", href: "product-detail.html?id=hair-mask", label: "Hair" },
     { name: "센느 바디 워시", keywords: "body wash 바디워시 워시", price: "34,000원", href: "product-detail.html?id=body-wash", label: "Body" },
     { name: "센느 바디 로션", keywords: "body lotion 바디로션 로션", price: "36,000원", href: "product-detail.html?id=body-lotion", label: "Body" },
-    { name: "핸드 크림 화이트 티", keywords: "hand cream white tea 핸드크림 화이트티", price: "26,000원", href: "product-detail.html?id=hand-cream-white-tea", label: "Hand Cream" },
-    { name: "핸드 크림 베르가못", keywords: "hand cream bergamot 핸드크림 베르가못", price: "26,000원", href: "product-detail.html?id=hand-cream-bergamot", label: "Hand Cream" },
-    { name: "핸드 크림 샌달우드", keywords: "hand cream sandalwood 핸드크림 샌달우드", price: "26,000원", href: "product-detail.html?id=hand-cream-sandalwood", label: "Hand Cream" },
+    { name: "핸드 크림", keywords: "hand cream 핸드크림 크림", price: "26,000원", href: "product-detail.html?id=hand-cream", label: "Hand" },
+    { name: "핸드 크림 · 화이트 티", keywords: "hand cream white tea 핸드크림 화이트티", price: "26,000원", href: "product-detail.html?id=hand-cream&scent=white-tea", label: "Hand" },
+    { name: "핸드 크림 · 베르가못", keywords: "hand cream bergamot 핸드크림 베르가못", price: "26,000원", href: "product-detail.html?id=hand-cream&scent=bergamot", label: "Hand" },
+    { name: "핸드 크림 · 샌달우드", keywords: "hand cream sandalwood 핸드크림 샌달우드", price: "26,000원", href: "product-detail.html?id=hand-cream&scent=sandalwood", label: "Hand" },
     { name: "센티드 캔들", keywords: "scented candle 센티드캔들 캔들", price: "42,000원", href: "product-detail.html?id=scented-candle", label: "Home" },
     { name: "리드 디퓨저", keywords: "reed diffuser 리드디퓨저 디퓨저", price: "38,000원", href: "product-detail.html?id=reed-diffuser", label: "Home" },
     { name: "룸 미스트", keywords: "room mist 룸미스트 미스트", price: "30,000원", href: "product-detail.html?id=room-mist", label: "Home" },

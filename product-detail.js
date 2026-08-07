@@ -5,7 +5,17 @@ const CATEGORY_LABELS = {
   home: "Home",
 };
 
-const id = new URLSearchParams(window.location.search).get("id");
+// 향 옵션으로 통합되기 전의 개별 핸드 크림 링크를 그대로 받아준다
+const LEGACY_IDS = {
+  "hand-cream-white-tea": { id: "hand-cream", scent: "white-tea" },
+  "hand-cream-bergamot": { id: "hand-cream", scent: "bergamot" },
+  "hand-cream-sandalwood": { id: "hand-cream", scent: "sandalwood" },
+};
+
+const params = new URLSearchParams(window.location.search);
+const legacy = LEGACY_IDS[params.get("id")];
+const id = legacy ? legacy.id : params.get("id");
+const initialScent = params.get("scent") ?? legacy?.scent ?? null;
 const product = PRODUCTS.find((p) => p.id === id);
 
 if (!product) {
@@ -32,21 +42,30 @@ function renderBreadcrumb() {
 function renderDetail() {
   const layout = document.getElementById("pd-layout");
 
-  const thumbsHtml = product.images
-    .map(
-      (src, i) => `
+  const scents = product.scents ?? null;
+  let scentIndex = scents ? Math.max(0, scents.findIndex((s) => s.id === initialScent)) : -1;
+  const activeScent = scents ? scents[scentIndex] : null;
+  const startDescription = activeScent?.description ?? product.description;
+  const startNotes = activeScent?.notes ?? product.notes;
+  // 향 옵션이 있으면 선택한 향의 컷만 갤러리에 노출한다
+  let gallery = activeScent?.images ?? product.images;
+
+  const buildThumbs = (images) =>
+    images
+      .map(
+        (src, i) => `
     <button class="pd-thumb${i === 0 ? " is-active" : ""}" type="button" data-index="${i}" aria-label="이미지 ${i + 1}">
       <img src="${src}" alt="${product.name} 이미지 ${i + 1}" />
     </button>`
-    )
-    .join("");
+      )
+      .join("");
 
   const detailsHtml = product.details
     .map(
       (d) => `
     <div class="pd-detail-row">
       <dt>${d.label}</dt>
-      <dd>${d.value}</dd>
+      <dd data-detail="${d.label}">${d.value}</dd>
     </div>`
     )
     .join("");
@@ -54,9 +73,9 @@ function renderDetail() {
   layout.innerHTML = `
     <div class="pd-gallery">
       <div class="pd-main-image">
-        <img src="${product.images[0]}" alt="${product.name}" id="pd-main-img" />
+        <img src="${gallery[0]}" alt="${product.name}" id="pd-main-img" />
       </div>
-      ${product.images.length > 1 ? `<div class="pd-thumbs">${thumbsHtml}</div>` : ""}
+      <div class="pd-thumbs" id="pd-thumbs"${gallery.length > 1 ? "" : " hidden"}>${buildThumbs(gallery)}</div>
     </div>
 
     <div class="pd-info">
@@ -65,25 +84,36 @@ function renderDetail() {
       <p class="pd-price">${product.price.toLocaleString("ko-KR")}원</p>
       <p class="pd-volume">${product.volume}</p>
 
-      <p class="pd-description">${product.description}</p>
+      <p class="pd-description">${startDescription}</p>
 
-      ${product.notes ? `
+      ${startNotes ? `
       <div class="pd-scent-pyramid">
         <p class="pd-scent-pyramid-label">Scent Pyramid</p>
         <div class="pd-scent-tier">
           <span class="pd-scent-tier-name">Top</span>
           <span class="pd-scent-bar"><span style="width:36%"></span></span>
-          <span class="pd-scent-tier-notes">${product.notes.top}</span>
+          <span class="pd-scent-tier-notes" data-note="top">${startNotes.top}</span>
         </div>
         <div class="pd-scent-tier">
           <span class="pd-scent-tier-name">Middle</span>
           <span class="pd-scent-bar"><span style="width:68%"></span></span>
-          <span class="pd-scent-tier-notes">${product.notes.mid}</span>
+          <span class="pd-scent-tier-notes" data-note="mid">${startNotes.mid}</span>
         </div>
         <div class="pd-scent-tier">
           <span class="pd-scent-tier-name">Base</span>
           <span class="pd-scent-bar"><span style="width:100%"></span></span>
-          <span class="pd-scent-tier-notes">${product.notes.base}</span>
+          <span class="pd-scent-tier-notes" data-note="base">${startNotes.base}</span>
+        </div>
+      </div>` : ""}
+
+      ${scents ? `
+      <div class="pd-volume-selector pd-scent-selector">
+        <p class="pd-volume-label">향 선택</p>
+        <div class="pd-volume-options">
+          ${scents.map((s, i) => `
+            <button type="button" class="pd-volume-opt pd-scent-opt${i === scentIndex ? " is-active" : ""}" data-scent-index="${i}">
+              ${s.label}
+            </button>`).join("")}
         </div>
       </div>` : ""}
 
@@ -116,35 +146,86 @@ function renderDetail() {
 
   // thumbnail switching + auto-cycle
   const mainImg = document.getElementById("pd-main-img");
-  const thumbBtns = [...document.querySelectorAll(".pd-thumb")];
+  const mainImgBox = document.querySelector(".pd-main-image");
+  const thumbsBox = document.getElementById("pd-thumbs");
   let currentIndex = 0;
+
+  // 정사각 크롭에서 제품이 잘리는 연출컷만 포커스 조정 (없으면 중앙)
+  const imageFocus = {
+    "diffuser.jpg": "center 65%",
+  };
+
+  // 연출컷(jpg)은 정사각으로 꽉 채우고, 누끼컷(png)은 잘리지 않게 contain
+  function applyImageFit() {
+    const file = decodeURIComponent(mainImg.src.split("/").pop());
+    mainImgBox.classList.toggle("is-contain", /\.png$/i.test(file));
+    mainImg.style.objectPosition = imageFocus[file] || "center";
+  }
+
+  mainImg.addEventListener("load", applyImageFit);
+  if (mainImg.complete) applyImageFit();
 
   function showImage(index) {
     currentIndex = index;
     mainImg.style.opacity = "0";
     setTimeout(() => {
-      mainImg.src = product.images[index];
+      mainImg.src = gallery[index];
       mainImg.style.opacity = "1";
     }, 180);
-    thumbBtns.forEach((b) => b.classList.remove("is-active"));
-    if (thumbBtns[index]) thumbBtns[index].classList.add("is-active");
+    const thumbs = [...thumbsBox.querySelectorAll(".pd-thumb")];
+    thumbs.forEach((b) => b.classList.remove("is-active"));
+    if (thumbs[index]) thumbs[index].classList.add("is-active");
   }
 
-  thumbBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      clearInterval(cycleTimer);
-      showImage(Number(btn.dataset.index));
-      cycleTimer = setInterval(nextImage, 3000);
-    });
+  thumbsBox.addEventListener("click", (event) => {
+    const btn = event.target.closest(".pd-thumb");
+    if (!btn) return;
+    clearInterval(cycleTimer);
+    showImage(Number(btn.dataset.index));
+    if (!scents) cycleTimer = setInterval(nextImage, 3000);
   });
 
   function nextImage() {
-    showImage((currentIndex + 1) % product.images.length);
+    showImage((currentIndex + 1) % gallery.length);
   }
 
   let cycleTimer = null;
-  if (product.images.length > 1) {
+  // 향 옵션이 있는 제품은 다른 향의 컷으로 자동 전환되면 혼란스러우므로 순환하지 않는다
+  if (gallery.length > 1 && !scents) {
     cycleTimer = setInterval(nextImage, 3000);
+  }
+
+  // 향 선택
+  if (scents) {
+    const descEl = document.querySelector(".pd-description");
+    const noteEls = {
+      top: document.querySelector('[data-note="top"]'),
+      mid: document.querySelector('[data-note="mid"]'),
+      base: document.querySelector('[data-note="base"]'),
+    };
+    const ingredientEl = document.querySelector('[data-detail="주요 성분"]');
+
+    document.querySelectorAll(".pd-scent-opt").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        scentIndex = Number(btn.dataset.scentIndex);
+        const scent = scents[scentIndex];
+
+        document.querySelectorAll(".pd-scent-opt").forEach((b) => b.classList.remove("is-active"));
+        btn.classList.add("is-active");
+
+        descEl.textContent = scent.description;
+        noteEls.top.textContent = scent.notes.top;
+        noteEls.mid.textContent = scent.notes.mid;
+        noteEls.base.textContent = scent.notes.base;
+        if (ingredientEl) ingredientEl.textContent = scent.ingredient;
+
+        // 갤러리를 선택한 향의 컷으로 교체
+        gallery = scent.images;
+        thumbsBox.innerHTML = buildThumbs(gallery);
+        thumbsBox.hidden = gallery.length < 2;
+        showImage(0);
+      });
+    });
   }
 
   // volume selector
