@@ -2570,12 +2570,38 @@ h3 {
   color: var(--muted);
 }
 
+/* 위로 갈수록 좁아지는 층으로 향의 구조를 그대로 보여준다 */
 .pd-scent-tier {
   display: grid;
-  grid-template-columns: 56px 1fr auto;
+  grid-template-columns: 132px 68px 1fr;
   align-items: center;
-  gap: 14px;
-  padding: 8px 0;
+  column-gap: 20px;
+}
+
+.pd-scent-tier + .pd-scent-tier {
+  margin-top: 3px;
+}
+
+.pd-scent-slice {
+  display: block;
+  height: 44px;
+  background: var(--clay);
+}
+
+/* 꼭짓점에서 밑변까지 기울기가 일정해서 쌓으면 하나의 삼각형이 된다 */
+.pd-scent-slice--top {
+  clip-path: polygon(50% 0, 50% 0, 66.7% 100%, 33.3% 100%);
+  opacity: 0.34;
+}
+
+.pd-scent-slice--mid {
+  clip-path: polygon(33.3% 0, 66.7% 0, 83.3% 100%, 16.7% 100%);
+  opacity: 0.58;
+}
+
+.pd-scent-slice--base {
+  clip-path: polygon(16.7% 0, 83.3% 0, 100% 100%, 0 100%);
+  opacity: 0.82;
 }
 
 .pd-scent-tier-name {
@@ -2585,25 +2611,9 @@ h3 {
   color: var(--ink);
 }
 
-.pd-scent-bar {
-  display: block;
-  height: 4px;
-  border-radius: 999px;
-  background: var(--line);
-  overflow: hidden;
-}
-
-.pd-scent-bar span {
-  display: block;
-  height: 100%;
-  border-radius: 999px;
-  background: var(--clay);
-}
-
 .pd-scent-tier-notes {
   font-size: 16px;
   color: var(--muted);
-  text-align: right;
 }
 
 .pd-volume-selector {
@@ -2792,6 +2802,15 @@ h3 {
     padding: 32px 20px 60px;
     border-left: 0;
     border-top: 1px solid var(--line);
+  }
+
+  .pd-scent-tier {
+    grid-template-columns: 92px 62px 1fr;
+    column-gap: 12px;
+  }
+
+  .pd-scent-slice {
+    height: 38px;
   }
 
   .pd-breadcrumb {

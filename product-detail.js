@@ -90,18 +90,18 @@ function renderDetail() {
       <div class="pd-scent-pyramid">
         <p class="pd-scent-pyramid-label">Scent Pyramid</p>
         <div class="pd-scent-tier">
+          <span class="pd-scent-slice pd-scent-slice--top" aria-hidden="true"></span>
           <span class="pd-scent-tier-name">Top</span>
-          <span class="pd-scent-bar"><span style="width:36%"></span></span>
           <span class="pd-scent-tier-notes" data-note="top">${startNotes.top}</span>
         </div>
         <div class="pd-scent-tier">
+          <span class="pd-scent-slice pd-scent-slice--mid" aria-hidden="true"></span>
           <span class="pd-scent-tier-name">Middle</span>
-          <span class="pd-scent-bar"><span style="width:68%"></span></span>
           <span class="pd-scent-tier-notes" data-note="mid">${startNotes.mid}</span>
         </div>
         <div class="pd-scent-tier">
+          <span class="pd-scent-slice pd-scent-slice--base" aria-hidden="true"></span>
           <span class="pd-scent-tier-name">Base</span>
-          <span class="pd-scent-bar"><span style="width:100%"></span></span>
           <span class="pd-scent-tier-notes" data-note="base">${startNotes.base}</span>
         </div>
       </div>` : ""}
