@@ -1905,17 +1905,6 @@ h3 {
   padding: 40px 32px 100px;
 }
 
-.checkout-head {
-  margin-bottom: 34px;
-}
-
-.checkout-head h1 {
-  margin: 8px 0 0;
-  font-size: clamp(36px, 6vw, 72px);
-  font-weight: 500;
-  line-height: 0.92;
-}
-
 .checkout-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 360px;
