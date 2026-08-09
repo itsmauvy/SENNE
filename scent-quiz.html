@@ -140,6 +140,8 @@
         color: var(--muted);
         line-height: 1.7;
         max-width: 460px;
+        /* 마지막 줄에 "향." 한 단어만 남지 않도록 줄 길이를 고르게 */
+        text-wrap: balance;
       }
 
       /* 향을 담고 있는 제품들 */
@@ -250,6 +252,41 @@
         color: var(--muted);
         line-height: 1.7;
         text-align: center;
+        text-wrap: balance;
+      }
+
+      /* 좁은 화면에서 3열은 이미지가 너무 작아진다 — 한 줄에 하나씩, 가로 리스트로 */
+      @media (max-width: 680px) {
+        .quiz-result-products {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+
+        .quiz-result-product {
+          display: grid;
+          grid-template-columns: 116px 1fr;
+          column-gap: 18px;
+          align-items: center;
+        }
+
+        .quiz-result-product-img {
+          grid-column: 1;
+          grid-row: 1 / 3;
+          margin-bottom: 0;
+        }
+
+        .quiz-result-product-name {
+          grid-column: 2;
+          grid-row: 1;
+          align-self: end;
+        }
+
+        .quiz-result-product-price {
+          grid-column: 2;
+          grid-row: 2;
+          align-self: start;
+          margin-top: 4px;
+        }
       }
 
       @media (max-width: 540px) {

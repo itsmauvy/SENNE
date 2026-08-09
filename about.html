@@ -374,6 +374,19 @@
       @media (max-width: 768px) {
         .about-hero { padding: 40px 24px; }
 
+        /* 데스크탑 기준으로 넣은 고정 줄바꿈이 좁은 화면에서는 어색하게 접힌다 */
+        .about-intro-copy p br,
+        .about-value-text br,
+        .about-story-text p br {
+          display: none;
+        }
+
+        .about-intro-copy p,
+        .about-value-text,
+        .about-story-text p {
+          text-wrap: pretty;
+        }
+
         .about-intro {
           grid-template-columns: 1fr;
         }
@@ -534,7 +547,7 @@
 
       <!-- 히어로 -->
       <section class="about-hero" data-parallax>
-        <img class="about-hero-img" src="assets/brand story hero img.png" alt="SENNE" />
+        <img class="about-hero-img" src="assets/brand story hero img.webp" alt="SENNE" />
         <div class="about-hero-copy" data-reveal>
           <span class="label">Our Story</span>
           <h1>향이 기억을<br />만드는 방식</h1>
@@ -544,7 +557,7 @@
       <!-- 인트로 -->
       <section class="about-intro">
         <div class="about-intro-img-wrap" data-parallax data-fade>
-          <img class="about-intro-img" src="assets/brand story img.png" alt="SENNE perfume mist" />
+          <img class="about-intro-img" src="assets/brand story img.webp" alt="SENNE perfume mist" />
         </div>
         <div class="about-intro-copy" data-reveal>
           <span class="label">About SENNE</span>
@@ -614,7 +627,7 @@
         </div>
         <div class="about-story-img-wrap">
           <div class="about-story-img-frame" data-parallax data-fade>
-            <img class="about-story-img" src="assets/brand story img 2.png" alt="SENNE brand story" />
+            <img class="about-story-img" src="assets/brand story img 2.webp" alt="SENNE brand story" />
           </div>
         </div>
       </section>
