@@ -184,6 +184,11 @@
         color: var(--muted);
       }
 
+      /* 줄바꿈을 화면 폭에 따라 갈아끼운다 */
+      .m-br {
+        display: none;
+      }
+
       /* ── 풀 이미지 ── */
 
       .about-full-img {
@@ -374,17 +379,27 @@
       @media (max-width: 768px) {
         .about-hero { padding: 40px 24px; }
 
-        /* 데스크탑 기준으로 넣은 고정 줄바꿈이 좁은 화면에서는 어색하게 접힌다 */
-        .about-intro-copy p br,
-        .about-value-text br,
+        /* 모바일 전용 줄바꿈으로 교체 (원칙 3개는 데스크탑과 같은 위치라 그대로 둔다) */
+        .d-br {
+          display: none;
+        }
+
+        .m-br {
+          display: inline;
+        }
+
+        /* 스토리 문단은 모바일 줄바꿈을 따로 지정하지 않아 자연스럽게 흐르게 둔다 */
         .about-story-text p br {
           display: none;
         }
 
-        .about-intro-copy p,
-        .about-value-text,
         .about-story-text p {
           text-wrap: pretty;
+        }
+
+        /* 지정한 줄이 들어갈 만큼 좌우 여백을 줄인다 */
+        .about-intro-copy {
+          padding: 40px 24px 56px;
         }
 
         .about-intro {
@@ -564,15 +579,19 @@
           <h2>센느는<br />일상에 머무는 향을<br />만듭니다</h2>
           <p>
             향은 특별한 순간에만 필요한 것이 아니라<br />
-            매일 반복되는 작은 행동 속에서도 기억을 남긴다고 생각합니다.
+            매일 반복되는 작은 행동 속에서도<br class="m-br" />
+            기억을 남긴다고 생각합니다.
           </p>
           <p style="margin-top:16px; font-size:16px; line-height:1.8; color:var(--muted); max-width:560px;">
             샤워를 마친 뒤의 피부, 손끝에 남은 크림,<br />
-            머리카락을 스치는 향과 공간에 천천히 퍼지는 잔향까지.
+            머리카락을 스치는 향과 공간에<br class="m-br" />
+            천천히 퍼지는 잔향까지.
           </p>
           <p style="margin-top:16px; font-size:16px; line-height:1.8; color:var(--muted); max-width:560px;">
-            센느는 몸을 돌보는 순간부터 공간을 채우는 순간까지,<br />
-            하루의 여러 장면을 하나의 향과 감각으로 연결합니다.
+            센느는 몸을 돌보는 순간부터<br class="m-br" />
+            공간을 채우는 순간까지,<br class="d-br" />
+            하루의 여러 장면을<br class="m-br" />
+            하나의 향과 감각으로 연결합니다.
           </p>
         </div>
       </section>
